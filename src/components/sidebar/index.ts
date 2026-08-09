@@ -1,32 +1,92 @@
-/**
- * Product-neutral compound sidebar primitives.
- *
- * The implementation lives in the original compound component module so
- * existing imports remain stable. Consumers should use this generic entry
- * point when composing a new product shell.
- */
+import "./sidebar.css"
+
+export { SidebarRoot, useSidebar } from "./context"
+export { SidebarShell, SidebarPanel, SidebarInset } from "./shell"
 export {
-  ChatSidebarRoot as SidebarRoot,
-  ChatSidebarProvider as SidebarProvider,
-  ChatSidebar as Sidebar,
-  ChatSidebarHeader as SidebarHeader,
-  ChatSidebarContent as SidebarContent,
-  ChatSidebarFooter as SidebarFooter,
-  ChatSidebarSection as SidebarSection,
-  ChatSidebarSectionHeader as SidebarSectionHeader,
-  ChatSidebarSectionAction as SidebarSectionAction,
-  ChatSidebarMenu as SidebarMenu,
-  ChatSidebarMenuItem as SidebarMenuItem,
-  ChatSidebarMenuButton as SidebarMenuButton,
-  ChatSidebarMenuAction as SidebarMenuAction,
-  ChatSidebarMenuActions as SidebarMenuActions,
-  ChatSidebarTooltip as SidebarTooltip,
-  ChatSidebarIconButton as SidebarIconButton,
-  ChatSidebarRail as SidebarRail,
-  ChatSidebarRailHeader as SidebarRailHeader,
-  ChatSidebarRailButton as SidebarRailButton,
-  ChatSidebarRailSpacer as SidebarRailSpacer,
-  ChatSidebarTrigger as SidebarTrigger,
-  ChatSidebarInset as SidebarInset,
-  useChatSidebar as useSidebar,
-} from "@/components/chat-sidebar"
+  SidebarHeader,
+  SidebarFixedTop,
+  SidebarScrollArea,
+  SidebarFooter,
+  SidebarIconAnchor,
+} from "./layout"
+export {
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMenuActions,
+  SidebarMenuAction,
+  SidebarShortcutHint,
+} from "./menu"
+export {
+  SidebarSection,
+  SidebarSectionHeader,
+  SidebarSectionTrigger,
+  SidebarSectionLabel,
+  SidebarSectionActions,
+  SidebarSectionContent,
+} from "./section"
+export {
+  SidebarRail,
+  SidebarRailHeader,
+  SidebarRailMenu,
+  SidebarRailFooter,
+  SidebarRailButton,
+} from "./rail"
+export {
+  SidebarIconButton,
+  SidebarTrigger,
+  SidebarSectionAction,
+} from "./controls"
+export { SidebarTooltip } from "./tooltip"
+export {
+  createSidebarTokenStyle,
+  pickSidebarTokenStyle,
+  sidebarDefaultTokens,
+  SIDEBAR_MOBILE_QUERY,
+} from "./tokens"
+export {
+  isTextEntryTarget,
+  getSidebarTriggerExpanded,
+  matchesSidebarShortcut,
+  readSidebarCookieState,
+  reduceSidebarModifierState,
+  reduceSidebarPresentationState,
+  serializeSidebarCookie,
+  shouldHandleSidebarShortcut,
+} from "./state"
+export type {
+  SidebarCookieOptions,
+  SidebarPublicContextValue,
+  SidebarRootProps,
+  SidebarRootState,
+  SidebarShellProps,
+  SidebarSide,
+  SidebarStyle,
+  SidebarSurface,
+  SidebarTokenName,
+  SidebarTokenOverrides,
+} from "./types"
+export type {
+  SidebarModifierAction,
+  SidebarModifierState,
+  SidebarPersistenceOptions,
+  SidebarPresentationAction,
+  SidebarPresentationState,
+  SidebarShortcutEvent,
+  SidebarTargetDescriptor,
+} from "./state"
+export type {
+  SidebarMenuActionProps,
+  SidebarMenuButtonProps,
+  SidebarMenuButtonState,
+  SidebarMenuItemProps,
+  SidebarShortcutHintProps,
+} from "./menu"
+export type {
+  SidebarIconButtonProps,
+  SidebarSectionActionProps,
+  SidebarTriggerProps,
+} from "./controls"
+export type { SidebarRailButtonProps } from "./rail"
+export type { SidebarSectionProps } from "./section"
+export type { SidebarTooltipProps } from "./tooltip"
