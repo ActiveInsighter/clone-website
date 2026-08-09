@@ -156,10 +156,7 @@ export function ChatGptHome({ initialDark = true }: ChatGptHomeProps) {
   return (
     <SidebarRoot
       defaultOpen
-      width="260px"
-      railWidth="59px"
-      headerHeight="59px"
-      cookieName="chatgpt_sidebar_state"
+      persistence={{ name: "chatgpt_sidebar_state" }}
     >
       <ChatGptSidebarDemo onNotice={setNotice} />
       <SidebarInset className="min-h-0 bg-black text-white">

@@ -18,18 +18,46 @@ import {
 
 export type ChatGptSidebarIcon = ComponentType<IconProps>
 
-export interface ChatGptSidebarPrimaryItem {
+interface ChatGptSidebarItemBase {
   id: string
   label: string
   icon: ChatGptSidebarIcon
 }
 
+export type ChatGptSidebarPrimaryItem =
+  | (ChatGptSidebarItemBase & { kind: "route"; href: string })
+  | (ChatGptSidebarItemBase & { kind: "command" })
+
+export const chatGptSidebarNewChatItem = {
+  id: "new-chat",
+  kind: "command",
+  label: "新聊天",
+  icon: ComposeIcon,
+} satisfies ChatGptSidebarPrimaryItem
+
 export const chatGptSidebarPrimaryItems: ChatGptSidebarPrimaryItem[] = [
-  { id: "new-chat", label: "新聊天", icon: ComposeIcon },
-  { id: "library", label: "文件库", icon: LibraryIcon },
-  { id: "scheduled", label: "已安排", icon: ScheduledIcon },
-  { id: "plugins", label: "插件", icon: PluginsIcon },
-  { id: "more", label: "更多", icon: MoreHorizontalIcon },
+  {
+    id: "library",
+    kind: "route",
+    label: "文件库",
+    icon: LibraryIcon,
+    href: "/library",
+  },
+  {
+    id: "scheduled",
+    kind: "route",
+    label: "已安排",
+    icon: ScheduledIcon,
+    href: "/scheduled",
+  },
+  {
+    id: "plugins",
+    kind: "route",
+    label: "插件",
+    icon: PluginsIcon,
+    href: "/plugins",
+  },
+  { id: "more", kind: "command", label: "更多", icon: MoreHorizontalIcon },
 ]
 
 export const chatGptSidebarProjects = chatGptDemoProjectNames
@@ -37,10 +65,10 @@ export const chatGptSidebarProjects = chatGptDemoProjectNames
 export const chatGptSidebarChats = chatGptDemoChatTitles
 
 export const chatGptSidebarRailItems: ChatGptSidebarPrimaryItem[] = [
-  { id: "new-chat", label: "新聊天", icon: ComposeIcon },
-  { id: "search", label: "搜索", icon: SearchChatsIcon },
-  { id: "pinned", label: "已置顶", icon: PinIcon },
-  { id: "history", label: "最近聊天", icon: ChatHistoryIcon },
+  chatGptSidebarNewChatItem,
+  { id: "search", kind: "command", label: "搜索", icon: SearchChatsIcon },
+  { id: "pinned", kind: "command", label: "已置顶", icon: PinIcon },
+  { id: "history", kind: "command", label: "最近聊天", icon: ChatHistoryIcon },
 ]
 
 export const chatGptSidebarUser = {
