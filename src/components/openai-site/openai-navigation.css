@@ -1,0 +1,780 @@
+.openai-site-header {
+  --site-navigation-surface: #000;
+  --site-navigation-foreground: #fff;
+  --site-navigation-muted: rgb(255 255 255 / 60%);
+  --site-navigation-panel-surface: #000;
+  --site-navigation-panel-foreground: #fff;
+  --site-navigation-bar-height: 72px;
+  --site-navigation-mobile-height: 61px;
+  --site-navigation-z-backdrop: 70;
+  --site-navigation-z-panel: 80;
+  --site-navigation-z-header: 100;
+  font-family: "OpenAI Sans SC", "OpenAI Sans", Arial, Helvetica, sans-serif;
+}
+
+.openai-site-header .openai-header-bar {
+  z-index: var(--site-navigation-z-header);
+  height: var(--site-navigation-bar-height);
+  background: #000;
+}
+
+.openai-site-header .openai-header-container {
+  height: var(--site-navigation-bar-height);
+  gap: 22.5px;
+  padding-inline: 36px;
+}
+
+.openai-site-header .openai-brand {
+  width: 62.77px;
+  height: var(--site-navigation-bar-height);
+  color: #fff;
+}
+
+.openai-brand-link {
+  display: flex;
+  width: 62.77px;
+  height: 100%;
+  align-items: center;
+  color: inherit;
+}
+
+.openai-logo {
+  display: block;
+  width: auto;
+  height: 17px;
+}
+
+.openai-site-header .openai-desktop-main,
+.openai-site-header .openai-desktop-nav,
+.openai-site-header .openai-desktop-nav-list,
+.openai-site-header .openai-desktop-nav-item {
+  height: var(--site-navigation-bar-height);
+}
+
+.openai-site-header .openai-desktop-main {
+  align-items: center;
+  gap: 0;
+}
+
+.openai-site-header .openai-desktop-nav {
+  flex: 0 0 auto;
+}
+
+.openai-site-header .openai-desktop-nav-list {
+  align-items: stretch;
+}
+
+.openai-site-header .openai-desktop-nav-item {
+  flex: 0 0 auto;
+  align-items: stretch;
+}
+
+.openai-site-header .openai-desktop-nav-item:nth-child(1),
+.openai-site-header .openai-desktop-nav-item:nth-child(2),
+.openai-site-header .openai-desktop-nav-item:nth-child(3),
+.openai-site-header .openai-desktop-nav-item:nth-child(5) {
+  width: 65.25px;
+}
+
+.openai-site-header .openai-desktop-nav-item:nth-child(4) {
+  width: 94.5px;
+}
+
+.openai-site-header .openai-desktop-nav-item:nth-child(6) {
+  width: 79.875px;
+}
+
+.openai-site-header .openai-desktop-nav-trigger {
+  width: 100%;
+  height: var(--site-navigation-bar-height);
+  justify-content: flex-start;
+  border-radius: 0;
+  color: #fff;
+  padding: 0;
+  font-size: 19.125px;
+  font-weight: 400;
+  letter-spacing: -0.19125px;
+  line-height: 31.5px;
+}
+
+.openai-site-header .openai-desktop-nav-trigger:hover,
+.openai-site-header .openai-desktop-nav-trigger:focus-visible,
+.openai-site-header .openai-desktop-nav-item[data-menu-open="true"] .openai-desktop-nav-trigger {
+  color: #fff;
+  background: transparent;
+}
+
+.openai-site-header .openai-desktop-nav-list[data-has-open="true"]
+  .openai-desktop-nav-item:not([data-menu-open="true"])
+  .openai-desktop-nav-trigger {
+  color: rgb(255 255 255 / 60%);
+}
+
+.openai-site-header .openai-desktop-nav-arrow {
+  top: 0;
+  right: -2px;
+  z-index: 2;
+  width: 22.5px;
+  height: var(--site-navigation-bar-height);
+  border-radius: 0;
+  color: transparent;
+  pointer-events: none;
+}
+
+.openai-site-header .openai-desktop-nav-arrow:hover {
+  background: transparent;
+  color: transparent;
+  outline: none;
+}
+
+.openai-site-header .openai-desktop-nav-arrow:focus-visible {
+  background: transparent;
+  color: #fff;
+  outline: 1px solid rgb(255 255 255 / 54%);
+  outline-offset: -2px;
+}
+
+.openai-site-header .openai-desktop-nav-arrow svg {
+  width: 10px;
+  height: 16px;
+  stroke-width: 0;
+}
+
+.openai-site-header .openai-search-control {
+  display: flex;
+  width: 45px;
+  height: var(--site-navigation-bar-height);
+  align-items: center;
+  justify-content: center;
+  margin-left: 4.5px;
+}
+
+.openai-site-header .openai-icon-button {
+  position: relative;
+  display: inline-flex;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent !important;
+  color: rgb(255 255 255 / 60%);
+  padding: 0;
+  transition: color 180ms ease, background 220ms ease;
+}
+
+.openai-site-header .openai-icon-button:hover,
+.openai-site-header .openai-icon-button[aria-expanded="true"] {
+  background:
+    radial-gradient(circle at 50% 42%, rgb(255 255 255 / 16%), rgb(255 255 255 / 7%) 42%, transparent 74%) !important;
+  color: #fff;
+}
+
+.openai-site-header .openai-icon-button:focus-visible {
+  background:
+    radial-gradient(circle at 50% 42%, rgb(255 255 255 / 16%), rgb(255 255 255 / 7%) 42%, transparent 74%) !important;
+  color: #fff;
+  outline: 1px solid rgb(255 255 255 / 56%);
+  outline-offset: -1px;
+}
+
+.openai-site-header .openai-icon-button:active {
+  transform: none !important;
+}
+
+.openai-site-header .openai-icon-button svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.5;
+}
+
+.openai-search-icon {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.86) rotate(-8deg);
+  transition: opacity 160ms ease, transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.openai-search-icon[data-state="open"] {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.openai-site-header .openai-menu-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.openai-site-header .openai-action-group {
+  gap: 16px;
+}
+
+.openai-site-header .site-navigation__compact {
+  gap: 16px;
+}
+
+.openai-site-header .site-navigation__compact .openai-search-control {
+  width: 45px;
+  height: var(--site-navigation-mobile-height);
+  margin-left: 0;
+}
+
+.openai-site-header .openai-pill-button {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  border: 0;
+  border-radius: 45px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 15.75px;
+  font-weight: 500;
+  line-height: 15.75px;
+  padding-inline: 22.5px;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+  white-space: nowrap;
+}
+
+.openai-site-header .openai-pill-button svg {
+  width: 12px;
+  height: 12px;
+}
+
+.openai-site-header .openai-login-root {
+  position: relative;
+  z-index: 120;
+  display: flex;
+}
+
+.openai-site-header .openai-login-button {
+  width: 94.72px;
+  height: 40.5px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+}
+
+.openai-site-header .openai-login-button:hover,
+.openai-site-header .openai-login-button:focus-visible,
+.openai-site-header .openai-login-button[data-popup-open="true"] {
+  background: rgb(255 255 255 / 19%);
+  color: #fff;
+  outline: none;
+}
+
+.openai-site-header .openai-login-button:focus-visible {
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 56%);
+}
+
+.openai-site-header .openai-login-button svg {
+  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.openai-site-header .openai-login-button[data-popup-open="true"] svg {
+  transform: rotate(180deg);
+}
+
+.openai-site-header .openai-cta-button {
+  height: 40.5px;
+  background: #fff;
+  color: #000;
+}
+
+.openai-site-header .openai-cta-button:hover,
+.openai-site-header .openai-cta-button:focus-visible {
+  background: rgb(255 255 255 / 82%);
+  color: #000;
+  outline: none;
+}
+
+.openai-site-header .openai-cta-button:focus-visible {
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 70%);
+}
+
+.openai-login-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 120;
+  display: grid;
+  width: 190px;
+  min-width: 190px;
+  gap: 2px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 14px;
+  background: #171717;
+  box-shadow: 0 18px 44px rgb(0 0 0 / 40%);
+  color: #fff;
+  padding: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px) scale(0.98);
+  transform-origin: top right;
+  transition: opacity 150ms ease, transform 180ms cubic-bezier(0.4, 0, 0.2, 1), visibility 180ms;
+  visibility: hidden;
+}
+
+.openai-login-menu[data-state="open"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.openai-login-menu a {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: background-color 140ms ease;
+}
+
+.openai-login-menu a:hover,
+.openai-login-menu a:focus-visible {
+  background: rgb(255 255 255 / 10%);
+  outline: none;
+}
+
+.openai-login-menu a:focus-visible {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 46%);
+}
+
+.openai-site-header .site-navigation__skip-link {
+  top: var(--site-navigation-bar-height);
+  left: 36px;
+  border-radius: 45px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+  font-size: 14.625px;
+  font-weight: 500;
+  transform: translateY(-300%);
+}
+
+.openai-site-header .site-navigation__skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.openai-site-header .openai-mega-menu {
+  background: #000;
+  color: #fff;
+}
+
+.openai-site-header .openai-mega-menu .site-navigation__panel-inner {
+  display: grid;
+  width: min(100%, 900px);
+  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 36px;
+}
+
+.openai-site-header .openai-mega-menu .site-navigation__column-title {
+  margin: 0 0 13.5px;
+  color: rgb(255 255 255 / 60%);
+  font-size: 14.625px;
+  font-weight: 500;
+  line-height: 22.14px;
+}
+
+.openai-site-header .openai-mega-menu .site-navigation__column-list {
+  gap: 12px;
+}
+
+.openai-site-header .openai-mega-menu .site-navigation__panel-link {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+}
+
+.openai-site-header .openai-mega-menu .site-navigation__panel-link:hover,
+.openai-site-header .openai-mega-menu .site-navigation__panel-link:focus-visible {
+  color: rgb(255 255 255 / 60%);
+  opacity: 1;
+  outline: none;
+}
+
+.openai-inline-arrow {
+  width: 9px;
+  height: 12px;
+  margin-left: 4px;
+  stroke-width: 1.3;
+}
+
+.openai-search-panel {
+  position: fixed;
+  inset: var(--site-navigation-bar-height) 0 0;
+  z-index: 95;
+  overflow-y: auto;
+  background: #000;
+  color: #fff;
+  font-family: "OpenAI Sans SC", "OpenAI Sans", Arial, Helvetica, sans-serif;
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition:
+    clip-path 360ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 220ms ease,
+    transform 360ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 360ms;
+  visibility: hidden;
+}
+
+.openai-search-panel[data-state="open"] {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.openai-search-panel-inner {
+  width: min(calc(100% - 72px), 1272px);
+  margin-inline: auto;
+  padding: 144px 0 72px;
+}
+
+.openai-search-form {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
+}
+
+.openai-search-form input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: clamp(2.75rem, 4.4vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+  padding: 0 0 18px;
+}
+
+.openai-search-form input::placeholder {
+  color: rgb(255 255 255 / 60%);
+  opacity: 1;
+}
+
+.openai-search-form button {
+  display: inline-flex;
+  width: 51px;
+  height: 51px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 12px 24px;
+  border: 0;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 60%);
+  color: #000;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.openai-search-form button:hover,
+.openai-search-form button:focus-visible {
+  background: #fff;
+  outline: none;
+}
+
+.openai-search-form button:active {
+  transform: none;
+}
+
+.openai-search-form button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.openai-mobile-surface.site-navigation-mobile-surface[data-slot="sheet-content"] {
+  --site-navigation-surface: #000 !important;
+  --site-navigation-foreground: #fff !important;
+  background: #000 !important;
+  background-color: #000 !important;
+  color: #fff;
+  font-family: "OpenAI Sans SC", "OpenAI Sans", Arial, Helvetica, sans-serif;
+}
+
+.openai-mobile-surface .site-navigation__mobile-scroll {
+  background: #000;
+}
+
+.openai-mobile-surface .site-navigation__mobile-actions {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0 27px;
+  padding: 27px 0 32px;
+  border-top: 1px solid rgb(255 255 255 / 20%);
+}
+
+.openai-mobile-surface .site-navigation__mobile-actions .openai-pill-button {
+  width: fit-content;
+}
+
+.openai-mobile-surface .openai-pill-button {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  border: 0;
+  border-radius: 45px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 15.75px;
+  font-weight: 500;
+  line-height: 15.75px;
+  padding-inline: 22.5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.openai-mobile-surface .openai-pill-button svg {
+  width: 12px;
+  height: 12px;
+}
+
+.openai-mobile-surface .openai-login-root {
+  position: relative;
+  z-index: 120;
+  display: flex;
+}
+
+.openai-mobile-surface .openai-login-button {
+  width: 94.72px;
+  height: 40.5px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+}
+
+.openai-mobile-surface .openai-cta-button {
+  height: 40.5px;
+  background: #fff;
+  color: #000;
+}
+
+.openai-mobile-surface .openai-login-button {
+  height: 40.5px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+}
+
+.openai-mobile-surface .openai-login-menu {
+  right: auto;
+  left: 0;
+}
+
+.openai-mobile-surface .site-navigation__mobile-close {
+  display: none;
+}
+
+.openai-mobile-body {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 27px 27px 0;
+}
+
+.openai-mobile-drilldown {
+  display: grid;
+  width: calc(200% + 54px);
+  grid-template-columns: 50% 50%;
+  flex: 0 0 auto;
+  transform: translateX(0);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.openai-mobile-drilldown[data-view="subnav"] {
+  transform: translateX(-50%);
+}
+
+.openai-mobile-list,
+.openai-mobile-subnav {
+  min-width: 0;
+  padding-right: 27px;
+}
+
+.openai-mobile-list {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.openai-mobile-list button,
+.openai-mobile-list a {
+  display: flex;
+  min-height: 41px;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 28px;
+  line-height: 1.25;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+}
+
+.openai-mobile-list button:hover,
+.openai-mobile-list button:focus-visible,
+.openai-mobile-list a:hover,
+.openai-mobile-list a:focus-visible {
+  color: #fff;
+  opacity: 0.64;
+  outline: none;
+}
+
+.openai-mobile-list a svg {
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+}
+
+.openai-mobile-subnav {
+  display: grid;
+  align-content: start;
+  gap: 0;
+}
+
+.openai-mobile-home-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 18px;
+  border: 0;
+  background: transparent;
+  color: rgb(255 255 255 / 60%);
+  cursor: pointer;
+  font: inherit;
+  font-size: 24px;
+  line-height: 1.25;
+  padding: 0;
+}
+
+.openai-mobile-home-link:hover,
+.openai-mobile-home-link:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.openai-mobile-home-link svg {
+  width: 28px;
+  height: 28px;
+}
+
+.openai-mobile-subnav-label {
+  margin: 54px 0 24px;
+  color: rgb(255 255 255 / 60%);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.openai-mobile-subnav-groups {
+  display: grid;
+  gap: 36px;
+}
+
+.openai-mobile-subnav-groups section {
+  display: grid;
+  gap: 18px;
+}
+
+.openai-mobile-subnav-groups h2 {
+  margin: 0;
+  color: rgb(255 255 255 / 60%);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.openai-mobile-subnav-groups section > div {
+  display: grid;
+  gap: 18px;
+}
+
+.openai-mobile-subnav-groups a {
+  color: #fff;
+  font-size: 28px;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.openai-mobile-subnav-groups a:hover,
+.openai-mobile-subnav-groups a:focus-visible {
+  color: rgb(255 255 255 / 60%);
+  outline: none;
+}
+
+.site-navigation-mobile-overlay {
+  background: rgb(0 0 0 / 30%) !important;
+}
+
+@media (max-width: 1199.98px) {
+  .openai-site-header .openai-header-container,
+  .openai-site-header .openai-header-bar,
+  .openai-site-header .openai-brand,
+  .openai-site-header .openai-desktop-main,
+  .openai-site-header .openai-desktop-nav,
+  .openai-site-header .openai-desktop-nav-list,
+  .openai-site-header .openai-desktop-nav-item {
+    height: 61px;
+  }
+
+  .openai-site-header .openai-header-container {
+    padding-inline: 27px;
+  }
+
+  .openai-site-header .site-navigation__skip-link {
+    left: 27px;
+  }
+
+  .openai-search-panel-inner {
+    width: min(calc(100% - 54px), 1272px);
+    padding-top: 96px;
+  }
+}
+
+@media (max-width: 899.98px) {
+  .openai-mobile-body {
+    padding-top: 27px;
+  }
+
+  .openai-search-panel-inner {
+    padding-top: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .openai-search-panel,
+  .openai-search-icon,
+  .openai-login-menu,
+  .openai-mobile-drilldown {
+    transition-duration: 0.001ms !important;
+  }
+}

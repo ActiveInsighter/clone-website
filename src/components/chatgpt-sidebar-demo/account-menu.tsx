@@ -15,7 +15,7 @@ import {
   SidebarToggleIcon,
   UpgradePlanIcon,
 } from "@/components/icons"
-import { SidebarRailButton } from "@/components/sidebar"
+import { SidebarTrigger } from "@/components/sidebar"
 import { chatGptSidebarUser } from "@/config/chatgpt-sidebar"
 
 export type NoticeHandler = (message: string) => void
@@ -35,20 +35,19 @@ export function UserAvatar({ compact = false }: { compact?: boolean }) {
   )
 }
 
-export function RailBrand({ onClick }: { onClick: () => void }) {
+export function RailBrand() {
   return (
-    <SidebarRailButton
+    <SidebarTrigger
+      surface="rail"
       tooltip="打开边栏"
       aria-label="打开边栏"
       className="group/rail-brand relative"
-      onClick={onClick}
-      icon={
-        <span className="relative flex size-6 items-center justify-center">
-          <ChatGptLogoIcon className="size-6 transition-opacity duration-100 group-hover/rail-brand:opacity-0" />
-          <SidebarToggleIcon className="absolute size-5 opacity-0 transition-opacity duration-100 group-hover/rail-brand:opacity-100" />
-        </span>
-      }
-    />
+    >
+      <span className="relative flex size-6 items-center justify-center">
+        <ChatGptLogoIcon className="size-6 transition-opacity duration-(--sidebar-motion-fast-duration) group-hover/rail-brand:opacity-0" />
+        <SidebarToggleIcon className="absolute size-5 opacity-0 transition-opacity duration-(--sidebar-motion-fast-duration) group-hover/rail-brand:opacity-100" />
+      </span>
+    </SidebarTrigger>
   )
 }
 

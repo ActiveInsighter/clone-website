@@ -20,6 +20,7 @@ export type SidebarPublicContextValue = {
   mobileOpen: boolean
   isMobile: boolean
   modifierHeld: boolean
+  modifierKey: "control" | "meta" | null
   setOpen: (open: boolean) => void
   setMobileOpen: (open: boolean) => void
   toggle: () => void
@@ -51,6 +52,9 @@ export type SidebarTokenName =
   | "--sidebar-item-radius"
   | "--sidebar-section-gap"
   | "--sidebar-font-size"
+  | "--sidebar-line-height"
+  | "--sidebar-scrollbar-size"
+  | "--sidebar-scrollbar-gutter"
   | "--sidebar-motion-duration"
   | "--sidebar-motion-fast-duration"
   | "--sidebar-motion-easing"

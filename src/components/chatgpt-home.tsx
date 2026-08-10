@@ -49,8 +49,12 @@ function ChatModeSwitcher({ onNotice }: { onNotice: NoticeHandler }) {
 function ChatHeader({ onNotice }: { onNotice: NoticeHandler }) {
   return (
     <header className="relative flex h-[59px] shrink-0 items-center justify-between px-2">
-      <div className="flex items-center md:hidden">
-        <SidebarTrigger tooltip="打开边栏" aria-label="打开边栏">
+      <div className="flex items-center min-[48.001rem]:hidden">
+        <SidebarTrigger
+          surface="external"
+          tooltip="打开边栏"
+          aria-label="打开边栏"
+        >
           <HamburgerMenuIcon className="size-5" />
         </SidebarTrigger>
       </div>
@@ -157,11 +161,32 @@ export function ChatGptHome({ initialDark = true }: ChatGptHomeProps) {
     <SidebarRoot
       defaultOpen
       persistence={{ name: "chatgpt_sidebar_state" }}
+      tokens={{
+        "--sidebar-surface": initialDark ? "#000000" : "#fcfcfc",
+        "--sidebar-foreground": initialDark ? "#ffffff" : "#0d0d0d",
+        "--sidebar-muted-foreground": initialDark ? "#afafaf" : "#8f8f8f",
+        "--sidebar-inline-margin": "0.421875rem",
+        "--sidebar-inline-padding": "0.703125rem",
+        "--sidebar-font-size": "0.984375rem",
+        "--sidebar-line-height": "1.40625rem",
+        "--sidebar-row-highlight": initialDark
+          ? "rgb(255 255 255 / 10%)"
+          : "rgb(0 0 0 / 7%)",
+        "--sidebar-border": initialDark
+          ? "rgb(255 255 255 / 5%)"
+          : "rgb(0 0 0 / 5%)",
+        "--sidebar-border-strong": initialDark
+          ? "rgb(255 255 255 / 20%)"
+          : "rgb(0 0 0 / 15%)",
+      }}
     >
       <ChatGptSidebarDemo onNotice={setNotice} />
       <SidebarInset className="min-h-0 bg-black text-white">
         <ChatHeader onNotice={setNotice} />
-        <main className="flex min-h-0 flex-1 flex-col items-center justify-center px-3 pb-[12vh]">
+        <section
+          aria-label="聊天工作区"
+          className="flex min-h-0 flex-1 flex-col items-center justify-center px-3 pb-[12vh]"
+        >
           <div className="relative flex w-full max-w-[865px] flex-col items-center">
             <div className="relative flex w-full justify-center">
               <h1 className="mb-8 text-center text-[30px] font-medium leading-9 tracking-[-0.025em] sm:text-[32px]">
@@ -193,7 +218,7 @@ export function ChatGptHome({ initialDark = true }: ChatGptHomeProps) {
               {notice}
             </p>
           </div>
-        </main>
+        </section>
       </SidebarInset>
     </SidebarRoot>
   )

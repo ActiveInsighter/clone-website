@@ -65,7 +65,7 @@
 | 代理                                                          | 状态                        |
 | ------------------------------------------------------------- | --------------------------- |
 | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **推荐** — Opus 5           |
-| [Codex CLI](https://github.com/openai/codex)                  | 已支持                      |
+| [OpenAI Codex 桌面端 / CLI](https://developers.openai.com/codex/) | 已支持 — 仓库 Skill + 浏览器 MCP |
 | [OpenCode](https://opencode.ai/)                              | 已支持                      |
 | [GitHub Copilot](https://github.com/features/copilot)         | 已支持                      |
 | [Cursor](https://cursor.com/)                                 | 已支持                      |
@@ -135,6 +135,8 @@ docs/
 scripts/
   sync-agent-rules.sh  # 重新生成各代理指令文件
   sync-skills.mjs      # 为所有平台重新生成 /clone-website 指令
+.agents/skills/clone-website/SKILL.md # Codex 桌面端/CLI 仓库级 Skill
+.codex/config.toml     # 项目级 Codex 浏览器 MCP 配置
 AGENTS.md           # 代理指令（单一事实来源）
 CLAUDE.md           # Claude Code 配置（引用 AGENTS.md）
 GEMINI.md           # Gemini CLI 配置（引用 AGENTS.md）
@@ -167,6 +169,18 @@ docker compose up dev --build # 在开发模式下运行，端口 3001
 | `/clone-website` 指令  | `.claude/skills/clone-website/SKILL.md`  | `node scripts/sync-skills.mjs`         |
 
 每个脚本会自动重新生成各平台对应的副本。能够直接读取源文件的代理无需重新生成。
+
+### OpenAI Codex 桌面端 / CLI
+
+1. 将当前已有仓库添加为项目并打开。
+2. Codex 会自动读取 `AGENTS.md`，并发现 `.agents/skills/clone-website/SKILL.md`。
+3. 使用类似下面的请求运行共享工作流：
+   ```text
+   使用 clone-website skill 复刻：https://example.com
+   ```
+4. 项目级 `.codex/config.toml` 会通过 Windows `cmd`/`npx` 启动 Chrome DevTools MCP，不保存密钥或本机绝对路径。
+
+旧版 `.codex/skills/clone-website/SKILL.md` 会继续保持同步，以兼容已有 Codex CLI 配置。OpenCode 仍然使用 `.opencode/commands/clone-website.md` 提供的 `/clone-website <url>`。
 
 ## Star 历史
 

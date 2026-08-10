@@ -60,7 +60,7 @@ Point it at a URL, run `/clone-website`, and your AI agent will inspect the site
 | Agent                                                         | Status                     |
 | ------------------------------------------------------------- | -------------------------- |
 | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **Recommended** — Opus 5   |
-| [Codex CLI](https://github.com/openai/codex)                  | Supported                  |
+| [OpenAI Codex Desktop / CLI](https://developers.openai.com/codex/) | Supported — repo skill + browser MCP |
 | [OpenCode](https://opencode.ai/)                              | Supported                  |
 | [GitHub Copilot](https://github.com/features/copilot)         | Supported                  |
 | [Cursor](https://cursor.com/)                                 | Supported                  |
@@ -130,6 +130,8 @@ docs/
 scripts/
   sync-agent-rules.sh  # Regenerate agent instruction files
   sync-skills.mjs      # Regenerate /clone-website for all platforms
+.agents/skills/clone-website/SKILL.md # Codex Desktop/CLI repository skill
+.codex/config.toml     # Project-scoped Codex browser MCP configuration
 AGENTS.md           # Agent instructions (single source of truth)
 CLAUDE.md           # Claude Code config (imports AGENTS.md)
 GEMINI.md           # Gemini CLI config (imports AGENTS.md)
@@ -162,6 +164,18 @@ Two source-of-truth files power all platform support. Edit the source, then run 
 | `/clone-website` skill | `.claude/skills/clone-website/SKILL.md` | `node scripts/sync-skills.mjs`     |
 
 Each script regenerates the platform-specific copies automatically. Agents that read the source files natively need no regeneration.
+
+### OpenAI Codex Desktop / CLI
+
+1. Add or open this existing repository as a project.
+2. Codex reads `AGENTS.md` and discovers `.agents/skills/clone-website/SKILL.md` automatically.
+3. Run the shared workflow with a request such as:
+   ```text
+   Use the clone-website skill to clone https://example.com
+   ```
+4. The project-scoped `.codex/config.toml` starts the Chrome DevTools MCP through Windows `cmd`/`npx` without storing keys or machine-specific paths.
+
+The legacy `.codex/skills/clone-website/SKILL.md` copy remains synchronized for older Codex CLI setups. OpenCode continues to use `/clone-website <url>` from `.opencode/commands/clone-website.md`.
 
 
 ## Star History

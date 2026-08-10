@@ -1,0 +1,231 @@
+{
+  "source": {
+    "url": "https://gemini.google.com/app",
+    "title": "Google Gemini",
+    "capturedAt": "2026-08-10T03:32:03.848Z",
+    "viewport": {
+      "width": 1441,
+      "height": 770,
+      "devicePixelRatio": 1.75
+    },
+    "notes": [
+      "数据来自当前 Chrome 已登录页面的可见 DOM 与计算样式。",
+      "未读取 cookies、localStorage、密码或浏览器会话存储。",
+      "account.label 是页面侧边栏直接暴露的账号可访问名称。"
+    ]
+  },
+  "hierarchy": {
+    "appRoot": {
+      "tag": "chat-app-orchestrator",
+      "id": "app-root"
+    },
+    "main": {
+      "tag": "main",
+      "className": "chat-app",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1441,
+        "height": 770
+      }
+    },
+    "sidebar": {
+      "tag": "bard-sidenav",
+      "role": "navigation",
+      "ariaLabel": "Side Navigation",
+      "className": "mystuff-side-nav-update hide-on-print disable-onload-animations ng-trigger-widthTransition",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 288,
+        "height": 770
+      },
+      "styles": {
+        "display": "flex",
+        "position": "relative",
+        "width": "288px",
+        "height": "770.286px",
+        "backgroundColor": "rgb(31, 31, 31)",
+        "color": "rgb(227, 227, 227)",
+        "fontFamily": "Noto Sans SC",
+        "fontSize": "18px",
+        "padding": "0px"
+      },
+      "content": {
+        "tag": "side-navigation-content",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 288,
+          "height": 770
+        }
+      }
+    }
+  },
+  "sidebar": {
+    "groups": [
+      {
+        "id": "main-actions",
+        "label": "Main actions menu",
+        "items": [
+          {
+            "label": "New chat",
+            "route": "/app",
+            "href": "https://gemini.google.com/app",
+            "icon": "gemini_chat",
+            "active": true,
+            "rect": { "x": 6, "y": 60, "width": 276, "height": 32 }
+          },
+          {
+            "label": "Search chats",
+            "route": "/search",
+            "href": "https://gemini.google.com/search",
+            "icon": "search",
+            "active": false,
+            "rect": { "x": 6, "y": 92, "width": 276, "height": 32 }
+          }
+        ]
+      },
+      {
+        "id": "additional-actions",
+        "label": "Additional actions menu",
+        "items": [
+          {
+            "label": "Images",
+            "route": "/images",
+            "href": "https://gemini.google.com/images",
+            "icon": "image_create",
+            "rect": { "x": 6, "y": 124, "width": 270, "height": 32 }
+          },
+          {
+            "label": "Videos",
+            "route": "/videos",
+            "href": "https://gemini.google.com/videos",
+            "icon": "movie",
+            "rect": { "x": 6, "y": 156, "width": 270, "height": 32 }
+          },
+          {
+            "label": "Library",
+            "route": "library",
+            "href": "https://gemini.google.com/library",
+            "icon": "library",
+            "rect": { "x": 6, "y": 188, "width": 270, "height": 32 }
+          }
+        ]
+      },
+      {
+        "id": "notebooks",
+        "label": "Notebooks",
+        "toggle": {
+          "tag": "button",
+          "ariaLabel": "Toggle Notebooks",
+          "dataTestId": "expandable-section-toggle",
+          "ariaExpanded": "false",
+          "ariaControls": "sidenav-section-content-notebooks",
+          "icon": "keyboard_arrow_right",
+          "className": "expandable-section-header",
+          "rect": { "x": 0, "y": 232, "width": 276, "height": 32 }
+        },
+        "items": [
+          {
+            "label": "New notebook",
+            "route": "/notebooks/create",
+            "href": "https://gemini.google.com/notebooks/create",
+            "icon": "add_2",
+            "rect": { "x": 6, "y": 264, "width": 270, "height": 32 }
+          }
+        ]
+      },
+      {
+        "id": "recents",
+        "label": "Recents",
+        "toggle": {
+          "tag": "button",
+          "ariaLabel": "Toggle Recents",
+          "dataTestId": "expandable-section-toggle",
+          "ariaExpanded": "false",
+          "ariaControls": "sidenav-section-content-chats",
+          "icon": "keyboard_arrow_right",
+          "className": "expandable-section-header",
+          "rect": { "x": 0, "y": 276, "width": 276, "height": 32 }
+        },
+        "itemCount": 28,
+        "itemClass": "mat-mdc-list-item ... gem-nav-list-item ...",
+        "itemHeight": 32,
+        "items": [
+          { "title": "Greeting and Offer of Assistance", "route": "/app/7407e344407edf02", "href": "https://gemini.google.com/app/7407e344407edf02" },
+          { "title": "ChatGPT Prompt Queue UI Style", "route": "/app/55ad1f74864bcf2a", "href": "https://gemini.google.com/app/55ad1f74864bcf2a" },
+          { "title": "AI 助手能力介绍与应用", "route": "/app/68bee51d587f41c2", "href": "https://gemini.google.com/app/68bee51d587f41c2" },
+          { "title": "二叉树递归遍历原理详解", "route": "/app/3a5a7772c4cb438a", "href": "https://gemini.google.com/app/3a5a7772c4cb438a" },
+          { "title": "合同变换：二次型与相似变换", "route": "/app/086faa2e8d84028e", "href": "https://gemini.google.com/app/086faa2e8d84028e" },
+          { "title": "二次型：定义、化简与应用", "route": "/app/0eddbe9dde0fa6db", "href": "https://gemini.google.com/app/0eddbe9dde0fa6db" },
+          { "title": "PDF 优化：书签兼容与封面重构", "route": "/app/6c49cb03666da4d0", "href": "https://gemini.google.com/app/6c49cb03666da4d0" },
+          { "title": "代码高亮配色优化建议", "route": "/app/cae746f927164228", "href": "https://gemini.google.com/app/cae746f927164228" },
+          { "title": "SVG 侧边栏动画图标设计", "route": "/app/3f799f678ed08e71", "href": "https://gemini.google.com/app/3f799f678ed08e71" },
+          { "title": "ArkUI 侧边栏按钮固定", "route": "/app/70fcc544e4a8c9b0", "href": "https://gemini.google.com/app/70fcc544e4a8c9b0" },
+          { "title": "AI 输出解析与显示代码", "route": "/app/36b3e8212b324b37", "href": "https://gemini.google.com/app/36b3e8212b324b37" },
+          { "title": "ArkWeb 本地缓存使用指南", "route": "/app/ad37550cf777cdec", "href": "https://gemini.google.com/app/ad37550cf777cdec" },
+          { "title": "流式 Markdown 渲染方案", "route": "/app/776744dc4f0acbf5", "href": "https://gemini.google.com/app/776744dc4f0acbf5" },
+          { "title": "Advanced Tree Model Optimization", "route": "/app/0b6c80f098895136", "href": "https://gemini.google.com/app/0b6c80f098895136" },
+          { "title": "氣象因素影響空氣污染物濃度", "route": "/app/f214416b466f6ec6", "href": "https://gemini.google.com/app/f214416b466f6ec6" },
+          { "title": "鸿蒙5.0适配原神云原神", "route": "/app/4ac712e8cb984ba3", "href": "https://gemini.google.com/app/4ac712e8cb984ba3" },
+          { "title": "Cloudflare 域名管理与检测", "route": "/app/5a8905edd0153ac5", "href": "https://gemini.google.com/app/5a8905edd0153ac5" },
+          { "title": "华为MatePad Pro 12.2 2025款", "route": "/app/29c9172290ddfd3c", "href": "https://gemini.google.com/app/29c9172290ddfd3c" },
+          { "title": "手工珠宝标语创作建议", "route": "/app/d0a8ebff5a83dd5a", "href": "https://gemini.google.com/app/d0a8ebff5a83dd5a" },
+          { "title": "纺织品克重重建与缺陷检测", "route": "/app/d3538d3b2ec35cb8", "href": "https://gemini.google.com/app/d3538d3b2ec35cb8" },
+          { "title": "Pixel Dino Runner Game Code", "route": "/app/11b088d68ed068ea", "href": "https://gemini.google.com/app/11b088d68ed068ea" },
+          { "title": "华为被制裁的原因与过程", "route": "/app/16be842191c8f4ae", "href": "https://gemini.google.com/app/16be842191c8f4ae" },
+          { "title": "Browser Support for WebKit Scrollbars", "route": "/app/d88fd4bfdc5aa065", "href": "https://gemini.google.com/app/d88fd4bfdc5aa065" },
+          { "title": "浏览器发展史总结对话", "route": "/app/158f262a2b0b5f35", "href": "https://gemini.google.com/app/158f262a2b0b5f35" },
+          { "title": "主流浏览器引擎解析与渲染", "route": "/app/ebc0594fab793f09", "href": "https://gemini.google.com/app/ebc0594fab793f09" },
+          { "title": "模型的自我介绍", "route": "/app/9255073920887a31", "href": "https://gemini.google.com/app/9255073920887a31" },
+          { "title": "中美科技竞争与博弈", "route": "/app/e336b49d17017d8e", "href": "https://gemini.google.com/app/e336b49d17017d8e" },
+          { "title": "Signal桌面端VPN连接问题", "route": "/app/312eefaee2f3b225", "href": "https://gemini.google.com/app/312eefaee2f3b225" }
+        ]
+      }
+    ],
+    "closeButton": {
+      "tag": "button",
+      "ariaLabel": "Close sidebar",
+      "icon": "side_nav",
+      "className": "close-sidenav-button close-sidenav-button-desktop",
+      "rect": { "x": 234, "y": 8, "width": 40, "height": 40 }
+    },
+    "footer": {
+      "account": {
+        "label": "Google Account: Tom Li (2212148739lbw@gmail.com)",
+        "text": "Tom Li",
+        "href": "https://accounts.google.com/SignOutOptions?continue=https://gemini.google.com",
+        "rect": { "x": 6, "y": 718, "width": 96, "height": 40 }
+      },
+      "settings": {
+        "tag": "button",
+        "ariaLabel": "Settings",
+        "ariaExpanded": "false",
+        "icon": "settings",
+        "rect": { "x": 244, "y": 720, "width": 36, "height": 36 }
+      }
+    }
+  },
+  "mainContent": {
+    "headings": [
+      { "level": 1, "text": "Conversation with Gemini", "rect": { "x": 287, "y": -1, "width": 1, "height": 1 } },
+      { "level": 1, "text": "Any new ideas to explore?", "rect": { "x": 627, "y": 264, "width": 474, "height": 50 } }
+    ],
+    "controls": [
+      { "label": "Upgrade", "tag": "button", "role": "link", "rect": { "x": 1234, "y": 12, "width": 139, "height": 40 } },
+      { "label": "Temporary chat", "tag": "button", "rect": { "x": 1393, "y": 14, "width": 36, "height": 36 } },
+      { "label": "Enter a prompt for Gemini", "tag": "div", "role": "textbox", "className": "ql-editor ql-blank textarea new-input-ui", "rect": { "x": 595, "y": 373, "width": 388, "height": 24 } },
+      { "label": "Upload & tools", "tag": "button", "rect": { "x": 555, "y": 368, "width": 32, "height": 32 } },
+      { "label": "Open mode picker, currently Flash-Lite", "text": "Flash-Lite", "tag": "button", "rect": { "x": 1002, "y": 365, "width": 134, "height": 40 } },
+      { "label": "Dictate (^⇧D)", "tag": "button", "rect": { "x": 1144, "y": 368, "width": 32, "height": 32 } }
+    ]
+  },
+  "selectors": {
+    "sidebar": "[role=\"navigation\"][aria-label=\"Side Navigation\"]",
+    "navItem": "a.gem-nav-list-item",
+    "sectionToggle": "button[data-test-id=\"expandable-section-toggle\"]",
+    "icon": "mat-icon[data-mat-icon-name]",
+    "settings": "button[aria-label=\"Settings\"]"
+  }
+}

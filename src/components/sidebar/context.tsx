@@ -4,8 +4,10 @@ import * as React from "react"
 import { Tooltip } from "@base-ui/react/tooltip"
 
 import {
+  getSidebarFocusHandoffSurface,
   reduceSidebarModifierState,
   reduceSidebarPresentationState,
+  resolveSidebarFocusReturn,
   serializeSidebarCookie,
   shouldHandleSidebarShortcut,
   type SidebarModifierAction,
@@ -31,7 +33,8 @@ type SidebarInternalContextValue = SidebarPublicContextValue & {
   railId: string
   mobilePopupId: string
   portalStyle: SidebarStyle
-  getLastTrigger: () => HTMLElement | null
+  getMobileFocusReturn: () => HTMLElement | null
+  toggleFromTrigger: (trigger: HTMLElement) => void
   registerSurface: (surface: Exclude<SidebarSurface, "external">, node: HTMLElement | null) => void
   registerTrigger: (surface: SidebarSurface, node: HTMLElement | null) => void
 }
@@ -103,7 +106,7 @@ export function SidebarRoot({
   const mobileOpen = mobileOpenProp ?? presentationState.mobileOpen
   const [isMobile, setIsMobile] = React.useState(false)
   const [modifierState, setModifierState] = React.useState<SidebarModifierState>(
-    { modifierHeld: false },
+    { modifierHeld: false, modifierKey: null },
   )
   const panelId = React.useId()
   const railId = React.useId()
@@ -113,8 +116,7 @@ export function SidebarRoot({
   const panelTriggerRef = React.useRef<HTMLElement | null>(null)
   const railTriggerRef = React.useRef<HTMLElement | null>(null)
   const externalTriggerRef = React.useRef<HTMLElement | null>(null)
-  const lastTriggerRef = React.useRef<HTMLElement | null>(null)
-  const pendingFocusRef = React.useRef<"panel" | "rail" | null>(null)
+  const mobileOpenerRef = React.useRef<HTMLElement | null>(null)
 
   const tokenStyle = React.useMemo(
     () => createSidebarTokenStyle(tokens),
@@ -145,16 +147,6 @@ export function SidebarRoot({
     (nextOpen: boolean) => {
       if (nextOpen === open) return
 
-      const activeElement = document.activeElement
-      if (
-        activeElement instanceof HTMLElement &&
-        (nextOpen
-          ? railRef.current?.contains(activeElement)
-          : panelRef.current?.contains(activeElement))
-      ) {
-        pendingFocusRef.current = nextOpen ? "panel" : "rail"
-      }
-
       if (openProp === undefined) {
         dispatchPresentation({ type: "set-desktop-open", open: nextOpen })
       }
@@ -163,9 +155,15 @@ export function SidebarRoot({
     [onOpenChange, open, openProp],
   )
 
-  const setMobileOpen = React.useCallback(
-    (nextOpen: boolean) => {
+  const updateMobileOpen = React.useCallback(
+    (nextOpen: boolean, opener?: HTMLElement | null) => {
       if (nextOpen === mobileOpen) return
+      if (nextOpen) {
+        const activeElement = document.activeElement
+        mobileOpenerRef.current =
+          opener ??
+          (activeElement instanceof HTMLElement ? activeElement : null)
+      }
       if (mobileOpenProp === undefined) {
         dispatchPresentation({ type: "set-mobile-open", open: nextOpen })
       }
@@ -174,26 +172,50 @@ export function SidebarRoot({
     [mobileOpen, mobileOpenProp, onMobileOpenChange],
   )
 
+  const setMobileOpen = React.useCallback(
+    (nextOpen: boolean) => updateMobileOpen(nextOpen),
+    [updateMobileOpen],
+  )
+
   const toggle = React.useCallback(() => {
     const mobile = window.matchMedia(SIDEBAR_MOBILE_QUERY).matches
     if (mobile) {
-      setMobileOpen(!mobileOpen)
+      updateMobileOpen(!mobileOpen)
     } else {
       setOpen(!open)
     }
-  }, [mobileOpen, open, setMobileOpen, setOpen])
+  }, [mobileOpen, open, setOpen, updateMobileOpen])
+
+  const toggleFromTrigger = React.useCallback(
+    (trigger: HTMLElement) => {
+      const mobile = window.matchMedia(SIDEBAR_MOBILE_QUERY).matches
+      if (mobile) {
+        updateMobileOpen(!mobileOpen, trigger)
+      } else {
+        setOpen(!open)
+      }
+    },
+    [mobileOpen, open, setOpen, updateMobileOpen],
+  )
 
   React.useLayoutEffect(() => {
-    const pendingSurface = pendingFocusRef.current
-    if (!pendingSurface) return
+    const activeElement = document.activeElement
+    if (!(activeElement instanceof HTMLElement)) return
+
+    const activeSurface = panelRef.current?.contains(activeElement)
+      ? "panel"
+      : railRef.current?.contains(activeElement)
+        ? "rail"
+        : null
+    const targetSurface = getSidebarFocusHandoffSurface(open, activeSurface)
+    if (!targetSurface) return
 
     const target =
-      pendingSurface === "panel"
+      targetSurface === "panel"
         ? panelTriggerRef.current
         : railTriggerRef.current
     if (target) {
       target.focus({ preventScroll: true })
-      pendingFocusRef.current = null
     }
   }, [open])
 
@@ -260,17 +282,17 @@ export function SidebarRoot({
           : surface === "rail"
             ? railTriggerRef
             : externalTriggerRef
-      if (!node && lastTriggerRef.current === triggerRef.current) {
-        lastTriggerRef.current = null
-      }
       triggerRef.current = node
-      if (node) lastTriggerRef.current = node
     },
     [],
   )
 
-  const getLastTrigger = React.useCallback(
-    () => lastTriggerRef.current,
+  const getMobileFocusReturn = React.useCallback(
+    () =>
+      resolveSidebarFocusReturn(
+        mobileOpenerRef.current,
+        externalTriggerRef.current,
+      ),
     [],
   )
 
@@ -281,6 +303,7 @@ export function SidebarRoot({
       mobileOpen,
       isMobile,
       modifierHeld: modifierState.modifierHeld,
+      modifierKey: modifierState.modifierKey,
       setOpen,
       setMobileOpen,
       toggle,
@@ -288,7 +311,8 @@ export function SidebarRoot({
       railId,
       mobilePopupId,
       portalStyle,
-      getLastTrigger,
+      getMobileFocusReturn,
+      toggleFromTrigger,
       registerSurface,
       registerTrigger,
     }),
@@ -297,6 +321,7 @@ export function SidebarRoot({
       mobileOpen,
       isMobile,
       modifierState.modifierHeld,
+      modifierState.modifierKey,
       setOpen,
       setMobileOpen,
       toggle,
@@ -304,7 +329,8 @@ export function SidebarRoot({
       railId,
       mobilePopupId,
       portalStyle,
-      getLastTrigger,
+      getMobileFocusReturn,
+      toggleFromTrigger,
       registerSurface,
       registerTrigger,
     ],

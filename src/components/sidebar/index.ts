@@ -2,6 +2,7 @@ import "./sidebar.css"
 
 export { SidebarRoot, useSidebar } from "./context"
 export { SidebarShell, SidebarPanel, SidebarInset } from "./shell"
+export type { SidebarPanelChildren, SidebarPanelProps } from "./shell"
 export {
   SidebarHeader,
   SidebarFixedTop,
@@ -46,7 +47,6 @@ export {
 } from "./tokens"
 export {
   isTextEntryTarget,
-  getSidebarTriggerExpanded,
   matchesSidebarShortcut,
   readSidebarCookieState,
   reduceSidebarModifierState,

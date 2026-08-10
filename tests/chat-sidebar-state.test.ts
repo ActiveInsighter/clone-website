@@ -1,9 +1,9 @@
 import test from "node:test"
 import assert from "node:assert/strict"
+import * as React from "react"
+import * as sidebarState from "../src/components/sidebar/state.ts"
 
 import {
-  getMenuActionReservationPx,
-  getSidebarTriggerExpanded,
   isTextEntryTarget,
   matchesSidebarShortcut,
   readSidebarCookieState,
@@ -12,6 +12,87 @@ import {
   serializeSidebarCookie,
   shouldHandleSidebarShortcut,
 } from "../src/components/sidebar/state.ts"
+import {
+  createSidebarTokenStyle,
+  SIDEBAR_MOBILE_QUERY,
+} from "../src/components/sidebar/tokens.ts"
+import type { SidebarTriggerProps } from "../src/components/sidebar/controls.tsx"
+import type { SidebarPanelProps } from "../src/components/sidebar/shell.tsx"
+import { resolveSidebarInteractiveProps } from "../src/components/sidebar/interactive.ts"
+
+type Assert<T extends true> = T
+type Equal<A, B> = [A] extends [B]
+  ? [B] extends [A]
+    ? true
+    : false
+  : false
+
+export type SidebarTriggerSurfaceIsRequired = Assert<
+  Pick<SidebarTriggerProps, "surface"> extends Required<
+    Pick<SidebarTriggerProps, "surface">
+  >
+    ? true
+    : false
+>
+
+export type SidebarPanelSupportsOptionalFixedPrefix = Assert<
+  Equal<SidebarPanelProps["children"]["length"], 3 | 4>
+>
+
+test("hands focus across surfaces only after the effective desktop state changes", () => {
+  const candidate = (
+    sidebarState as unknown as {
+      getSidebarFocusHandoffSurface?: (
+        open: boolean,
+        activeSurface: "panel" | "rail" | null,
+      ) => "panel" | "rail" | null
+    }
+  ).getSidebarFocusHandoffSurface
+
+  assert.equal(typeof candidate, "function")
+  const getHandoff = candidate as (
+    open: boolean,
+    activeSurface: "panel" | "rail" | null,
+  ) => "panel" | "rail" | null
+
+  assert.equal(getHandoff(true, "rail"), "panel")
+  assert.equal(getHandoff(false, "panel"), "rail")
+  assert.equal(getHandoff(true, "panel"), null)
+  assert.equal(getHandoff(false, "rail"), null)
+  assert.equal(getHandoff(true, null), null)
+})
+
+test("returns focus to the exact connected mobile opener before any fallback", () => {
+  const candidate = (
+    sidebarState as unknown as {
+      resolveSidebarFocusReturn?: <T extends { isConnected: boolean }>(
+        opener: T | null,
+        fallback: T | null,
+      ) => T | null
+    }
+  ).resolveSidebarFocusReturn
+
+  assert.equal(typeof candidate, "function")
+  const resolveFocusReturn = candidate as <T extends { isConnected: boolean }>(
+    opener: T | null,
+    fallback: T | null,
+  ) => T | null
+  const opener = { id: "clicked-opener", isConnected: true }
+  const fallback = { id: "last-registered", isConnected: true }
+
+  assert.equal(resolveFocusReturn(opener, fallback), opener)
+  assert.equal(
+    resolveFocusReturn({ ...opener, isConnected: false }, fallback),
+    fallback,
+  )
+  assert.equal(
+    resolveFocusReturn(
+      { ...opener, isConnected: false },
+      { ...fallback, isConnected: false },
+    ),
+    null,
+  )
+})
 
 test("reads a configured boolean cookie and safely ignores malformed values", () => {
   assert.equal(
@@ -89,7 +170,7 @@ test("only handles the sidebar shortcut when it is safe to do so", () => {
 })
 
 test("modifier-held state reveals shortcuts without mutating presentation state", () => {
-  const initial = { modifierHeld: false }
+  const initial = { modifierHeld: false, modifierKey: null }
   const ctrlHeld = reduceSidebarModifierState(initial, {
     type: "keyboard",
     ctrlKey: true,
@@ -107,19 +188,27 @@ test("modifier-held state reveals shortcuts without mutating presentation state"
   })
 
   assert.equal(ctrlHeld.modifierHeld, true)
+  assert.equal(
+    (ctrlHeld as typeof ctrlHeld & { modifierKey?: string }).modifierKey,
+    "control",
+  )
   assert.equal(metaHeld.modifierHeld, true)
+  assert.equal(
+    (metaHeld as typeof metaHeld & { modifierKey?: string }).modifierKey,
+    "meta",
+  )
   assert.equal(released.modifierHeld, false)
   assert.deepEqual(
     reduceSidebarModifierState(metaHeld, { type: "window-blur" }),
-    { modifierHeld: false },
+    { modifierHeld: false, modifierKey: null },
   )
   assert.deepEqual(
     reduceSidebarModifierState(metaHeld, { type: "page-hide" }),
-    { modifierHeld: false },
+    { modifierHeld: false, modifierKey: null },
   )
   assert.deepEqual(
     reduceSidebarModifierState(metaHeld, { type: "visibility-hidden" }),
-    { modifierHeld: false },
+    { modifierHeld: false, modifierKey: null },
   )
 })
 
@@ -136,23 +225,46 @@ test("desktop and mobile presentation state never overwrite each other", () => {
 
   assert.deepEqual(desktopClosed, { desktopOpen: false, mobileOpen: false })
   assert.deepEqual(mobileOpened, { desktopOpen: false, mobileOpen: true })
-  assert.equal(getSidebarTriggerExpanded(mobileOpened, false), false)
-  assert.equal(getSidebarTriggerExpanded(mobileOpened, true), true)
 })
 
-test("reserves a stable action lane even while actions are visually hidden", () => {
-  assert.equal(getMenuActionReservationPx({ actionCount: 0 }), 0)
-  assert.equal(
-    getMenuActionReservationPx({
-      actionCount: 2,
-      actionSizePx: 28,
-      gapPx: 2,
-      inlinePaddingPx: 2,
-      endInsetPx: 4,
-      safetyPx: 8,
-    }),
-    74,
-  )
-  assert.throws(() => getMenuActionReservationPx({ actionCount: -1 }), RangeError)
-  assert.throws(() => getMenuActionReservationPx({ actionCount: Number.NaN }), RangeError)
+test("keeps the layout gutter independent from the visible scrollbar size", () => {
+  const style = createSidebarTokenStyle({
+    "--sidebar-scrollbar-size": "1rem",
+  })
+
+  assert.equal(style["--sidebar-scrollbar-size"], "1rem")
+  assert.equal(style["--sidebar-scrollbar-gutter"], "0.625rem")
+  assert.equal(style["--sidebar-line-height"], "1.375rem")
+})
+
+test("includes the 768px tablet viewport in the mobile presentation", () => {
+  assert.equal(SIDEBAR_MOBILE_QUERY, "(max-width: 48rem)")
+})
+
+test("polymorphic controls preserve native button and link semantics", () => {
+  const renderedButton = resolveSidebarInteractiveProps({
+    render: React.createElement("button"),
+    disabled: false,
+  })
+  assert.equal(renderedButton.nativeButton, true)
+  assert.equal(renderedButton.type, "button")
+
+  const renderedLink = resolveSidebarInteractiveProps({
+    render: React.createElement("a", { href: "/library" }),
+    nativeButton: false,
+    disabled: true,
+    tabIndex: 0,
+  })
+  assert.equal(renderedLink.nativeButton, false)
+  assert.equal(renderedLink.type, undefined)
+  assert.equal(renderedLink.disabled, undefined)
+  assert.equal(renderedLink.ariaDisabled, true)
+  assert.equal(renderedLink.tabIndex, -1)
+
+  const callbackButton = resolveSidebarInteractiveProps({
+    render: () => React.createElement("button"),
+    type: "submit",
+  })
+  assert.equal(callbackButton.nativeButton, true)
+  assert.equal(callbackButton.type, "submit")
 })

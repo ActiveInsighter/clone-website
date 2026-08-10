@@ -1,0 +1,58 @@
+{
+  "source": "https://chatgpt.com/",
+  "capturedAt": "2026-08-09",
+  "locale": "zh-Hans",
+  "theme": "dark",
+  "viewport": {
+    "width": 1441,
+    "height": 770,
+    "devicePixelRatio": 1.75
+  },
+  "tokens": {
+    "sidebarBackground": "#000000",
+    "textPrimary": "#ffffff",
+    "textSecondary": "#cdcdcd",
+    "textTertiary": "#afafaf",
+    "surfaceHover": "rgba(255, 255, 255, 0.15)",
+    "surfaceActive": "rgba(255, 255, 255, 0.10)",
+    "borderExtraLight": "rgba(255, 255, 255, 0.05)"
+  },
+  "layout": {
+    "collapsedRailWidth": 58.5,
+    "implementationRailWidth": 59,
+    "expandedPanelWidth": 260,
+    "headerHeight": 58.5,
+    "implementationHeaderHeight": 59,
+    "railButtonSize": 40.5,
+    "menuButtonHeight": 40.5,
+    "menuButtonMarginInline": 6.75,
+    "menuButtonPaddingInline": 11.25,
+    "menuButtonGap": 6.75
+  },
+  "navigation": {
+    "collapsed": {
+      "ariaLabel": "侧边栏",
+      "items": ["打开边栏", "新聊天", "搜索", "已置顶", "最近聊天", "打开“个人资料”菜单"]
+    },
+    "expanded": {
+      "ariaLabel": "历史聊天记录",
+      "header": ["主页", "搜索", "关闭边栏"],
+      "primary": ["新聊天", "文件库", "已安排", "插件", "更多"],
+      "sections": [
+        { "label": "已置顶", "expandedByDefault": false },
+        { "label": "项目", "expandedByDefault": true, "actions": ["整理聊天", "新项目"] },
+        { "label": "聊天", "expandedByDefault": true, "actions": ["整理聊天", "新聊天"] }
+      ],
+      "visibleProjects": ["学习", "Anyworkflow", "pocketbase", "fumadocs", "审查", "查看更多"],
+      "footer": ["Tom Li", "Plus", "下载应用"]
+    }
+  },
+  "responsive": {
+    "desktopBreakpoint": 768,
+    "mobile": {
+      "railAndPanel": "hidden",
+      "drawer": "fixed left sheet, width 260px, max-width 320px",
+      "backdrop": "rgba(0, 0, 0, 0.5)"
+    }
+  }
+}

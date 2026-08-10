@@ -1,12 +1,102 @@
 import test from "node:test"
 import assert from "node:assert/strict"
+import * as sidebarModel from "../src/components/chatgpt-sidebar-demo/model.ts"
 
 import {
   chatGptSidebarReducer,
   createChatGptSidebarState,
   flattenVisibleChatGroups,
   getVisibleChatGroups,
+  resolveChatGptSidebarSelection,
 } from "../src/components/chatgpt-sidebar-demo/model.ts"
+
+test("derives active chat and project destinations from deep-link pathnames", () => {
+  const candidate = (
+    sidebarModel as unknown as {
+      getSidebarRouteSelection?: (pathname: string) => unknown
+    }
+  ).getSidebarRouteSelection
+
+  assert.equal(typeof candidate, "function")
+  const getSelection = candidate as (pathname: string) => unknown
+  assert.deepEqual(getSelection("/c/chat-12"), {
+    kind: "chat",
+    id: "chat-12",
+  })
+  assert.deepEqual(getSelection("/g/project-codex/project"), {
+    kind: "project",
+    id: "project-codex",
+  })
+  assert.deepEqual(getSelection("/library"), {
+    kind: "primary",
+    id: "library",
+  })
+  assert.deepEqual(getSelection("/"), { kind: "home" })
+  assert.deepEqual(getSelection("/sidebar-demo"), { kind: "home" })
+  assert.equal(getSelection("/g/project-codex"), null)
+})
+
+test("deep links suppress the new-chat active state", () => {
+  const candidate = (
+    sidebarModel as unknown as {
+      resolveChatGptSidebarSelection?: (
+        pathname: string,
+        activeChatId: string | null,
+        activeProjectId: string | null,
+      ) => unknown
+    }
+  ).resolveChatGptSidebarSelection
+
+  assert.equal(typeof candidate, "function")
+  const resolveSelection = candidate as (
+    pathname: string,
+    activeChatId: string | null,
+    activeProjectId: string | null,
+  ) => unknown
+
+  assert.deepEqual(resolveSelection("/c/chat-12", null, null), {
+    activeChatId: "chat-12",
+    activeProjectId: null,
+    newChatActive: false,
+  })
+  assert.deepEqual(
+    resolveSelection("/g/project-codex/project", null, null),
+    {
+      activeChatId: null,
+      activeProjectId: "project-codex",
+      newChatActive: false,
+    },
+  )
+  assert.deepEqual(resolveSelection("/sidebar-demo", null, null), {
+    activeChatId: null,
+    activeProjectId: null,
+    newChatActive: true,
+  })
+  for (const pathname of ["/library", "/scheduled", "/plugins"]) {
+    assert.deepEqual(resolveSelection(pathname, "chat-1", "project-learning"), {
+      activeChatId: null,
+      activeProjectId: null,
+      newChatActive: false,
+    })
+  }
+})
+
+test("home routes clear stale reducer selection and activate new chat", () => {
+  for (const pathname of ["/", "/sidebar-demo"]) {
+    assert.deepEqual(
+      resolveChatGptSidebarSelection(
+        pathname,
+        "chat-1",
+        "project-learning",
+      ),
+      {
+        activeChatId: null,
+        activeProjectId: null,
+        newChatActive: true,
+      },
+    )
+  }
+})
 
 test("visible chats have a continuous pinned prefix with stable group order", () => {
   let state = createChatGptSidebarState()

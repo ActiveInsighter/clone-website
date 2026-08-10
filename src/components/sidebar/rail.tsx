@@ -68,6 +68,7 @@ export const SidebarRailButton = React.forwardRef<
       ref={forwardedRef}
       type={type}
       data-slot="sidebar-rail-button"
+      data-sidebar-rail-button=""
       data-active={active || undefined}
       aria-label={
         props["aria-label"] ??

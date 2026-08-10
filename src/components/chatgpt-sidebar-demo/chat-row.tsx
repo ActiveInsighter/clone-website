@@ -52,6 +52,8 @@ export function ChatRow({
     <SidebarMenuItem active={active}>
       <SidebarMenuButton
         render={<Link href={`/c/${chat.id}`} />}
+        nativeButton={false}
+        aria-current={active ? "page" : undefined}
         onClick={onSelect}
       >
         {chat.title}

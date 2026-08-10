@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 import {
   DropdownMenu,
@@ -13,8 +14,11 @@ import {
   SidebarFixedTop,
   SidebarFooter,
   SidebarHeader,
+  SidebarIconAnchor,
   SidebarIconButton,
   SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuActions,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarPanel,
@@ -33,7 +37,7 @@ import {
   SidebarShell,
   SidebarShortcutHint,
   SidebarTrigger,
-  useSidebar,
+  isTextEntryTarget,
 } from "@/components/sidebar"
 import {
   chatGptSidebarNewChatItem,
@@ -75,6 +79,7 @@ import {
   createChatGptSidebarState,
   flattenVisibleChatGroups,
   getVisibleChatGroups,
+  resolveChatGptSidebarSelection,
 } from "./model"
 
 function matchesQuery(value: string, query: string) {
@@ -82,11 +87,15 @@ function matchesQuery(value: string, query: string) {
 }
 
 function isEditableTarget(target: EventTarget | null) {
-  if (!(target instanceof HTMLElement)) return false
-  return (
-    target.isContentEditable ||
-    ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)
-  )
+  if (!(target instanceof Element)) return false
+
+  return isTextEntryTarget({
+    tagName: target.tagName,
+    isContentEditable:
+      target instanceof HTMLElement ? target.isContentEditable : false,
+    hasEditableAncestor:
+      target.closest("[contenteditable]:not([contenteditable='false'])") !== null,
+  })
 }
 
 export type ChatGptSidebarDemoProps = {
@@ -98,7 +107,7 @@ export function ChatGptSidebarDemo({
   onNotice,
   onNewChat,
 }: ChatGptSidebarDemoProps) {
-  const { toggle } = useSidebar()
+  const pathname = usePathname()
   const [state, dispatch] = React.useReducer(
     chatGptSidebarReducer,
     undefined,
@@ -108,10 +117,21 @@ export function ChatGptSidebarDemo({
   const [dialog, setDialog] = React.useState<SidebarDialogState>(null)
   const [dialogValue, setDialogValue] = React.useState("")
 
+  const selection = resolveChatGptSidebarSelection(
+    pathname,
+    state.activeChatId,
+    state.activeProjectId,
+  )
+  const { activeChatId, activeProjectId } = selection
+
   const query = state.searchQuery.trim().toLocaleLowerCase()
-  const visibleProjects = state.projects
-    .slice(0, state.showAllProjects ? state.projects.length : 5)
-    .filter((project) => matchesQuery(project.name, query))
+  const matchingProjects = state.projects.filter((project) =>
+    matchesQuery(project.name, query),
+  )
+  const visibleProjects =
+    query || state.showAllProjects
+      ? matchingProjects
+      : matchingProjects.slice(0, 5)
   const visibleChatGroups = getVisibleChatGroups(state.chats, query)
   const searchProjects = state.projects.filter((project) =>
     matchesQuery(project.name, query),
@@ -226,7 +246,7 @@ export function ChatGptSidebarDemo({
   const rail = (
     <SidebarRail aria-label="侧边栏">
       <SidebarRailHeader>
-        <RailBrand onClick={() => toggle()} />
+        <RailBrand />
       </SidebarRailHeader>
       <SidebarRailMenu>
         {chatGptSidebarRailItems.map((item) => {
@@ -268,13 +288,15 @@ export function ChatGptSidebarDemo({
     <>
       <SidebarShell side="left" label="历史聊天记录" rail={rail}>
         <SidebarPanel>
-          <SidebarHeader className="px-[9px]">
+          <SidebarHeader>
             <Link
               href="/"
               aria-label="主页"
-              className="flex h-10 min-w-0 flex-1 items-center gap-1.5 rounded-[9px] px-2.5 text-left text-[15px] font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent"
+              className="flex min-h-(--sidebar-item-height) min-w-0 flex-1 items-center rounded-(--sidebar-item-radius) text-left text-(length:--sidebar-font-size) leading-(--sidebar-line-height) font-medium text-sidebar-foreground transition-colors duration-(--sidebar-motion-fast-duration) hover:bg-sidebar-accent"
             >
-              <ChatGptLogoIcon className="size-5 shrink-0" />
+              <SidebarIconAnchor>
+                <ChatGptLogoIcon />
+              </SidebarIconAnchor>
               <span className="truncate">ChatGPT Plus</span>
             </Link>
             <div className="flex shrink-0 items-center">
@@ -285,7 +307,11 @@ export function ChatGptSidebarDemo({
               >
                 <SearchChatsIcon />
               </SidebarIconButton>
-              <SidebarTrigger tooltip="关闭边栏" aria-label="关闭边栏">
+              <SidebarTrigger
+                surface="panel"
+                tooltip="关闭边栏"
+                aria-label="关闭边栏"
+              >
                 <SidebarToggleIcon />
               </SidebarTrigger>
             </div>
@@ -293,13 +319,13 @@ export function ChatGptSidebarDemo({
 
           <SidebarFixedTop>
             <SidebarMenu>
-              <SidebarMenuItem active={!state.activeChatId && !state.activeProjectId}>
+              <SidebarMenuItem active={selection.newChatActive}>
                 <SidebarMenuButton
                   icon={<chatGptSidebarNewChatItem.icon />}
+                  trailing={<SidebarShortcutHint keys={["Shift", "O"]} />}
                   onClick={handleNewChat}
                 >
                   {chatGptSidebarNewChatItem.label}
-                  <SidebarShortcutHint keys={["Shift", "O"]} />
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -310,11 +336,14 @@ export function ChatGptSidebarDemo({
               {chatGptSidebarPrimaryItems.map((item) => {
                 const Icon = item.icon
                 if (item.kind === "route") {
+                  const active = pathname === item.href
                   return (
-                    <SidebarMenuItem key={item.id}>
+                    <SidebarMenuItem key={item.id} active={active}>
                       <SidebarMenuButton
                         render={<Link href={item.href} />}
+                        nativeButton={false}
                         icon={<Icon />}
+                        aria-current={active ? "page" : undefined}
                       >
                         {item.label}
                       </SidebarMenuButton>
@@ -372,7 +401,7 @@ export function ChatGptSidebarDemo({
                         key={chat.id}
                         chat={chat}
                         projects={state.projects}
-                        active={state.activeChatId === chat.id}
+                        active={activeChatId === chat.id}
                         onSelect={() => selectChat(chat.id)}
                         onTogglePinned={() => togglePinned(chat)}
                         onShare={() => {
@@ -445,7 +474,7 @@ export function ChatGptSidebarDemo({
                     <ProjectRow
                       key={project.id}
                       project={project}
-                      active={state.activeProjectId === project.id}
+                      active={activeProjectId === project.id}
                       onSelect={() => selectProject(project.id)}
                       onOpenHome={() => {
                         selectProject(project.id)
@@ -458,7 +487,7 @@ export function ChatGptSidebarDemo({
                       }}
                     />
                   ))}
-                  {state.projects.length > 5 ? (
+                  {!query && state.projects.length > 5 ? (
                     <SidebarMenuItem>
                       <SidebarMenuButton onClick={() => dispatch({ type: "toggle-all-projects" })}>
                         {state.showAllProjects ? "收起项目" : "查看更多"}
@@ -497,7 +526,7 @@ export function ChatGptSidebarDemo({
                       key={chat.id}
                       chat={chat}
                       projects={state.projects}
-                      active={state.activeChatId === chat.id}
+                      active={activeChatId === chat.id}
                       onSelect={() => selectChat(chat.id)}
                       onTogglePinned={() => togglePinned(chat)}
                       onShare={() => {
@@ -526,40 +555,47 @@ export function ChatGptSidebarDemo({
             </SidebarSection>
           </SidebarScrollArea>
 
-          <SidebarFooter className="border-0 px-2.5 py-1.5">
-            <div className="flex h-[52px] w-full items-center gap-2 rounded-[10px] px-2 transition-colors hover:bg-sidebar-accent">
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  aria-label={`${chatGptSidebarUser.name} ${chatGptSidebarUser.plan}，打开“个人资料”菜单`}
-                  className="flex min-w-0 flex-1 items-center gap-2 rounded-[9px] text-left outline-none focus-visible:bg-sidebar-accent"
-                >
-                  <UserAvatar />
-                  <span className="min-w-0 flex-1 leading-[18px]">
-                    <span className="block truncate text-[14px] text-sidebar-foreground">
-                      {chatGptSidebarUser.name}
-                    </span>
-                    <span className="block text-[13px] text-sidebar-muted-foreground">
-                      {chatGptSidebarUser.plan}
-                    </span>
-                  </span>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  side="top"
-                  align="start"
-                  sideOffset={6}
-                  className={`w-[230px] ${sidebarMenuClassName()}`}
-                >
-                  <SidebarAccountMenu onNotice={announce} />
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <SidebarIconButton
-                tooltip="下载应用"
-                aria-label="下载应用"
-                onClick={() => announce("下载应用入口已准备好。")}
-              >
-                <DownloadAppIcon />
-              </SidebarIconButton>
-            </div>
+          <SidebarFooter>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={
+                      <SidebarMenuButton
+                        icon={<UserAvatar />}
+                        aria-label={`${chatGptSidebarUser.name} ${chatGptSidebarUser.plan}，打开“个人资料”菜单`}
+                      >
+                        <span className="flex min-w-0 flex-col leading-tight">
+                          <span className="truncate text-sidebar-foreground">
+                            {chatGptSidebarUser.name}
+                          </span>
+                          <span className="text-sidebar-muted-foreground">
+                            {chatGptSidebarUser.plan}
+                          </span>
+                        </span>
+                      </SidebarMenuButton>
+                    }
+                  />
+                  <DropdownMenuContent
+                    side="top"
+                    align="start"
+                    sideOffset={6}
+                    className={`w-[230px] ${sidebarMenuClassName()}`}
+                  >
+                    <SidebarAccountMenu onNotice={announce} />
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <SidebarMenuActions>
+                  <SidebarMenuAction
+                    tooltip="下载应用"
+                    aria-label="下载应用"
+                    onClick={() => announce("下载应用入口已准备好。")}
+                  >
+                    <DownloadAppIcon />
+                  </SidebarMenuAction>
+                </SidebarMenuActions>
+              </SidebarMenuItem>
+            </SidebarMenu>
           </SidebarFooter>
         </SidebarPanel>
       </SidebarShell>

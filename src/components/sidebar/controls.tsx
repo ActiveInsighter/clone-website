@@ -4,6 +4,7 @@ import * as React from "react"
 import { useRender } from "@base-ui/react/use-render"
 
 import { useSidebarContext } from "./context"
+import { resolveSidebarInteractiveProps } from "./interactive"
 import { SidebarTooltip } from "./tooltip"
 import type { SidebarSurface } from "./types"
 
@@ -55,7 +56,8 @@ export type SidebarTriggerProps = Omit<
   useRender.ComponentProps<"button", SidebarTriggerState>,
   "ref"
 > & {
-  surface?: SidebarSurface
+  surface: SidebarSurface
+  nativeButton?: boolean
   tooltip?: React.ReactNode
   tooltipSide?: "top" | "right" | "bottom" | "left"
 }
@@ -65,8 +67,9 @@ export const SidebarTrigger = React.forwardRef<
   SidebarTriggerProps
 >(function SidebarTrigger(
   {
-    surface = "external",
+    surface,
     render,
+    nativeButton,
     tooltip,
     tooltipSide = "right",
     onClick,
@@ -86,6 +89,13 @@ export const SidebarTrigger = React.forwardRef<
     },
     [context, forwardedRef, surface],
   )
+  const interactiveProps = resolveSidebarInteractiveProps({
+    render,
+    nativeButton,
+    type,
+    disabled,
+    tabIndex: props.tabIndex,
+  })
 
   const trigger = useRender<SidebarTriggerState, HTMLElement>({
     defaultTagName: "button",
@@ -97,9 +107,10 @@ export const SidebarTrigger = React.forwardRef<
     },
     props: {
       ...props,
-      type: render ? undefined : (type ?? "button"),
-      disabled: render ? undefined : disabled,
-      "aria-disabled": render && disabled ? true : undefined,
+      type: interactiveProps.type,
+      disabled: interactiveProps.disabled,
+      "aria-disabled": interactiveProps.ariaDisabled,
+      tabIndex: interactiveProps.tabIndex,
       "data-slot": "sidebar-trigger",
       "data-sidebar-icon-button": "",
       "aria-label":
@@ -115,7 +126,9 @@ export const SidebarTrigger = React.forwardRef<
           return
         }
         onClick?.(event as React.MouseEvent<HTMLButtonElement>)
-        if (!event.defaultPrevented) context.toggle()
+        if (!event.defaultPrevented) {
+          context.toggleFromTrigger(event.currentTarget)
+        }
       },
       children: (
         <>

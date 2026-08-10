@@ -126,6 +126,11 @@ consumer, only New Chat is placed in `SidebarFixedTop`. File Library,
 Scheduled, Plugins, More, semantic Pinned/Projects/Chats sections, and history
 all live in `SidebarScrollArea`.
 
+`SidebarPanel` types its children as one of two ordered tuples — Header,
+ScrollArea, Footer; or Header, FixedTop, ScrollArea, Footer — and validates the
+same order at runtime. Consumers therefore cannot add a second scrollport or
+place a later fixed block after scrolling content through the supported API.
+
 The scroll area uses `min-height: 0`, `overflow-y: auto`, a visible themed
 scrollbar, and `scrollbar-gutter: stable`. The footer cannot be pushed out and
 scrollbar appearance cannot change row width.
@@ -148,6 +153,9 @@ primitives:
 --sidebar-item-radius: 0.625rem;
 --sidebar-section-gap: 1.125rem;
 --sidebar-font-size: 0.875rem;
+--sidebar-line-height: 1.375rem;
+--sidebar-scrollbar-size: 0.5rem;
+--sidebar-scrollbar-gutter: 0.625rem;
 --sidebar-motion-duration: 250ms;
 --sidebar-motion-fast-duration: 150ms;
 --sidebar-motion-easing: cubic-bezier(0.32, 0.72, 0, 1);
@@ -156,6 +164,8 @@ primitives:
 The defaults deliberately normalize quarter-pixel observations into a small
 system while retaining the official visual rhythm. Feature code may override
 tokens at the root; primitive classes do not repeat the measured magic values.
+The ChatGPT composition overrides row margin, padding, font size, and line
+height with the measured 6.75px, 11.25px, 15.75px, and 22.5px values.
 
 Expanded header, rows, rail header, rail actions, expanded footer, and rail
 footer share the same inline icon anchor derived from the rail width. Toggling
@@ -267,8 +277,11 @@ ChatGPT icons, routes, model types, data, or feature actions. The obsolete
 ## Verification contract
 
 Node tests protect pure behavior: cookies, shortcut safety, held modifier
-state, independent desktop/mobile transitions, action reservation math, chat
-selection/order, reducer no-ops, and destructive selection integrity.
+state, independent desktop/mobile transitions, effective focus handoff,
+scrollbar/gutter token independence, deep-link selection, chat ordering,
+reducer no-ops, and destructive selection integrity. Action-lane geometry is
+owned by the always-mounted CSS grid and is verified in Chrome rather than by
+a test-only pixel calculator.
 
 Chrome is authoritative for DOM and layout:
 

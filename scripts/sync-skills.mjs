@@ -38,6 +38,20 @@ const shortDesc = 'Reverse-engineer and clone any website as a pixel-perfect rep
 function write(relPath, content) {
   const full = join(ROOT, relPath);
   mkdirSync(dirname(full), { recursive: true });
+
+  // Avoid touching unchanged generated files. This keeps sync idempotent and
+  // allows compatibility copies with managed read-only permissions to remain
+  // usable when they already match the source of truth.
+  try {
+    const existing = readFileSync(full, 'utf8').replace(/\r\n/g, '\n');
+    if (existing === content.replace(/\r\n/g, '\n')) {
+      console.log(`  \u2713 ${relPath} (unchanged)`);
+      return;
+    }
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+  }
+
   writeFileSync(full, content, 'utf8');
   console.log(`  \u2713 ${relPath}`);
 }
@@ -53,19 +67,22 @@ const noArgs = (text) => text.replace(/\$ARGUMENTS/g, 'the target URL provided b
 console.log('Syncing clone-website skill to all platforms...');
 console.log(`  Source: .claude/skills/clone-website/SKILL.md\n`);
 
-// 1. Codex CLI — same SKILL.md format, same $ARGUMENTS syntax
+// 1. Codex repository skill — current Codex Desktop/CLI discovery path
+write('.agents/skills/clone-website/SKILL.md', raw);
+
+// 2. Legacy Codex CLI path — keep it in sync for existing checkouts
 write('.codex/skills/clone-website/SKILL.md', raw);
 
-// 2. GitHub Copilot — same SKILL.md format
+// 3. GitHub Copilot — same SKILL.md format
 write('.github/skills/clone-website/SKILL.md', raw);
 
-// 3. Cursor — plain markdown, no argument substitution support
+// 4. Cursor — plain markdown, no argument substitution support
 write('.cursor/commands/clone-website.md', HEADER + noArgs(body));
 
-// 4. Windsurf — markdown workflow
+// 5. Windsurf — markdown workflow
 write('.windsurf/workflows/clone-website.md', HEADER + noArgs(body));
 
-// 5. Gemini CLI — TOML format, {{args}} for arguments
+// 6. Gemini CLI — TOML format, {{args}} for arguments
 const geminiBody = body.replace(/\$ARGUMENTS/g, '{{args}}');
 write(
   '.gemini/commands/clone-website.toml',
@@ -76,25 +93,25 @@ write(
     `prompt = '''\n${geminiBody}\n'''\n`
 );
 
-// 6. OpenCode — markdown + YAML frontmatter, $ARGUMENTS works natively
+// 7. OpenCode — markdown + YAML frontmatter, $ARGUMENTS works natively
 write(
   '.opencode/commands/clone-website.md',
   `---\ndescription: "${shortDesc}"\n---\n${HEADER}${body}`
 );
 
-// 7. Augment Code — markdown + YAML frontmatter
+// 8. Augment Code — markdown + YAML frontmatter
 write(
   '.augment/commands/clone-website.md',
   `---\ndescription: "${shortDesc}"\nargument-hint: "<url>"\n---\n${HEADER}${body}`
 );
 
-// 8. Continue — prompt file with invokable: true
+// 9. Continue — prompt file with invokable: true
 write(
   '.continue/commands/clone-website.md',
   `---\nname: clone-website\ndescription: "${shortDesc}"\ninvokable: true\n---\n${HEADER}${body}`
 );
 
-// 9. Amazon Q — JSON agent definition
+// 10. Amazon Q — JSON agent definition
 write(
   '.amazonq/cli-agents/clone-website.json',
   JSON.stringify(
@@ -109,4 +126,4 @@ write(
   ) + '\n'
 );
 
-console.log('\nDone! 9 platform command files generated from source skill.');
+console.log('\nDone! 10 platform command/skill files generated from source skill.');

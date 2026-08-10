@@ -4,6 +4,7 @@ import * as React from "react"
 import { useRender } from "@base-ui/react/use-render"
 
 import { useSidebarContext } from "./context"
+import { resolveSidebarInteractiveProps } from "./interactive"
 import { SidebarTooltip } from "./tooltip"
 
 type SidebarMenuItemContextValue = {
@@ -59,6 +60,7 @@ export type SidebarMenuButtonProps = Omit<
   icon?: React.ReactNode
   trailing?: React.ReactNode
   children: React.ReactNode
+  nativeButton?: boolean
 }
 
 export const SidebarMenuButton = React.forwardRef<
@@ -67,6 +69,7 @@ export const SidebarMenuButton = React.forwardRef<
 >(function SidebarMenuButton(
   {
     render,
+    nativeButton,
     icon,
     trailing,
     children,
@@ -82,6 +85,13 @@ export const SidebarMenuButton = React.forwardRef<
     () => ({ active, disabled: Boolean(disabled) }),
     [active, disabled],
   )
+  const interactiveProps = resolveSidebarInteractiveProps({
+    render,
+    nativeButton,
+    type,
+    disabled,
+    tabIndex: props.tabIndex,
+  })
 
   return useRender<SidebarMenuButtonState, HTMLElement>({
     defaultTagName: "button",
@@ -94,10 +104,10 @@ export const SidebarMenuButton = React.forwardRef<
     },
     props: {
       ...props,
-      type: render ? undefined : (type ?? "button"),
-      disabled: render ? undefined : disabled,
-      "aria-disabled": render && disabled ? true : undefined,
-      tabIndex: render && disabled ? -1 : props.tabIndex,
+      type: interactiveProps.type,
+      disabled: interactiveProps.disabled,
+      "aria-disabled": interactiveProps.ariaDisabled,
+      tabIndex: interactiveProps.tabIndex,
       "data-slot": "sidebar-menu-button",
       "data-has-icon": icon ? "" : undefined,
       onClick: (event: React.MouseEvent<HTMLElement>) => {
@@ -178,11 +188,13 @@ export const SidebarShortcutHint = React.forwardRef<
   HTMLElement,
   SidebarShortcutHintProps
 >(function SidebarShortcutHint(
-  { keys, primaryKey = "Ctrl", separator = "+", ...props },
+  { keys, primaryKey, separator = "+", ...props },
   forwardedRef,
 ) {
-  const { modifierHeld } = useSidebarContext()
-  const displayKeys = [primaryKey, ...keys]
+  const { modifierHeld, modifierKey } = useSidebarContext()
+  const resolvedPrimaryKey =
+    primaryKey ?? (modifierKey === "meta" ? "⌘" : "Ctrl")
+  const displayKeys = [resolvedPrimaryKey, ...keys]
 
   return (
     <kbd

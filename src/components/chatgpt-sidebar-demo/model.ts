@@ -30,6 +30,19 @@ export type VisibleChatGroups = {
   regular: ChatGptSidebarChat[]
 }
 
+export type ChatGptSidebarRouteSelection =
+  | { kind: "home" }
+  | { kind: "chat"; id: string }
+  | { kind: "project"; id: string }
+  | { kind: "primary"; id: "library" | "scheduled" | "plugins" }
+  | null
+
+export type ChatGptSidebarSelection = {
+  activeChatId: string | null
+  activeProjectId: string | null
+  newChatActive: boolean
+}
+
 export type ChatGptSidebarAction =
   | { type: "toggle-chat-pinned"; chatId: string }
   | { type: "move-chat"; chatId: string; projectId?: string }
@@ -57,6 +70,7 @@ const initialProjects: ChatGptSidebarProject[] = [
 ]
 
 const projectIds = initialProjects.map((project) => project.id)
+const primaryRouteIds = new Set(["library", "scheduled", "plugins"] as const)
 
 const initialChats: ChatGptSidebarChat[] = chatGptDemoChatTitles.map((title, index) => ({
   id: `chat-${index + 1}`,
@@ -79,6 +93,65 @@ export function createChatGptSidebarState(): ChatGptSidebarState {
       chats: true,
     },
     showAllProjects: false,
+  }
+}
+
+export function getSidebarRouteSelection(
+  pathname: string,
+): ChatGptSidebarRouteSelection {
+  if (pathname === "/" || pathname === "/sidebar-demo") {
+    return { kind: "home" }
+  }
+
+  const segments = pathname.split("/").filter(Boolean)
+
+  if (segments.length === 2 && segments[0] === "c") {
+    return { kind: "chat", id: segments[1] }
+  }
+  if (
+    segments.length === 3 &&
+    segments[0] === "g" &&
+    segments[2] === "project"
+  ) {
+    return { kind: "project", id: segments[1] }
+  }
+  if (
+    segments.length === 1 &&
+    primaryRouteIds.has(
+      segments[0] as "library" | "scheduled" | "plugins",
+    )
+  ) {
+    return {
+      kind: "primary",
+      id: segments[0] as "library" | "scheduled" | "plugins",
+    }
+  }
+  return null
+}
+
+export function resolveChatGptSidebarSelection(
+  pathname: string,
+  stateChatId: string | null,
+  stateProjectId: string | null,
+): ChatGptSidebarSelection {
+  const routeSelection = getSidebarRouteSelection(pathname)
+  const activeChatId =
+    routeSelection?.kind === "chat"
+      ? routeSelection.id
+      : routeSelection
+        ? null
+        : stateChatId
+  const activeProjectId =
+    routeSelection?.kind === "project"
+      ? routeSelection.id
+      : routeSelection
+        ? null
+        : stateProjectId
+
+  return {
+    activeChatId,
+    activeProjectId,
+    newChatActive: routeSelection?.kind === "home",
   }
 }
 

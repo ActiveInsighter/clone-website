@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Pencil, Trash2 } from "lucide-react"
 
 import {
@@ -39,7 +40,13 @@ export function ProjectRow({
 }: ProjectRowProps) {
   return (
     <SidebarMenuItem active={active}>
-      <SidebarMenuButton icon={<FolderIcon />} onClick={onSelect}>
+      <SidebarMenuButton
+        render={<Link href={`/g/${project.id}/project`} />}
+        nativeButton={false}
+        icon={<FolderIcon />}
+        aria-current={active ? "page" : undefined}
+        onClick={onSelect}
+      >
         {project.name}
       </SidebarMenuButton>
       <SidebarMenuActions>

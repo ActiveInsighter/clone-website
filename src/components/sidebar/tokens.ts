@@ -1,6 +1,6 @@
 import type { SidebarStyle, SidebarTokenName, SidebarTokenOverrides } from "./types"
 
-export const SIDEBAR_MOBILE_QUERY = "(max-width: 47.999rem)"
+export const SIDEBAR_MOBILE_QUERY = "(max-width: 48rem)"
 
 export const sidebarDefaultTokens = {
   "--sidebar-width": "16.25rem",
@@ -15,6 +15,9 @@ export const sidebarDefaultTokens = {
   "--sidebar-item-radius": "0.625rem",
   "--sidebar-section-gap": "1.125rem",
   "--sidebar-font-size": "0.875rem",
+  "--sidebar-line-height": "1.375rem",
+  "--sidebar-scrollbar-size": "0.5rem",
+  "--sidebar-scrollbar-gutter": "0.625rem",
   "--sidebar-motion-duration": "250ms",
   "--sidebar-motion-fast-duration": "150ms",
   "--sidebar-motion-easing": "cubic-bezier(0.32, 0.72, 0, 1)",

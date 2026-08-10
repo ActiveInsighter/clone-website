@@ -23,6 +23,7 @@ export type SidebarTargetDescriptor = {
 
 export type SidebarModifierState = {
   modifierHeld: boolean
+  modifierKey: "control" | "meta" | null
 }
 
 export type SidebarModifierAction =
@@ -41,15 +42,6 @@ export type SidebarPresentationAction =
   | { type: "set-mobile-open"; open: boolean }
   | { type: "toggle-desktop" }
   | { type: "toggle-mobile" }
-
-export type MenuActionReservationInput = {
-  actionCount: number
-  actionSizePx?: number
-  gapPx?: number
-  inlinePaddingPx?: number
-  endInsetPx?: number
-  safetyPx?: number
-}
 
 const DEFAULT_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 
@@ -139,10 +131,21 @@ export function reduceSidebarModifierState(
   state: SidebarModifierState,
   action: SidebarModifierAction,
 ): SidebarModifierState {
-  if (action.type !== "keyboard") return { modifierHeld: false }
+  if (action.type !== "keyboard") {
+    return state.modifierHeld || state.modifierKey
+      ? { modifierHeld: false, modifierKey: null }
+      : state
+  }
 
   const modifierHeld = action.ctrlKey || action.metaKey
-  return state.modifierHeld === modifierHeld ? state : { modifierHeld }
+  const modifierKey = action.metaKey
+    ? "meta"
+    : action.ctrlKey
+      ? "control"
+      : null
+  return state.modifierHeld === modifierHeld && state.modifierKey === modifierKey
+    ? state
+    : { modifierHeld, modifierKey }
 }
 
 export function reduceSidebarPresentationState(
@@ -165,39 +168,20 @@ export function reduceSidebarPresentationState(
   }
 }
 
-export function getSidebarTriggerExpanded(
-  state: SidebarPresentationState,
-  isMobile: boolean,
-): boolean {
-  return isMobile ? state.mobileOpen : state.desktopOpen
+export function resolveSidebarFocusReturn<T extends { isConnected: boolean }>(
+  opener: T | null,
+  fallback: T | null,
+): T | null {
+  if (opener?.isConnected) return opener
+  if (fallback?.isConnected) return fallback
+  return null
 }
 
-export function getMenuActionReservationPx({
-  actionCount,
-  actionSizePx = 28,
-  gapPx = 2,
-  inlinePaddingPx = 2,
-  endInsetPx = 4,
-  safetyPx = 8,
-}: MenuActionReservationInput): number {
-  const values = [
-    actionCount,
-    actionSizePx,
-    gapPx,
-    inlinePaddingPx,
-    endInsetPx,
-    safetyPx,
-  ]
-  if (values.some((value) => !Number.isFinite(value) || value < 0)) {
-    throw new RangeError("Menu action reservation values must be finite and non-negative.")
-  }
-  if (actionCount === 0) return 0
-
-  return (
-    actionCount * actionSizePx +
-    Math.max(0, actionCount - 1) * gapPx +
-    inlinePaddingPx * 2 +
-    endInsetPx +
-    safetyPx
-  )
+export function getSidebarFocusHandoffSurface(
+  open: boolean,
+  activeSurface: "panel" | "rail" | null,
+): "panel" | "rail" | null {
+  if (open && activeSurface === "rail") return "panel"
+  if (!open && activeSurface === "panel") return "rail"
+  return null
 }

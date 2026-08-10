@@ -1,0 +1,492 @@
+{
+  "source": {
+    "url": "https://openai.com/zh-Hans-CN/",
+    "title": "OpenAI | Research & Deployment",
+    "locale": "zh-Hans-CN",
+    "capturedAt": "2026-08-09",
+    "scope": "顶部导航栏，不包含页面主体克隆代码"
+  },
+  "capture": {
+    "viewportCssPx": {
+      "width": 1441,
+      "height": 770
+    },
+    "devicePixelRatio": 1.75,
+    "coordinateNote": "rect 坐标和尺寸均为浏览器 CSS 像素；页面实际可视宽度因浏览器扩展环境为 1441px。",
+    "pageState": "初始桌面态",
+    "fontsObserved": [
+      "OpenAI Sans SC",
+      "OpenAI Sans",
+      "OpenAI Sans Variable Scripts",
+      "sans-serif"
+    ]
+  },
+  "domStructure": {
+    "semanticHierarchy": [
+      "header（外层语义容器，本身高度为 0）",
+      "└─ div.headerBar（fixed 顶部栏，实际可视高度 72px）",
+      "   ├─ a.skipLink（跳至主要内容，默认不可见，键盘 focus 时出现）",
+      "   ├─ div.headerContainer（品牌、桌面导航、搜索和操作按钮）",
+      "   │  ├─ a.brand（OpenAI SVG 标志）",
+      "   │  └─ div.headerMainRow",
+      "   │     ├─ div.desktopNavGroup",
+      "   │     │  ├─ nav[aria-label=\"主导航\"]",
+      "   │     │  │  └─ ul > li（5 个可展开项 + 1 个外链项）",
+      "   │     │  └─ search controls（打开搜索 / 关闭搜索）",
+      "   │     └─ div.actionGroup（登录 + 试用 ChatGPT）",
+      "   └─ div.mobileMenu（桌面端 display:none 的移动端 dialog 分支）",
+      "└─ div[aria-label=\"展开的导航菜单\"]（桌面端共用下拉区域，默认高度 0）"
+    ],
+    "headerBar": {
+      "selectorHint": "header > div.fixed",
+      "className": "group/header-bar inset-x-0 top-0 flex h-header-h items-start transition-[background-color] motion-reduce:transition-none right-scroll-bar-position z-51 fixed bg-secondary-100",
+      "tag": "div",
+      "position": "fixed",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1426.29,
+        "height": 72
+      },
+      "styles": {
+        "top": "0px",
+        "right": "0px",
+        "bottom": "auto",
+        "left": "0px",
+        "width": "1426.29px",
+        "height": "72px",
+        "display": "flex",
+        "alignItems": "flex-start",
+        "backgroundColor": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "zIndex": "51",
+        "boxShadow": "none",
+        "transition": "background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1)"
+      }
+    },
+    "headerContainer": {
+      "className": "relative z-10 mx-auto flex h-header-h w-full items-center gap-0 px-6 md:px-8 lg:max-w-container-desktop nav-desktop:gap-4",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1426.29,
+        "height": 72
+      },
+      "styles": {
+        "display": "flex",
+        "position": "relative",
+        "alignItems": "center",
+        "gap": "18px",
+        "padding": "0px 36px",
+        "height": "72px",
+        "width": "1426.29px"
+      }
+    },
+    "brand": {
+      "tag": "a",
+      "ariaLabel": "OpenAI 主页",
+      "href": "/zh-Hans-CN/",
+      "rect": {
+        "x": 36,
+        "y": 0,
+        "width": 62.77,
+        "height": 72
+      },
+      "styles": {
+        "display": "flex",
+        "alignItems": "center",
+        "height": "72px",
+        "padding": "22.5px 0px",
+        "color": "rgb(255, 255, 255)"
+      },
+      "svg": {
+        "widthAttribute": "90",
+        "viewBox": "0 0 288 78",
+        "className": "h-[17px] w-auto",
+        "renderedHeight": "17px",
+        "renderedWidth": "62.77px",
+        "fill": "currentColor",
+        "assetType": "inline SVG wordmark"
+      }
+    },
+    "desktopNav": {
+      "tag": "nav",
+      "ariaLabel": "主导航",
+      "className": "h-full min-w-0 nav-desktop:-me-6 nav-desktop:mask-[linear-gradient(to_right,black,black_calc(100%-1.5rem),transparent_calc(100%-0.5rem),transparent)] nav-desktop:focus-within:mask-none",
+      "rect": {
+        "x": 121.27,
+        "y": 0,
+        "width": 462.38,
+        "height": 72
+      },
+      "styles": {
+        "display": "block",
+        "height": "72px",
+        "width": "462.375px",
+        "margin": "0px -27px 0px 0px",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)"
+      },
+      "list": {
+        "tag": "ul",
+        "className": "flex h-full min-w-0 scrollbar-none items-baseline gap-0 overflow-x-hidden whitespace-nowrap focus-within:overflow-visible nav-desktop:pe-6",
+        "styles": {
+          "display": "flex",
+          "alignItems": "baseline",
+          "gap": "0px",
+          "height": "72px",
+          "padding": "0px 27px 0px 0px",
+          "overflowX": "hidden",
+          "whiteSpace": "nowrap"
+        }
+      },
+      "items": [
+        {
+          "label": "研究",
+          "itemType": "linkWithMenu",
+          "href": "/zh-Hans-CN/research/index/",
+          "itemRect": { "x": 121.27, "y": 0, "width": 65.25, "height": 72 },
+          "trigger": {
+            "tag": "a",
+            "text": "研究",
+            "href": "/zh-Hans-CN/research/index/",
+            "className": "group/desktop-nav-trigger duration-fast inline-flex h-full items-center transition-colors hover:text-primary-100 focus-visible:text-primary-100",
+            "styles": {
+              "display": "flex",
+              "alignItems": "center",
+              "height": "72px",
+              "width": "65.25px",
+              "fontSize": "19.125px",
+              "fontWeight": "400",
+              "lineHeight": "31.4989px",
+              "letterSpacing": "-0.19125px",
+              "color": "rgb(255, 255, 255)",
+              "transition": "color 0.1s cubic-bezier(0, 0, 1, 1)"
+            }
+          },
+          "menuButton": {
+            "tag": "button",
+            "ariaLabel": "研究 菜单",
+            "ariaExpanded": false,
+            "pointerEventsDefault": "none",
+            "position": "absolute",
+            "width": "22.5px",
+            "height": "72px",
+            "arrowSvg": { "width": 10, "viewBox": "0 0 10 16" }
+          }
+        },
+        {
+          "label": "产品",
+          "itemType": "buttonWithMenu",
+          "itemRect": { "x": 186.52, "y": 0, "width": 65.25, "height": 72 },
+          "trigger": {
+            "tag": "button",
+            "text": "产品",
+            "type": "button",
+            "className": "group/desktop-nav-trigger duration-fast inline-flex h-full items-center transition-colors hover:text-primary-100 focus-visible:text-primary-100",
+            "styles": {
+              "display": "flex",
+              "alignItems": "center",
+              "height": "72px",
+              "width": "65.25px",
+              "fontSize": "19.125px",
+              "fontWeight": "400",
+              "lineHeight": "31.4989px",
+              "letterSpacing": "-0.19125px",
+              "color": "rgb(255, 255, 255)"
+            }
+          },
+          "menuButton": {
+            "tag": "button",
+            "ariaLabel": "产品 菜单",
+            "ariaExpanded": false,
+            "pointerEventsDefault": "none",
+            "position": "absolute",
+            "width": "22.5px",
+            "height": "72px",
+            "arrowSvg": { "width": 10, "viewBox": "0 0 10 16" }
+          }
+        },
+        {
+          "label": "企业",
+          "itemType": "linkWithMenu",
+          "href": "/zh-Hans-CN/business/",
+          "itemRect": { "x": 251.77, "y": 0, "width": 65.25, "height": 72 },
+          "trigger": {
+            "tag": "a",
+            "text": "企业",
+            "href": "/zh-Hans-CN/business/",
+            "styles": { "display": "flex", "height": "72px", "width": "65.25px", "fontSize": "19.125px", "color": "rgb(255, 255, 255)" }
+          },
+          "menuButton": { "tag": "button", "ariaLabel": "企业 菜单", "ariaExpanded": false, "pointerEventsDefault": "none", "arrowSvg": { "width": 10, "viewBox": "0 0 10 16" } }
+        },
+        {
+          "label": "开发人员",
+          "itemType": "linkWithMenu",
+          "href": "/zh-Hans-CN/api/",
+          "itemRect": { "x": 317.02, "y": 0, "width": 94.5, "height": 72 },
+          "trigger": {
+            "tag": "a",
+            "text": "开发人员",
+            "href": "/zh-Hans-CN/api/",
+            "styles": { "display": "flex", "height": "72px", "width": "94.5px", "fontSize": "19.125px", "color": "rgb(255, 255, 255)" }
+          },
+          "menuButton": { "tag": "button", "ariaLabel": "开发人员 菜单", "ariaExpanded": false, "pointerEventsDefault": "none", "arrowSvg": { "width": 10, "viewBox": "0 0 10 16" } }
+        },
+        {
+          "label": "公司",
+          "itemType": "linkWithMenu",
+          "href": "/zh-Hans-CN/about/",
+          "itemRect": { "x": 411.52, "y": 0, "width": 65.25, "height": 72 },
+          "trigger": {
+            "tag": "a",
+            "text": "公司",
+            "href": "/zh-Hans-CN/about/",
+            "styles": { "display": "flex", "height": "72px", "width": "65.25px", "fontSize": "19.125px", "color": "rgb(255, 255, 255)" }
+          },
+          "menuButton": { "tag": "button", "ariaLabel": "公司 菜单", "ariaExpanded": false, "pointerEventsDefault": "none", "arrowSvg": { "width": 10, "viewBox": "0 0 10 16" } }
+        },
+        {
+          "label": "基金会",
+          "itemType": "externalLink",
+          "href": "https://openaifoundation.org/zh-Hans-CN/",
+          "target": "_blank",
+          "itemRect": { "x": 476.77, "y": 0, "width": 79.88, "height": 72 },
+          "trigger": {
+            "tag": "a",
+            "text": "基金会",
+            "href": "https://openaifoundation.org/zh-Hans-CN/",
+            "target": "_blank",
+            "styles": { "display": "flex", "height": "72px", "width": "79.875px", "fontSize": "19.125px", "color": "rgb(255, 255, 255)" },
+            "externalLinkIcon": { "width": 9, "viewBox": "0 0 11 12", "strokeWidth": 1.3 }
+          }
+        }
+      ]
+    },
+    "search": {
+      "defaultControl": {
+        "tag": "button",
+        "ariaLabel": "打开搜索",
+        "type": "button",
+        "rect": { "x": 561.14, "y": 13.5, "width": 45, "height": 45 },
+        "styles": {
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "width": "45px",
+          "height": "45px",
+          "borderRadius": "9999px",
+          "color": "rgba(255, 255, 255, 0.6)",
+          "transition": "color 0.2s cubic-bezier(0, 0, 1, 1)"
+        },
+        "icon": { "width": 16, "viewBox": "0 0 16 16", "strokeWidth": 1.5 }
+      },
+      "pairedCloseControl": {
+        "tag": "button",
+        "ariaLabel": "关闭搜索",
+        "sameRectAsOpenControl": true,
+        "icon": { "width": 16, "viewBox": "0 0 16 16" }
+      }
+    },
+    "actions": {
+      "layout": {
+        "display": "flex",
+        "alignItems": "center",
+        "gap": "16px"
+      },
+      "login": {
+        "tag": "button",
+        "text": "登录",
+        "type": "button",
+        "ariaHaspopup": "menu",
+        "ariaExpanded": false,
+        "rect": { "x": 1123.87, "y": 15.75, "width": 94.72, "height": 40.5 },
+        "styles": {
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "height": "40.5px",
+          "width": "94.7232px",
+          "padding": "0px 22.5px",
+          "borderRadius": "45px",
+          "backgroundColor": "rgba(255, 255, 255, 0.12)",
+          "color": "rgb(255, 255, 255)",
+          "fontSize": "15.75px",
+          "fontWeight": "500",
+          "lineHeight": "15.75px"
+        },
+        "icon": { "type": "downChevron", "width": 10, "viewBox": "0 0 10 16" },
+        "menuContentCapture": "未在本次初始态采集中确认展开内容；已确认它是 aria-haspopup=menu 的按钮，默认 aria-expanded=false。"
+      },
+      "chatgptCta": {
+        "tag": "a",
+        "text": "试用 ChatGPT",
+        "href": "https://chatgpt.com/?openaicom-did=caaf2085-ba63-4ab2-94bf-2b52fdafc4b5&openaicom_referred=true",
+        "normalizedHref": "https://chatgpt.com/",
+        "target": "_blank",
+        "rect": { "x": 1227.59, "y": 15.75, "width": 162.7, "height": 40.5 },
+        "styles": {
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "height": "40.5px",
+          "width": "162.696px",
+          "padding": "0px 22.5px",
+          "borderRadius": "45px",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "color": "rgb(0, 0, 0)",
+          "fontSize": "15.75px",
+          "fontWeight": "500",
+          "lineHeight": "15.75px"
+        },
+        "externalLinkIcon": { "width": 11, "viewBox": "0 0 11 12", "strokeWidth": 1.3 }
+      }
+    },
+    "skipLink": {
+      "tag": "a",
+      "text": "跳至主要内容",
+      "href": "#main",
+      "defaultState": { "opacity": "0", "pointerEvents": "none", "position": "absolute", "top": "72px", "left": "36px" },
+      "focusVisibleState": "opacity=1 且 pointer-events=auto（由 focus-visible 触发）"
+    }
+  },
+  "dropdownMenus": [
+    {
+      "key": "research",
+      "triggerLabel": "研究",
+      "interactionModel": "hover over the desktop nav item; verified aria-expanded changes false -> true",
+      "region": { "ariaLabel": "展开的导航菜单", "role": "region", "top": "72px", "position": "fixed", "backgroundColor": "rgb(0, 0, 0)", "zIndex": "51", "height": "321px", "transition": "height 0.2s cubic-bezier(0.4, 0, 0.2, 1)" },
+      "columns": [
+        { "heading": "探索 研究", "links": [
+          { "text": "研究索引", "href": "/zh-Hans-CN/research/index/" },
+          { "text": "研究概览", "href": "/zh-Hans-CN/research/" },
+          { "text": "研究驻留", "href": "/zh-Hans-CN/residency/" },
+          { "text": "安全", "href": "/zh-Hans-CN/safety/" }
+        ] },
+        { "heading": "最新进展", "links": [
+          { "text": "GPT-5.6", "href": "/zh-Hans-CN/index/gpt-5-6/" },
+          { "text": "GPT-5.5", "href": "/zh-Hans-CN/index/introducing-gpt-5-5/" },
+          { "text": "GPT-5.4", "href": "/zh-Hans-CN/index/introducing-gpt-5-4/" },
+          { "text": "GPT-5.3 Instant", "href": "/zh-Hans-CN/index/gpt-5-3-instant/" },
+          { "text": "GPT-5.3-Codex", "href": "/zh-Hans-CN/index/introducing-gpt-5-3-codex/" }
+        ] }
+      ],
+      "linkStyles": { "primaryFontSize": "32.7424px", "primaryFontWeight": "500", "secondaryFontSize": "14.625px", "secondaryFontWeight": "600", "textColor": "rgb(255, 255, 255)", "mutedHeadingColor": "rgba(255, 255, 255, 0.6)" }
+    },
+    {
+      "key": "products",
+      "triggerLabel": "产品",
+      "interactionModel": "hover over the desktop nav item",
+      "region": { "height": "208px", "backgroundColor": "rgb(0, 0, 0)", "transition": "height 0.2s cubic-bezier(0.4, 0, 0.2, 1)" },
+      "columns": [
+        { "heading": "探索 产品", "links": [
+          { "text": "ChatGPT", "href": "https://chatgpt.com/zh-Hans-CN/overview?openaicom-did=caaf2085-ba63-4ab2-94bf-2b52fdafc4b5&openaicom_referred=true", "target": "_blank" },
+          { "text": "Codex", "href": "/zh-Hans-CN/codex/" }
+        ] },
+        { "heading": "资源", "links": [
+          { "text": "发布说明", "href": "/zh-Hans-CN/products/release-notes/" },
+          { "text": "API 平台", "href": "/zh-Hans-CN/api/" },
+          { "text": "OpenAI Academy", "href": "/academy/" }
+        ] }
+      ]
+    },
+    {
+      "key": "business",
+      "triggerLabel": "企业",
+      "interactionModel": "hover over the desktop nav item",
+      "region": { "height": "434px", "backgroundColor": "rgb(0, 0, 0)", "transition": "height 0.2s cubic-bezier(0.4, 0, 0.2, 1)" },
+      "columns": [
+        { "heading": "探索 企业", "links": [
+          { "text": "概览", "href": "/zh-Hans-CN/business/" },
+          { "text": "解决方案", "href": "/zh-Hans-CN/solutions/" },
+          { "text": "资源", "href": "/zh-Hans-CN/business/learn/" },
+          { "text": "客户案例", "href": "/zh-Hans-CN/business/customer-stories/" },
+          { "text": "定价", "href": "/zh-Hans-CN/business/pricing/" },
+          { "text": "联系销售团队", "href": "/zh-Hans-CN/contact-sales/" }
+        ] },
+        { "heading": "产品", "links": [
+          { "text": "ChatGPT Work", "href": "/zh-Hans-CN/chatgpt-work/" },
+          { "text": "Codex", "href": "/zh-Hans-CN/codex/" },
+          { "text": "API 平台", "href": "/zh-Hans-CN/api/" },
+          { "text": "OpenAI Frontier", "href": "/zh-Hans-CN/business/frontier/" },
+          { "text": "OpenAI Presence", "href": "/zh-Hans-CN/business/openai-presence/" }
+        ] },
+        { "heading": "解决方案", "links": [
+          { "text": "金融", "href": "/zh-Hans-CN/business/solutions/finance/" },
+          { "text": "数据分析", "href": "/zh-Hans-CN/business/solutions/data/" },
+          { "text": "设计", "href": "/zh-Hans-CN/business/solutions/design/" },
+          { "text": "生命科学", "href": "/zh-Hans-CN/gpt-rosalind/" },
+          { "text": "网络安全", "href": "/zh-Hans-CN/daybreak/" },
+          { "text": "金融服务", "href": "/zh-Hans-CN/solutions/industries/financial-services/" },
+          { "text": "教育", "href": "/business/solutions/education/" },
+          { "text": "所有解决方案", "href": "/zh-Hans-CN/solutions/" }
+        ] }
+      ]
+    },
+    {
+      "key": "developers",
+      "triggerLabel": "开发人员",
+      "interactionModel": "hover over the desktop nav item",
+      "region": { "height": "378px", "backgroundColor": "rgb(0, 0, 0)", "transition": "height 0.2s cubic-bezier(0.4, 0, 0.2, 1)" },
+      "columns": [
+        { "heading": "探索 开发人员", "links": [
+          { "text": "Codex", "href": "/zh-Hans-CN/codex/" },
+          { "text": "API 平台", "href": "/zh-Hans-CN/api/" },
+          { "text": "智能体", "href": "https://developers.openai.com/api/docs/guides/agents", "target": "_blank" },
+          { "text": "开放模型", "href": "/zh-Hans-CN/open-models/" },
+          { "text": "应用程序 SDK", "href": "https://developers.openai.com/apps-sdk", "target": "_blank" }
+        ] },
+        { "heading": "资源", "links": [
+          { "text": "文档", "href": "https://developers.openai.com/", "target": "_blank" },
+          { "text": "Codex 用例", "href": "https://developers.openai.com/codex/use-cases", "target": "_blank" },
+          { "text": "Codex 更新日志", "href": "https://developers.openai.com/codex/changelog", "target": "_blank" },
+          { "text": "实用手册", "href": "https://developers.openai.com/cookbook", "target": "_blank" },
+          { "text": "开发者案例展示", "href": "https://developers.openai.com/showcase", "target": "_blank" },
+          { "text": "开发者博客", "href": "https://developers.openai.com/blog", "target": "_blank" },
+          { "text": "社区", "href": "https://developers.openai.com/community", "target": "_blank" }
+        ] }
+      ]
+    },
+    {
+      "key": "company",
+      "triggerLabel": "公司",
+      "interactionModel": "hover over the desktop nav item",
+      "region": { "height": "378px", "backgroundColor": "rgb(0, 0, 0)", "transition": "height 0.2s cubic-bezier(0.4, 0, 0.2, 1)" },
+      "columns": [
+        { "heading": "探索 公司", "links": [
+          { "text": "关于我们", "href": "/zh-Hans-CN/about/" },
+          { "text": "工作机会", "href": "/careers/" },
+          { "text": "新闻", "href": "/zh-Hans-CN/news/company-announcements/" },
+          { "text": "客户案例", "href": "/zh-Hans-CN/stories/" },
+          { "text": "Supply Co.", "href": "/zh-Hans-CN/supply/" }
+        ] },
+        { "heading": "资源", "links": [
+          { "text": "品牌规范", "href": "/zh-Hans-CN/brand/" },
+          { "text": "公共政策", "href": "/zh-Hans-CN/company/public-policy/" }
+        ] }
+      ]
+    }
+  ],
+  "mobileBranchInDom": {
+    "desktopVisibility": "display:none at captured desktop viewport",
+    "dialogRole": "dialog",
+    "ariaLabel": "移动端导航菜单（DOM 文本对应已抓取）",
+    "menuItems": [
+      { "label": "研究", "control": "button" },
+      { "label": "产品", "control": "button" },
+      { "label": "企业", "control": "button" },
+      { "label": "开发人员", "control": "button" },
+      { "label": "公司", "control": "button" },
+      { "label": "基金会", "href": "https://openaifoundation.org/zh-Hans-CN/", "target": "_blank" }
+    ],
+    "openButton": { "ariaLabel": "打开移动端导航菜单", "desktopDisplay": "none" }
+  },
+  "behaviorNotes": {
+    "desktopHover": "将鼠标移入五个带菜单的 li 后，对应菜单按钮 aria-expanded=true，共用的 fixed region 从 height=0 展开到各自高度；移入其他项会切换活动菜单。",
+    "inactiveItemStyling": "ul 使用 [&:has(>li:hover)>li:not(:hover)>*]:text-primary-60，使非当前 hover 项变为 60% 白色。",
+    "keyboard": "下拉箭头按钮默认 pointer-events:none；focus-visible 时恢复 pointer-events:auto，并保留可见 focus 样式。",
+    "search": "默认态有‘打开搜索’按钮；‘关闭搜索’按钮以同一几何位置存在于 DOM 中，属于另一状态控制。搜索面板内容未在本次文件中展开。",
+    "login": "登录按钮是 aria-haspopup=menu 的按钮，默认 aria-expanded=false；本次文件只记录触发器，不臆测登录菜单内容。",
+    "scroll": "本次任务只针对顶部导航，未把页面主体滚动行为纳入采集范围。"
+  }
+}

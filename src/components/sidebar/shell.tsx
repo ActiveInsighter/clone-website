@@ -4,6 +4,12 @@ import * as React from "react"
 import { Dialog } from "@base-ui/react/dialog"
 
 import { useSidebarContext } from "./context"
+import {
+  SidebarFixedTop,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarScrollArea,
+} from "./layout"
 import type { SidebarShellProps } from "./types"
 
 const SidebarShellLabelContext = React.createContext<string | null>(null)
@@ -49,16 +55,13 @@ export const SidebarShell = React.forwardRef<HTMLElement, SidebarShellProps>(
                 data-side={side}
                 className={popupClassName}
                 style={context.portalStyle}
-                finalFocus={context.getLastTrigger}
+                finalFocus={context.getMobileFocusReturn}
               >
                 <Dialog.Title className="sidebar-sr-only">{label}</Dialog.Title>
                 <Dialog.Description className="sidebar-sr-only">
                   {label}
                 </Dialog.Description>
                 {children}
-                <Dialog.Close className="sidebar-sr-only">
-                  Close {label}
-                </Dialog.Close>
               </Dialog.Popup>
             </Dialog.Portal>
           </Dialog.Root>
@@ -104,25 +107,91 @@ export const SidebarShell = React.forwardRef<HTMLElement, SidebarShellProps>(
   },
 )
 
-export const SidebarPanel = React.forwardRef<
-  HTMLElement,
-  React.ComponentPropsWithoutRef<"nav">
->(function SidebarPanel({ children, ...props }, forwardedRef) {
-  const { panelId } = useSidebarContext()
-  const label = useSidebarShellLabel()
+type SidebarHeaderElement = React.ReactElement<
+  React.ComponentProps<typeof SidebarHeader>,
+  typeof SidebarHeader
+>
+type SidebarFixedTopElement = React.ReactElement<
+  React.ComponentProps<typeof SidebarFixedTop>,
+  typeof SidebarFixedTop
+>
+type SidebarScrollAreaElement = React.ReactElement<
+  React.ComponentProps<typeof SidebarScrollArea>,
+  typeof SidebarScrollArea
+>
+type SidebarFooterElement = React.ReactElement<
+  React.ComponentProps<typeof SidebarFooter>,
+  typeof SidebarFooter
+>
 
-  return (
-    <nav
-      {...props}
-      ref={forwardedRef}
-      id={panelId}
-      data-slot="sidebar-panel"
-      aria-label={props["aria-label"] ?? label ?? undefined}
-    >
-      {children}
-    </nav>
-  )
-})
+export type SidebarPanelChildren =
+  | readonly [
+      SidebarHeaderElement,
+      SidebarScrollAreaElement,
+      SidebarFooterElement,
+    ]
+  | readonly [
+      SidebarHeaderElement,
+      SidebarFixedTopElement,
+      SidebarScrollAreaElement,
+      SidebarFooterElement,
+    ]
+
+export type SidebarPanelProps = Omit<
+  React.ComponentPropsWithoutRef<"nav">,
+  "children"
+> & {
+  children: SidebarPanelChildren
+}
+
+const sidebarPanelRegionTypesWithFixedTop = [
+  SidebarHeader,
+  SidebarFixedTop,
+  SidebarScrollArea,
+  SidebarFooter,
+] as const
+const sidebarPanelRegionTypesWithoutFixedTop = [
+  SidebarHeader,
+  SidebarScrollArea,
+  SidebarFooter,
+] as const
+
+export const SidebarPanel = React.forwardRef<HTMLElement, SidebarPanelProps>(
+  function SidebarPanel({ children, ...props }, forwardedRef) {
+    const { panelId } = useSidebarContext()
+    const label = useSidebarShellLabel()
+    const regions = React.Children.toArray(children)
+    const expectedRegionTypes =
+      regions.length === sidebarPanelRegionTypesWithoutFixedTop.length
+        ? sidebarPanelRegionTypesWithoutFixedTop
+        : sidebarPanelRegionTypesWithFixedTop
+
+    if (
+      regions.length !== expectedRegionTypes.length ||
+      regions.some(
+        (region, index) =>
+          !React.isValidElement(region) ||
+          region.type !== expectedRegionTypes[index],
+      )
+    ) {
+      throw new Error(
+        "SidebarPanel requires SidebarHeader, an optional SidebarFixedTop, one SidebarScrollArea, and SidebarFooter in that order.",
+      )
+    }
+
+    return (
+      <nav
+        {...props}
+        ref={forwardedRef}
+        id={panelId}
+        data-slot="sidebar-panel"
+        aria-label={props["aria-label"] ?? label ?? undefined}
+      >
+        {children}
+      </nav>
+    )
+  },
+)
 
 export const SidebarInset = React.forwardRef<
   HTMLElement,
