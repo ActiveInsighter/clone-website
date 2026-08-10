@@ -60,6 +60,26 @@
 
 > 使用其他 AI 代理？打开 `AGENTS.md` 查看项目指令 — 大多数代理会自动读取。
 
+## 多站点开发
+
+所有复刻网站共享一个 Next.js 开发服务器和一个端口。启动一次即可通过不同路径打开站点：
+
+```bash
+npm run dev
+```
+
+然后访问：
+
+```text
+http://localhost:3000/                  # 自动进入站点选择页
+http://localhost:3000/clones            # 站点选择页
+http://localhost:3000/clones/openai
+http://localhost:3000/clones/chatgpt
+http://localhost:3000/clones/studio
+```
+
+每个站点仍然拥有独立的路由入口，修改站点代码时使用 Next.js Fast Refresh 热更新，不需要为每个网站重复启动端口。未知的站点路径会返回 404，不会回退到另一个复刻网站。
+
 ## 支持的平台
 
 | 代理                                                          | 状态                        |

@@ -152,74 +152,71 @@ export type ChatGptHomeProps = {
 export function ChatGptHome({ initialDark = true }: ChatGptHomeProps) {
   const [notice, setNotice] = React.useState("")
 
-  React.useEffect(() => {
-    document.documentElement.classList.toggle("dark", initialDark)
-    document.documentElement.style.colorScheme = initialDark ? "dark" : "light"
-  }, [initialDark])
-
   return (
-    <SidebarRoot
-      defaultOpen
-      persistence={{ name: "chatgpt_sidebar_state" }}
-      tokens={{
-        "--sidebar-surface": initialDark ? "#000000" : "#fcfcfc",
-        "--sidebar-foreground": initialDark ? "#ffffff" : "#0d0d0d",
-        "--sidebar-muted-foreground": initialDark ? "#afafaf" : "#8f8f8f",
-        "--sidebar-inline-margin": "0.421875rem",
-        "--sidebar-inline-padding": "0.703125rem",
-        "--sidebar-font-size": "0.984375rem",
-        "--sidebar-line-height": "1.40625rem",
-        "--sidebar-row-highlight": initialDark
-          ? "rgb(255 255 255 / 10%)"
-          : "rgb(0 0 0 / 7%)",
-        "--sidebar-border": initialDark
-          ? "rgb(255 255 255 / 5%)"
-          : "rgb(0 0 0 / 5%)",
-        "--sidebar-border-strong": initialDark
-          ? "rgb(255 255 255 / 20%)"
-          : "rgb(0 0 0 / 15%)",
-      }}
-    >
-      <ChatGptSidebarDemo onNotice={setNotice} />
-      <SidebarInset className="min-h-0 bg-black text-white">
-        <ChatHeader onNotice={setNotice} />
-        <section
-          aria-label="聊天工作区"
-          className="flex min-h-0 flex-1 flex-col items-center justify-center px-3 pb-[12vh]"
-        >
-          <div className="relative flex w-full max-w-[865px] flex-col items-center">
-            <div className="relative flex w-full justify-center">
-              <h1 className="mb-8 text-center text-[30px] font-medium leading-9 tracking-[-0.025em] sm:text-[32px]">
-                你今天在想些什么？
-              </h1>
-              <button
-                type="button"
-                className="absolute right-[-150px] top-0 hidden h-9 items-center gap-2 rounded-full border border-white/10 bg-[#141414] px-3 text-[13px] text-[#e5e5e5] shadow-[0_4px_16px_rgba(0,0,0,0.24)] transition-colors hover:bg-[#202020] xl:flex"
-                onClick={() => setNotice("AnyWorkflow 项目已选中。")}
-              >
-                <span className="size-2 rounded-full bg-[#767676]" />
-                <span>Anyworkflow</span>
-                <span className="text-[#999]">关闭</span>
-                <span className="text-[17px] leading-none text-[#999]">+</span>
-              </button>
+    <div className={initialDark ? "dark flex min-h-full" : "flex min-h-full"}>
+      <SidebarRoot
+        defaultOpen
+        persistence={{ name: "chatgpt_sidebar_state" }}
+        tokens={{
+          "--sidebar-surface": initialDark ? "#000000" : "#fcfcfc",
+          "--sidebar-foreground": initialDark ? "#ffffff" : "#0d0d0d",
+          "--sidebar-muted-foreground": initialDark ? "#afafaf" : "#8f8f8f",
+          "--sidebar-inline-margin": "0.421875rem",
+          "--sidebar-inline-padding": "0.703125rem",
+          "--sidebar-font-size": "0.984375rem",
+          "--sidebar-line-height": "1.40625rem",
+          "--sidebar-row-highlight": initialDark
+            ? "rgb(255 255 255 / 10%)"
+            : "rgb(0 0 0 / 7%)",
+          "--sidebar-border": initialDark
+            ? "rgb(255 255 255 / 5%)"
+            : "rgb(0 0 0 / 5%)",
+          "--sidebar-border-strong": initialDark
+            ? "rgb(255 255 255 / 20%)"
+            : "rgb(0 0 0 / 15%)",
+        }}
+      >
+        <ChatGptSidebarDemo onNotice={setNotice} />
+        <SidebarInset className="min-h-0 bg-black text-white">
+          <ChatHeader onNotice={setNotice} />
+          <section
+            aria-label="聊天工作区"
+            className="flex min-h-0 flex-1 flex-col items-center justify-center px-3 pb-[12vh]"
+          >
+            <div className="relative flex w-full max-w-[865px] flex-col items-center">
+              <div className="relative flex w-full justify-center">
+                <h1 className="mb-8 text-center text-[30px] font-medium leading-9 tracking-[-0.025em] sm:text-[32px]">
+                  你今天在想些什么？
+                </h1>
+                <button
+                  type="button"
+                  className="absolute right-[-150px] top-0 hidden h-9 items-center gap-2 rounded-full border border-white/10 bg-[#141414] px-3 text-[13px] text-[#e5e5e5] shadow-[0_4px_16px_rgba(0,0,0,0.24)] transition-colors hover:bg-[#202020] xl:flex"
+                  onClick={() => setNotice("AnyWorkflow 项目已选中。")}
+                >
+                  <span className="size-2 rounded-full bg-[#767676]" />
+                  <span>Anyworkflow</span>
+                  <span className="text-[#999]">关闭</span>
+                  <span className="text-[17px] leading-none text-[#999]">+</span>
+                </button>
+              </div>
+              <ChatComposer onNotice={setNotice} />
+              <p className="mt-4 text-center text-xs text-[#8e8e8e]">
+                ChatGPT 可能会犯错。请核查重要信息。{" "}
+                <button
+                  type="button"
+                  className="underline underline-offset-2 hover:text-white"
+                  onClick={() => setNotice("已打开 ChatGPT 使用提示。")}
+                >
+                  了解详情
+                </button>
+              </p>
+              <p className="min-h-5 text-center text-xs text-[#8e8e8e]" aria-live="polite">
+                {notice}
+              </p>
             </div>
-            <ChatComposer onNotice={setNotice} />
-            <p className="mt-4 text-center text-xs text-[#8e8e8e]">
-              ChatGPT 可能会犯错。请核查重要信息。{" "}
-              <button
-                type="button"
-                className="underline underline-offset-2 hover:text-white"
-                onClick={() => setNotice("已打开 ChatGPT 使用提示。")}
-              >
-                了解详情
-              </button>
-            </p>
-            <p className="min-h-5 text-center text-xs text-[#8e8e8e]" aria-live="polite">
-              {notice}
-            </p>
-          </div>
-        </section>
-      </SidebarInset>
-    </SidebarRoot>
+          </section>
+        </SidebarInset>
+      </SidebarRoot>
+    </div>
   )
 }

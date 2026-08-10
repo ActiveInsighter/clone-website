@@ -39,6 +39,7 @@ import {
   SidebarTrigger,
   isTextEntryTarget,
 } from "@/components/sidebar"
+import { getSitePathname } from "@/sites/pathname"
 import {
   chatGptSidebarNewChatItem,
   chatGptSidebarPrimaryItems,
@@ -118,7 +119,7 @@ export function ChatGptSidebarDemo({
   const [dialogValue, setDialogValue] = React.useState("")
 
   const selection = resolveChatGptSidebarSelection(
-    pathname,
+    getSitePathname(pathname, "chatgpt"),
     state.activeChatId,
     state.activeProjectId,
   )

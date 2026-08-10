@@ -18,6 +18,7 @@ import { usePathname } from "next/navigation";
 
 import { AppHeader, AppShell } from "@/components/app-shell";
 import { primaryNavigation } from "@/config/navigation";
+import { getSitePathname } from "@/sites/pathname";
 
 const pageTitles: Record<string, string> = {
   "/": "Project Overview",
@@ -190,12 +191,8 @@ function GenericSurface({ title }: { title: string }) {
 export function StudioDemo() {
   const pathname = usePathname();
   const [dark, setDark] = React.useState(true);
-  const isDatabase = pathname === "/database" || pathname.startsWith("/database/");
-
-  React.useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-    document.documentElement.style.colorScheme = dark ? "dark" : "light";
-  }, [dark]);
+  const sitePathname = getSitePathname(pathname, "studio");
+  const isDatabase = sitePathname === "/database" || sitePathname.startsWith("/database/");
 
   const actions = (
     <>
@@ -207,11 +204,13 @@ export function StudioDemo() {
   );
 
   return (
-    <AppShell
-      navigation={primaryNavigation}
-      header={<AppHeader project="md-to-pdf" breadcrumbs={[]} actions={actions} />}
-    >
-      {isDatabase ? <DatabaseSurface /> : <GenericSurface title={getPageTitle(pathname)} />}
-    </AppShell>
+    <div className={dark ? "dark min-h-full" : "min-h-full"}>
+      <AppShell
+        navigation={primaryNavigation}
+        header={<AppHeader project="md-to-pdf" breadcrumbs={[]} actions={actions} />}
+      >
+        {isDatabase ? <DatabaseSurface /> : <GenericSurface title={getPageTitle(sitePathname)} />}
+      </AppShell>
+    </div>
   );
 }

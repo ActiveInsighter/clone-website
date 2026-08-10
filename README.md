@@ -55,6 +55,26 @@ Point it at a URL, run `/clone-website`, and your AI agent will inspect the site
 
 > Using a different agent? Open `AGENTS.md` for project instructions — most agents pick it up automatically.
 
+## Multi-site development
+
+All website replicas share one Next.js development server and one port. Start it once:
+
+```bash
+npm run dev
+```
+
+Then open the selector or any explicit clone route:
+
+```text
+http://localhost:3000/                  # redirects to the selector
+http://localhost:3000/clones            # clone selector
+http://localhost:3000/clones/openai
+http://localhost:3000/clones/chatgpt
+http://localhost:3000/clones/studio
+```
+
+Each clone has its own route entry and uses Next.js Fast Refresh during development. Unknown site paths return 404 instead of falling back to another clone.
+
 ## Supported Platforms
 
 | Agent                                                         | Status                     |

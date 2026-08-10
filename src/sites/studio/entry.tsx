@@ -1,1 +1,7 @@
-export { StudioDemo as default, StudioDemo } from "@/components/studio-demo"
+import { StudioDemo } from "@/components/studio-demo"
+
+export function StudioSite() {
+  return <StudioDemo />
+}
+
+export default StudioSite

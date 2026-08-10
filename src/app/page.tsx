@@ -1,5 +1,5 @@
-import { OpenAiHome } from "@/sites/openai/entry";
+import { redirect } from "next/navigation"
 
 export default function Home() {
-  return <OpenAiHome />;
+  redirect("/clones")
 }

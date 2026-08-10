@@ -1,1 +1,7 @@
-export { OpenAiHome as default, OpenAiHome } from "@/components/openai-site/openai-home"
+import { OpenAiHome } from "@/components/openai-site/openai-home"
+
+export function OpenAiSite() {
+  return <OpenAiHome />
+}
+
+export default OpenAiSite

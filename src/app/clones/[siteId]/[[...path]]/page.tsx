@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 
-import { getCloneSite, siteComponents, siteManifests } from "@/sites"
+import { getCloneSite, siteManifests } from "@/sites"
+import { siteLoaders } from "@/sites/loaders"
 
 type ClonePageProps = {
   params: Promise<{
@@ -8,6 +9,8 @@ type ClonePageProps = {
     path?: string[]
   }>
 }
+
+export const dynamicParams = false
 
 export function generateStaticParams() {
   return Object.keys(siteManifests).map((siteId) => ({ siteId }))
@@ -19,6 +22,6 @@ export default async function ClonePage({ params }: ClonePageProps) {
 
   if (!manifest) notFound()
 
-  const SiteComponent = siteComponents[manifest.id]
+  const { default: SiteComponent } = await siteLoaders[manifest.id]()
   return <SiteComponent />
 }

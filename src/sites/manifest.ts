@@ -15,6 +15,12 @@ export interface SiteManifest {
   }
 }
 
+export interface ClonePickerItem {
+  readonly id: SiteId
+  readonly label: string
+  readonly href: string
+}
+
 export const siteManifests = {
   openai: {
     id: "openai",
@@ -49,4 +55,12 @@ export function getSiteManifest(siteId: string): SiteManifest | undefined {
   if (!(siteId in siteManifests)) return undefined
 
   return siteManifests[siteId as SiteId]
+}
+
+export function getClonePickerItems(): readonly ClonePickerItem[] {
+  return Object.values(siteManifests).map((manifest) => ({
+    id: manifest.id,
+    label: manifest.label,
+    href: manifest.defaultPath,
+  }))
 }
