@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { NavigationViewportMode } from "./navigation-mode";
 
 export type SiteNavigationLink = {
   id?: string;
@@ -75,6 +76,7 @@ export type ResponsiveNavigationProps<Id extends string = string> = {
   mobileOpen?: boolean;
   defaultMobileOpen?: boolean;
   onMobileOpenChange?: (open: boolean) => void;
+  onViewportModeChange?: (mode: NavigationViewportMode) => void;
   className?: string;
   classNames?: ResponsiveNavigationClassNames;
 };

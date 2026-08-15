@@ -1,9 +1,10 @@
-export type SiteId = "openai" | "chatgpt" | "studio"
+export type SiteId = "openai" | "chatgpt" | "studio" | "gemini"
 
 export type NavigationSurface =
   | "marketing-top-nav"
   | "chatgpt-compound-sidebar"
   | "studio-app-shell"
+  | "gemini-sidebar"
 
 export interface SiteManifest {
   readonly id: SiteId
@@ -47,6 +48,15 @@ export const siteManifests = {
     navigation: {
       surface: "studio-app-shell",
       owner: "src/components/app-shell/",
+    },
+  },
+  gemini: {
+    id: "gemini",
+    label: "Gemini",
+    defaultPath: "/clones/gemini",
+    navigation: {
+      surface: "gemini-sidebar",
+      owner: "src/components/sidebar/configured-sidebar.tsx",
     },
   },
 } as const satisfies Record<SiteId, SiteManifest>

@@ -5,7 +5,7 @@ import { getSiteManifest, siteManifests } from "../src/sites/manifest.ts"
 import { getCloneSite } from "../src/sites/registry.ts"
 
 test("lists exactly the supported clone sites", () => {
-  assert.deepEqual(Object.keys(siteManifests), ["openai", "chatgpt", "studio"])
+  assert.deepEqual(Object.keys(siteManifests), ["openai", "chatgpt", "studio", "gemini"])
 })
 
 test("keeps each clone attached to its correct navigation surface", () => {
@@ -18,6 +18,8 @@ test("keeps each clone attached to its correct navigation surface", () => {
   assert.equal(siteManifests.chatgpt.navigation.owner, "src/components/sidebar/")
   assert.equal(siteManifests.studio.navigation.surface, "studio-app-shell")
   assert.equal(siteManifests.studio.navigation.owner, "src/components/app-shell/")
+  assert.equal(siteManifests.gemini.navigation.surface, "gemini-sidebar")
+  assert.equal(siteManifests.gemini.navigation.owner, "src/components/sidebar/configured-sidebar.tsx")
 })
 
 test("returns no manifest for an unknown site id", () => {
@@ -28,4 +30,5 @@ test("resolves every supported clone through the site registry", () => {
   assert.equal(getCloneSite("openai")?.id, "openai")
   assert.equal(getCloneSite("chatgpt")?.id, "chatgpt")
   assert.equal(getCloneSite("studio")?.id, "studio")
+  assert.equal(getCloneSite("gemini")?.id, "gemini")
 })

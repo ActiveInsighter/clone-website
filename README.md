@@ -63,6 +63,8 @@ All website replicas share one Next.js development server and one port. Start it
 npm run dev
 ```
 
+Next.js 16 uses Turbopack by default for development, so the project does not need a separate bundler configuration. The dev server listens on port `3000` unless another port is supplied explicitly.
+
 Then open the selector or any explicit clone route:
 
 ```text

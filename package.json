@@ -28,10 +28,10 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --experimental-strip-types --test tests/chat-sidebar-state.test.ts tests/chatgpt-sidebar-model.test.ts tests/navigation-state.test.ts tests/navigation-mode.test.ts tests/openai-navigation-contract.test.ts tests/openai-home-contract.test.ts tests/site-manifest.test.ts tests/clone-picker.test.ts tests/site-loaders.test.ts tests/site-pathname.test.ts",
+    "test": "node --experimental-strip-types --test tests/chat-sidebar-state.test.ts tests/chatgpt-sidebar-model.test.ts tests/navigation-state.test.ts tests/navigation-mode.test.ts tests/navigation-motion-contract.test.ts tests/openai-navigation-contract.test.ts tests/openai-home-contract.test.ts tests/site-manifest.test.ts tests/clone-picker.test.ts tests/site-loaders.test.ts tests/site-pathname.test.ts",
     "lint": "eslint src tests",
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && npm run build"

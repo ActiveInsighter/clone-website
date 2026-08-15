@@ -28,7 +28,13 @@ import {
 import { cn } from "@/lib/utils";
 
 import {
+  getNavigationViewportMode,
+  resolveNavigationBreakpoint,
+  type NavigationViewportMode,
+} from "./navigation-mode";
+import {
   canOpenNavigationMenu,
+  reconcileNavigationStateForViewport,
   reduceNavigationState,
   type NavigationAction,
   type NavigationState,
@@ -144,53 +150,55 @@ function DefaultMobileMenu<Id extends string>({
         className="site-navigation__mobile-drilldown"
         data-view={activeItem ? "subnav" : "root"}
       >
-        <nav aria-label="移动端导航" className="site-navigation__mobile-list">
-          {items.map((item) => {
-            const label = item.menuLabel ?? String(item.id) + " 菜单";
+        {activeItem ? (
+          <div className="site-navigation__mobile-subnav">
+            <Button
+              className="site-navigation__mobile-back"
+              onClick={() => openMobileMenu(null)}
+              type="button"
+              variant="ghost"
+            >
+              <ArrowLeft aria-hidden="true" />
+              返回
+            </Button>
+            <div className="site-navigation__mobile-subnav-title">{activeItem.label}</div>
+            <DefaultMenuPanel item={activeItem} />
+          </div>
+        ) : (
+          <nav aria-label="移动端导航" className="site-navigation__mobile-list">
+            {items.map((item) => {
+              const label = item.menuLabel ?? String(item.id) + " 菜单";
 
-            return (
-              <div className="site-navigation__mobile-item" key={item.id}>
-                {item.menu ? (
-                  <Button
-                    aria-label={label}
-                    className="site-navigation__mobile-link"
-                    disabled={item.disabled}
-                    onClick={() => openMobileMenu(item.id)}
-                    type="button"
-                    variant="ghost"
-                  >
-                    <span>{item.label}</span>
-                    <ChevronDown aria-hidden="true" />
-                  </Button>
-                ) : (
-                  <NavigationLink
-                    className="site-navigation__mobile-link"
-                    link={{
-                      href: item.href ?? "#",
-                      label: item.label,
-                      external: item.external,
-                      disabled: item.disabled,
-                    }}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </nav>
-
-        <div aria-hidden={!activeItem} className="site-navigation__mobile-subnav">
-          <Button
-            className="site-navigation__mobile-back"
-            onClick={() => openMobileMenu(null)}
-            type="button"
-            variant="ghost"
-          >
-            <ArrowLeft aria-hidden="true" />
-            返回
-          </Button>
-          <div className="site-navigation__mobile-subnav-title">{activeItem?.label}</div>
-          {activeItem ? <DefaultMenuPanel item={activeItem} /> : null}
-        </div>
+              return (
+                <div className="site-navigation__mobile-item" key={item.id}>
+                  {item.menu ? (
+                    <Button
+                      aria-label={label}
+                      className="site-navigation__mobile-link"
+                      disabled={item.disabled}
+                      onClick={() => openMobileMenu(item.id)}
+                      type="button"
+                      variant="ghost"
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown aria-hidden="true" />
+                    </Button>
+                  ) : (
+                    <NavigationLink
+                      className="site-navigation__mobile-link"
+                      link={{
+                        href: item.href ?? "#",
+                        label: item.label,
+                        external: item.external,
+                        disabled: item.disabled,
+                      }}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+        )}
       </div>
 
       <div className={cn("site-navigation__mobile-actions", mobileActionsClassName)}>
@@ -274,6 +282,7 @@ export function ResponsiveNavigation<Id extends string = string>({
   mobileOpen: mobileOpenProp,
   defaultMobileOpen = false,
   onMobileOpenChange,
+  onViewportModeChange,
   compactContent,
   compactBreakpoint = "900px",
   onEscape,
@@ -286,6 +295,16 @@ export function ResponsiveNavigation<Id extends string = string>({
   const rootRef = useRef<HTMLElement | null>(null);
   const panelStageRef = useRef<HTMLDivElement | null>(null);
   const [panelHeight, setPanelHeight] = useState(0);
+  const [hoverClosePending, setHoverClosePending] = useState(false);
+  const [viewportMode, setViewportMode] = useState(() =>
+    typeof window === "undefined"
+      ? "mobile"
+      : getNavigationViewportMode(
+          window.innerWidth,
+          resolveNavigationBreakpoint(desktopBreakpoint),
+          resolveNavigationBreakpoint(compactBreakpoint),
+        ),
+  );
   const [focusedItemId, setFocusedItemId] = useState<Id | null>(null);
   const [lastTriggerItemId, setLastTriggerItemId] = useState<Id | null>(null);
   const [lastTriggerKind, setLastTriggerKind] = useState<"trigger" | "menu-button">("trigger");
@@ -294,6 +313,23 @@ export function ResponsiveNavigation<Id extends string = string>({
     mobileOpen: defaultMobileOpen,
     mobileMenuId: null,
   });
+
+  useEffect(() => {
+    const updateViewportMode = () => {
+      const nextMode = getNavigationViewportMode(
+        window.innerWidth,
+        resolveNavigationBreakpoint(desktopBreakpoint),
+        resolveNavigationBreakpoint(compactBreakpoint),
+      );
+
+      setViewportMode(nextMode);
+      setInternalState((current) => reconcileNavigationStateForViewport(current, nextMode));
+    };
+
+    updateViewportMode();
+    window.addEventListener("resize", updateViewportMode);
+    return () => window.removeEventListener("resize", updateViewportMode);
+  }, [compactBreakpoint, desktopBreakpoint]);
 
   const state = useMemo<NavigationState<Id>>(
     () => ({
@@ -320,9 +356,59 @@ export function ResponsiveNavigation<Id extends string = string>({
     [onMobileOpenChange, onOpenMenuChange, state],
   );
 
+  const lastViewportMode = useRef<NavigationViewportMode | null>(null);
+
+  useEffect(() => {
+    const modeChanged = lastViewportMode.current !== viewportMode;
+    lastViewportMode.current = viewportMode;
+
+    if (!modeChanged) return;
+
+    const nextState = reconcileNavigationStateForViewport(state, viewportMode);
+
+    if (nextState.openMenuId !== state.openMenuId) {
+      onOpenMenuChange?.(nextState.openMenuId);
+    }
+    if (nextState.mobileOpen !== state.mobileOpen) {
+      onMobileOpenChange?.(nextState.mobileOpen);
+    }
+
+    onViewportModeChange?.(viewportMode);
+  }, [
+    onMobileOpenChange,
+    onOpenMenuChange,
+    onViewportModeChange,
+    state,
+    viewportMode,
+  ]);
+
   const closeMenu = useCallback(() => {
     dispatch({ type: "open-menu", id: null });
   }, [dispatch]);
+
+  const cancelHoverClose = useCallback(() => {
+    setHoverClosePending(false);
+  }, []);
+
+  const scheduleHoverClose = useCallback(() => {
+    setHoverClosePending(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hoverClosePending) return;
+
+    const timer = window.setTimeout(() => {
+      if (rootRef.current?.matches(":hover")) {
+        setHoverClosePending(false);
+        return;
+      }
+
+      setHoverClosePending(false);
+      closeMenu();
+    }, 140);
+
+    return () => window.clearTimeout(timer);
+  }, [closeMenu, hoverClosePending]);
 
   const closeMobileMenu = useCallback(() => {
     dispatch({ type: "set-mobile-open", open: false });
@@ -339,6 +425,8 @@ export function ResponsiveNavigation<Id extends string = string>({
     (item: SiteNavigationItem<Id>, source?: HTMLElement | null) => {
       if (!canOpenNavigationMenu(item)) return;
 
+      cancelHoverClose();
+
       if (source) {
         setLastTriggerItemId(item.id);
         setLastTriggerKind(
@@ -347,7 +435,7 @@ export function ResponsiveNavigation<Id extends string = string>({
       }
       dispatch({ type: "open-menu", id: item.id });
     },
-    [dispatch],
+    [cancelHoverClose, dispatch],
   );
 
   const focusLastTrigger = useCallback(() => {
@@ -453,9 +541,6 @@ export function ResponsiveNavigation<Id extends string = string>({
         ref={rootRef}
         onBlurCapture={handleRootBlur}
         onKeyDownCapture={handleRootKeyDown}
-        onMouseLeave={() => {
-          if (hoverEnabled) closeMenu();
-        }}
       >
         {skipLink ? (
           <a className="site-navigation__skip-link" href={skipLink.href}>
@@ -463,7 +548,13 @@ export function ResponsiveNavigation<Id extends string = string>({
           </a>
         ) : null}
 
-        <div className={cn("site-navigation__bar", classNames?.bar)}>
+        <div
+          className={cn("site-navigation__bar", classNames?.bar)}
+          onMouseEnter={cancelHoverClose}
+          onMouseLeave={() => {
+            if (hoverEnabled) scheduleHoverClose();
+          }}
+        >
           <div className={cn("site-navigation__bar-inner", classNames?.barInner)}>
             <div className={cn("site-navigation__brand", classNames?.brand)}>{logo}</div>
 
@@ -506,6 +597,7 @@ export function ResponsiveNavigation<Id extends string = string>({
                         data-menu-id={item.id}
                         key={item.id}
                         onFocusCapture={(event) => {
+                          cancelHoverClose();
                           setFocusedItemId(item.id);
                           if (item.menu) {
                             const itemElement = (event.target as HTMLElement).closest(
@@ -522,6 +614,7 @@ export function ResponsiveNavigation<Id extends string = string>({
                         }}
                         onMouseEnter={(event) => {
                           if (hoverEnabled) {
+                            cancelHoverClose();
                             const itemElement = (event.target as HTMLElement).closest(
                               "[data-menu-id]",
                             );
@@ -647,7 +740,11 @@ export function ResponsiveNavigation<Id extends string = string>({
           data-state={activeItem ? "open" : "closed"}
           id={panelId}
           onMouseEnter={() => {
+            cancelHoverClose();
             if (activeItem) openMenuForItem(activeItem);
+          }}
+          onMouseLeave={() => {
+            if (hoverEnabled) scheduleHoverClose();
           }}
           role="region"
           style={{ "--site-navigation-panel-height": `${panelHeight}px` } as CSSProperties}
@@ -678,9 +775,10 @@ export function ResponsiveNavigation<Id extends string = string>({
         <SheetContent
           aria-label={ariaLabel}
           className={cn("site-navigation-mobile-surface", classNames?.mobile)}
+          disableMotion
           overlayClassName="site-navigation-mobile-overlay"
           showCloseButton={false}
-          side="left"
+          side="top"
         >
           <SheetTitle className="sr-only">{ariaLabel}</SheetTitle>
           <SheetDescription className="sr-only">

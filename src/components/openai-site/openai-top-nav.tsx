@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowUp, ArrowUpRight, ChevronDown, Search, X } from "lucide-react";
 
@@ -199,43 +199,19 @@ function OpenAiMobileMenu({
   return (
     <div className="openai-mobile-body">
       <div className="openai-mobile-drilldown" data-view={activeItem ? "subnav" : "root"}>
-        <nav aria-label="移动端导航" className="openai-mobile-list">
-          {items.map((item) =>
-            item.menu ? (
-              <button
-                key={item.id}
-                onClick={() => openMobileMenu(item.id)}
-                type="button"
-              >
-                {item.label}
-              </button>
-            ) : (
-              <a
-                href={item.href}
-                key={item.id}
-                rel={item.external ? "noreferrer" : undefined}
-                target={item.external ? "_blank" : undefined}
-              >
-                {item.label}
-                <ArrowUpRight aria-hidden="true" />
-              </a>
-            ),
-          )}
-        </nav>
-
-        <div aria-hidden={!activeItem} className="openai-mobile-subnav">
-          <button
-            className="openai-mobile-home-link"
-            onClick={() => openMobileMenu(null)}
-            type="button"
-          >
-            <ArrowLeft aria-hidden="true" />
-            首页
-          </button>
-          <p className="openai-mobile-subnav-label">{activeItem?.label}</p>
-          {activeItem?.menu ? (
+        {activeItem ? (
+          <div className="openai-mobile-subnav">
+            <button
+              className="openai-mobile-home-link"
+              onClick={() => openMobileMenu(null)}
+              type="button"
+            >
+              <ArrowLeft aria-hidden="true" />
+              首页
+            </button>
+            <p className="openai-mobile-subnav-label">{activeItem.label}</p>
             <div className="openai-mobile-subnav-groups">
-              {activeItem.menu.columns.map((column) => (
+              {activeItem.menu?.columns.map((column) => (
                 <section key={column.id ?? String(column.title)}>
                   {column.title ? <h2>{column.title}</h2> : null}
                   <div>
@@ -253,8 +229,32 @@ function OpenAiMobileMenu({
                 </section>
               ))}
             </div>
-          ) : null}
-        </div>
+          </div>
+        ) : (
+          <nav aria-label="移动端导航" className="openai-mobile-list">
+            {items.map((item) =>
+              item.menu ? (
+                <button
+                  key={item.id}
+                  onClick={() => openMobileMenu(item.id)}
+                  type="button"
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <a
+                  href={item.href}
+                  key={item.id}
+                  rel={item.external ? "noreferrer" : undefined}
+                  target={item.external ? "_blank" : undefined}
+                >
+                  {item.label}
+                  <ArrowUpRight aria-hidden="true" />
+                </a>
+              ),
+            )}
+          </nav>
+        )}
       </div>
     </div>
   );
@@ -267,7 +267,9 @@ export function OpenAiTopNav({
 }: OpenAiTopNavProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenuId, setOpenMenuId] = useState<ReturnType<typeof toOpenAiNavigationItems>[number]["id"] | null>(null);
+  const mobileOpenTimerRef = useRef<number | null>(null);
   const searchInputId = `openai-site-search-${useId().replace(/:/g, "-")}`;
   const navigationItems = useMemo(
     () =>
@@ -289,10 +291,35 @@ export function OpenAiTopNav({
     return () => document.removeEventListener("pointerdown", closeOnOutsidePointer);
   }, []);
 
+  useEffect(() => () => {
+    if (mobileOpenTimerRef.current !== null) {
+      window.clearTimeout(mobileOpenTimerRef.current);
+    }
+  }, []);
+
+  const requestMobileOpen = useCallback((open: boolean) => {
+    if (mobileOpenTimerRef.current !== null) {
+      window.clearTimeout(mobileOpenTimerRef.current);
+      mobileOpenTimerRef.current = null;
+    }
+
+    if (open && searchOpen) {
+      setSearchOpen(false);
+      mobileOpenTimerRef.current = window.setTimeout(() => {
+        mobileOpenTimerRef.current = null;
+        setMobileOpen(true);
+      }, 200);
+      return;
+    }
+
+    setMobileOpen(open);
+  }, [searchOpen]);
+
   const toggleSearch = () => {
     setSearchOpen((open) => {
       const nextOpen = !open;
       if (nextOpen) {
+        requestMobileOpen(false);
         setOpenMenuId(null);
         setLoginOpen(false);
       }
@@ -360,16 +387,24 @@ export function OpenAiTopNav({
         </>
       }
       mobileTriggerIcon={<OpenAiMenuIcon />}
+      mobileOpen={mobileOpen}
       onEscape={() => {
         setSearchOpen(false);
         setLoginOpen(false);
+        setMobileOpen(false);
       }}
       onMobileOpenChange={(open) => {
         if (open) {
-          setSearchOpen(false);
+          requestMobileOpen(true);
           setLoginOpen(false);
           setOpenMenuId(null);
+        } else {
+          requestMobileOpen(false);
         }
+      }}
+      onViewportModeChange={() => {
+        setSearchOpen(false);
+        setLoginOpen(false);
       }}
       onOpenMenuChange={(id) => {
         setOpenMenuId(id);

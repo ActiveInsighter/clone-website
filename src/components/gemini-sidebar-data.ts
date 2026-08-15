@@ -1,0 +1,61 @@
+import type { ConfiguredSidebarConfig } from "./sidebar/configured-sidebar-types"
+
+export const geminiSidebarConfig = {
+  label: "侧边导航栏",
+  brandLabel: "Gemini",
+  openLabel: "打开边栏",
+  closeLabel: "关闭边栏",
+  settingsLabel: "设置",
+  accountLabel: "Tom Li",
+  primaryItems: [
+    { id: "new-chat", label: "发起新对话", icon: "compose", href: "/clones/gemini" },
+    { id: "search", label: "搜索对话内容", icon: "search", href: "/clones/gemini/search" },
+  ],
+  secondaryItems: [
+    { id: "library", label: "库", icon: "library", href: "/clones/gemini/library" },
+  ],
+  sections: [
+    {
+      id: "notebooks",
+      label: "笔记本",
+      defaultOpen: true,
+      items: [{ id: "new-notebook", label: "新建笔记本", icon: "folder", href: "/clones/gemini/notebooks/create" }],
+    },
+    {
+      id: "recents",
+      label: "最近",
+      defaultOpen: true,
+      items: [
+        "虚拟国外号码租用网站",
+        "Greeting and Offer of Assistance",
+        "ChatGPT Prompt Queue UI Style",
+        "AI 助手能力介绍与应用",
+        "二叉树递归遍历原理详解",
+        "合同变换：二次型与相似变换",
+        "二次型：定义、化简与应用",
+        "PDF 优化：书签兼容与封面重构",
+        "代码高亮配色优化建议",
+        "SVG 侧边栏动画图标设计",
+        "ArkUI 侧边栏按钮固定",
+        "AI 输出解析与显示代码",
+        "ArkWeb 本地缓存使用指南",
+        "流式 Markdown 渲染方案",
+        "Advanced Tree Model Optimization",
+        "氣象因素影響空氣污染物濃度",
+        "鸿蒙5.0适配原神云原神",
+        "Cloudflare 域名管理与检测",
+        "华为MatePad Pro 12.2 2025款",
+        "手工珠宝标语创作建议",
+        "纺织品克重重建与缺陷检测",
+        "Pixel Dino Runner Game Code",
+        "华为被制裁的原因与过程",
+        "Browser Support for WebKit Scrollbars",
+      ].map((label, index) => ({
+        id: `recent-${index}`,
+        label,
+        icon: "history" as const,
+        href: `/clones/gemini?chat=${index}`,
+      })),
+    },
+  ],
+} satisfies ConfiguredSidebarConfig

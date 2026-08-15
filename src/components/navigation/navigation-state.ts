@@ -9,6 +9,7 @@ import type {
   SiteNavigationLink,
   SiteNavigationMenu,
 } from "./navigation-types";
+import type { NavigationViewportMode } from "./navigation-mode";
 
 export type NavigationState<Id extends string = string> = {
   openMenuId: Id | null;
@@ -52,6 +53,21 @@ export function reduceNavigationState<Id extends string>(
     case "escape":
       return { openMenuId: null, mobileOpen: false, mobileMenuId: null };
   }
+}
+
+export function reconcileNavigationStateForViewport<Id extends string>(
+  state: NavigationState<Id>,
+  mode: NavigationViewportMode,
+): NavigationState<Id> {
+  if (mode === "desktop") {
+    return { openMenuId: null, mobileOpen: false, mobileMenuId: null };
+  }
+
+  if (mode === "compact") {
+    return { openMenuId: null, mobileOpen: false, mobileMenuId: null };
+  }
+
+  return state;
 }
 
 export type {
