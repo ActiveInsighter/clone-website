@@ -10,7 +10,7 @@ type ClonePageProps = {
   }>
 }
 
-export const dynamicParams = false
+export const dynamicParams = true
 
 export function generateStaticParams() {
   return Object.keys(siteManifests).map((siteId) => ({ siteId }))
