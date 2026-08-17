@@ -47,10 +47,10 @@ export function AppSidebar({
   const reservedWidth = mobile
     ? "100%"
     : behavior === "expand-on-hover"
-      ? "var(--sidebar-width-collapsed)"
+      ? "var(--studio-sidebar-width-collapsed)"
       : expanded
-        ? "var(--sidebar-width)"
-        : "var(--sidebar-width-collapsed)";
+        ? "var(--studio-sidebar-width)"
+        : "var(--studio-sidebar-width-collapsed)";
 
   return (
     <TooltipProvider delay={expanded ? 700 : 0}>
@@ -66,8 +66,8 @@ export function AppSidebar({
           }}
           className="h-full min-h-0 w-full"
           style={{
-            "--sidebar-width": "234px",
-            "--sidebar-width-icon": "54px",
+            "--sidebar-width": "var(--studio-sidebar-width)",
+            "--sidebar-width-icon": "var(--studio-sidebar-width-collapsed)",
             height: "100%",
             minHeight: 0,
           } as React.CSSProperties}
@@ -97,7 +97,7 @@ export function AppSidebar({
             >
               {navigation.map((group, index) => (
                 <React.Fragment key={group.id}>
-                  {index > 0 ? <div className="h-px w-full shrink-0 bg-[var(--studio-border)]" aria-hidden="true" /> : null}
+                  {index > 0 ? <div className="mx-2 h-px shrink-0 bg-[var(--studio-border)]" aria-hidden="true" /> : null}
                   <AppSidebarGroup
                     group={group}
                     pathname={navigationPathname}
