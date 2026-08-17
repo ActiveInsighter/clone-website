@@ -8,10 +8,7 @@ export const SIDEBAR_BEHAVIOR_STORAGE_KEY = "app-shell-sidebar-behavior";
 
 interface SidebarBehaviorContextValue {
   behavior: SidebarBehavior;
-  isExpanded: boolean;
-  isHovering: boolean;
   setBehavior: (behavior: SidebarBehavior) => void;
-  setHovering: (hovering: boolean) => void;
 }
 
 interface SidebarBehaviorProviderProps {
@@ -36,7 +33,6 @@ export function SidebarBehaviorProvider({
   storageKey = SIDEBAR_BEHAVIOR_STORAGE_KEY,
 }: SidebarBehaviorProviderProps) {
   const [uncontrolledBehavior, setUncontrolledBehavior] = React.useState<SidebarBehavior>(defaultBehavior);
-  const [isHovering, setIsHovering] = React.useState(false);
   const behavior = controlledBehavior ?? uncontrolledBehavior;
 
   React.useEffect(() => {
@@ -49,21 +45,15 @@ export function SidebarBehaviorProvider({
   const setBehavior = React.useCallback(
     (nextBehavior: SidebarBehavior) => {
       if (controlledBehavior === undefined) setUncontrolledBehavior(nextBehavior);
-      setIsHovering(false);
       onBehaviorChange?.(nextBehavior);
       window.localStorage.setItem(storageKey, nextBehavior);
     },
     [controlledBehavior, onBehaviorChange, storageKey],
   );
 
-  const setHovering = React.useCallback((hovering: boolean) => {
-    setIsHovering(hovering);
-  }, []);
-
-  const isExpanded = behavior === "expanded" || (behavior === "expand-on-hover" && isHovering);
   const value = React.useMemo(
-    () => ({ behavior, isExpanded, isHovering, setBehavior, setHovering }),
-    [behavior, isExpanded, isHovering, setBehavior, setHovering],
+    () => ({ behavior, setBehavior }),
+    [behavior, setBehavior],
   );
 
   return React.createElement(SidebarBehaviorContext.Provider, { value }, children);
