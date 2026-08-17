@@ -14,9 +14,10 @@ import { AppSidebarItem } from "./app-sidebar-item";
 interface AppSidebarGroupProps {
   group: NavigationGroup;
   pathname: string;
+  basePath?: string;
 }
 
-export function AppSidebarGroup({ group, pathname }: AppSidebarGroupProps) {
+export function AppSidebarGroup({ group, pathname, basePath = "" }: AppSidebarGroupProps) {
   return (
     <SidebarGroup className={cn("gap-0.5 px-2 py-[9px]", group.title && "py-2")}>
       {group.title ? (
@@ -28,7 +29,11 @@ export function AppSidebarGroup({ group, pathname }: AppSidebarGroupProps) {
         <SidebarMenu className="gap-1">
           {group.items.map((item) => (
             <SidebarMenuItem key={item.id}>
-              <AppSidebarItem item={item} isActive={matchesNavigationItem(item, pathname)} />
+              <AppSidebarItem
+                item={item}
+                isActive={matchesNavigationItem(item, pathname)}
+                basePath={basePath}
+              />
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
