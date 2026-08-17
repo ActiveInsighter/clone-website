@@ -42,8 +42,9 @@ export function AppShell({
       <div
         className={cn("studio-shell flex h-svh w-full flex-col overflow-hidden", className)}
         style={{
-          ["--sidebar-width" as string]: "234px",
-          ["--sidebar-width-collapsed" as string]: "54px",
+          ["--studio-sidebar-width" as string]: "234px",
+          ["--studio-sidebar-width-collapsed" as string]: "54px",
+          ["--secondary-sidebar-width" as string]: "220px",
           ["--header-height" as string]: "54px",
         } as React.CSSProperties}
       >
