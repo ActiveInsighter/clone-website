@@ -23,10 +23,18 @@ interface AppShellProps {
   header?: React.ReactNode;
   sidebarFooter?: React.ReactNode;
   children: React.ReactNode;
+  basePath?: string;
   className?: string;
 }
 
-export function AppShell({ navigation, header, sidebarFooter, children, className }: AppShellProps) {
+export function AppShell({
+  navigation,
+  header,
+  sidebarFooter,
+  children,
+  basePath = "",
+  className,
+}: AppShellProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   return (
@@ -39,6 +47,13 @@ export function AppShell({ navigation, header, sidebarFooter, children, classNam
           ["--header-height" as string]: "54px",
         } as React.CSSProperties}
       >
+        <a
+          href="#main"
+          className="sr-only z-[100] rounded-md bg-[var(--studio-panel)] px-3 py-2 text-sm text-[var(--studio-text)] focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:outline-none focus:ring-2 focus:ring-[var(--studio-ring)]"
+        >
+          Skip to content
+        </a>
+
         <header className="flex h-[var(--header-height)] shrink-0 items-center border-b border-[var(--studio-border)] bg-[var(--studio-panel)] px-0">
           <button
             type="button"
@@ -53,7 +68,7 @@ export function AppShell({ navigation, header, sidebarFooter, children, classNam
 
         <div className="flex min-h-0 flex-1 flex-row">
           <div className="hidden min-h-0 md:flex">
-            <AppSidebar navigation={navigation} footer={sidebarFooter} />
+            <AppSidebar navigation={navigation} footer={sidebarFooter} basePath={basePath} />
           </div>
           <AppContent>{children}</AppContent>
         </div>
@@ -79,7 +94,14 @@ export function AppShell({ navigation, header, sidebarFooter, children, classNam
                   <X className="size-[18px]" />
                 </SheetClose>
               </div>
-              <AppSidebar navigation={navigation} footer={sidebarFooter} mobile forceExpanded className="min-h-0 flex-1" />
+              <AppSidebar
+                navigation={navigation}
+                footer={sidebarFooter}
+                mobile
+                forceExpanded
+                basePath={basePath}
+                className="min-h-0 flex-1"
+              />
             </div>
           </SheetContent>
         </Sheet>
