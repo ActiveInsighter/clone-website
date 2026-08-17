@@ -16,9 +16,11 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-import { AppHeader, AppShell } from "@/components/studio-app-shell";
-import { primaryNavigation } from "@/config/navigation";
+import { AppHeader, AppShell, SecondarySidebar } from "@/components/studio-app-shell";
+import { databaseNavigation, primaryNavigation } from "@/config/navigation";
 import { getSitePathname } from "@/sites/pathname";
+
+const STUDIO_BASE_PATH = "/clones/studio";
 
 const pageTitles: Record<string, string> = {
   "/": "Project Overview",
@@ -207,9 +209,25 @@ export function StudioDemo() {
     <div className={dark ? "dark min-h-full" : "min-h-full"}>
       <AppShell
         navigation={primaryNavigation}
+        basePath={STUDIO_BASE_PATH}
         header={<AppHeader project="md-to-pdf" breadcrumbs={[]} actions={actions} />}
       >
-        {isDatabase ? <DatabaseSurface /> : <GenericSurface title={getPageTitle(sitePathname)} />}
+        {isDatabase ? (
+          <div className="flex h-full min-h-0 min-w-0">
+            <SecondarySidebar
+              title="Database"
+              groups={databaseNavigation}
+              basePath={STUDIO_BASE_PATH}
+              width="220px"
+              className="hidden lg:flex"
+            />
+            <div className="min-h-0 min-w-0 flex-1">
+              <DatabaseSurface />
+            </div>
+          </div>
+        ) : (
+          <GenericSurface title={getPageTitle(sitePathname)} />
+        )}
       </AppShell>
     </div>
   );
