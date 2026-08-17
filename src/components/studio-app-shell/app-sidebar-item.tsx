@@ -3,16 +3,19 @@ import Link from "next/link";
 import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { resolveNavigationHref } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import type { NavigationItem } from "@/types/navigation";
 
 interface AppSidebarItemProps {
   item: NavigationItem;
   isActive: boolean;
+  basePath?: string;
 }
 
-export function AppSidebarItem({ item, isActive }: AppSidebarItemProps) {
+export function AppSidebarItem({ item, isActive, basePath = "" }: AppSidebarItemProps) {
   const Icon = item.icon;
+  const resolvedHref = resolveNavigationHref(item.href, basePath);
 
   const contents = (
     <>
@@ -30,8 +33,8 @@ export function AppSidebarItem({ item, isActive }: AppSidebarItemProps) {
     </>
   );
 
-  const target = item.href && !item.disabled ? (
-    <Link href={item.href} aria-current={isActive ? "page" : undefined}>
+  const target = resolvedHref && !item.disabled ? (
+    <Link href={resolvedHref} aria-current={isActive ? "page" : undefined}>
       {contents}
     </Link>
   ) : (
