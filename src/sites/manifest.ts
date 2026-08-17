@@ -29,7 +29,7 @@ export const siteManifests = {
     defaultPath: "/clones/openai",
     navigation: {
       surface: "marketing-top-nav",
-      owner: "src/components/navigation/responsive-navigation.tsx",
+      owner: "src/components/openai-navigation/responsive-navigation.tsx",
     },
   },
   chatgpt: {
@@ -47,7 +47,7 @@ export const siteManifests = {
     defaultPath: "/clones/studio",
     navigation: {
       surface: "studio-app-shell",
-      owner: "src/components/app-shell/",
+      owner: "src/components/studio-app-shell/",
     },
   },
   gemini: {

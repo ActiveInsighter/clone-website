@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import test from "node:test"
 
-import { geminiSidebarConfig } from "../src/components/gemini-sidebar-data.ts"
+import { geminiSidebarConfig } from "../src/components/gemini-site/gemini-sidebar-data.ts"
 import { getSiteManifest, siteManifests } from "../src/sites/manifest.ts"
 
 test("registers Gemini as a clone with a reusable sidebar surface", () => {

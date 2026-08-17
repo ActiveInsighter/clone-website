@@ -1,4 +1,4 @@
-import type { ResponsiveNavigationClassNames } from "@/components/navigation/navigation-types";
+import type { ResponsiveNavigationClassNames } from "@/components/openai-navigation/navigation-types";
 
 export const openAiNavigationTokens = {
   desktopBarHeight: "72px",

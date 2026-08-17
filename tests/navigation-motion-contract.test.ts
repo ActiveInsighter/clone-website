@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const navigationCss = await readFile(
-  new URL("src/components/navigation/responsive-navigation.css", root),
+  new URL("src/components/openai-navigation/responsive-navigation.css", root),
   "utf8",
 );
 const openAiCss = await readFile(
@@ -16,7 +16,7 @@ const buttonSource = await readFile(
   "utf8",
 );
 const responsiveNavigationSource = await readFile(
-  new URL("src/components/navigation/responsive-navigation.tsx", root),
+  new URL("src/components/openai-navigation/responsive-navigation.tsx", root),
   "utf8",
 );
 const sheetSource = await readFile(

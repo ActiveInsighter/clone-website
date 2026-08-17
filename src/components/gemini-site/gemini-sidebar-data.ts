@@ -1,4 +1,4 @@
-import type { ConfiguredSidebarConfig } from "./sidebar/configured-sidebar-types"
+import type { ConfiguredSidebarConfig } from "../sidebar/configured-sidebar-types"
 
 export const geminiSidebarConfig = {
   label: "侧边导航栏",

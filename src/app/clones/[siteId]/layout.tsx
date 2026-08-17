@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-import "../../../components/navigation/responsive-navigation.css"
+import "../../../components/openai-navigation/responsive-navigation.css"
 import "../../../components/openai-site/openai-navigation.css"
 import { getCloneSite } from "@/sites"
 

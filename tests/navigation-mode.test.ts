@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { getNavigationViewportMode } from "../src/components/navigation/navigation-mode.ts";
+import { getNavigationViewportMode } from "../src/components/openai-navigation/navigation-mode.ts";
 
 test("uses desktop mode at and above the desktop breakpoint", () => {
   assert.equal(getNavigationViewportMode(1200), "desktop");

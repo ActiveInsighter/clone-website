@@ -12,12 +12,12 @@ test("keeps each clone attached to its correct navigation surface", () => {
   assert.equal(siteManifests.openai.navigation.surface, "marketing-top-nav")
   assert.equal(
     siteManifests.openai.navigation.owner,
-    "src/components/navigation/responsive-navigation.tsx",
+    "src/components/openai-navigation/responsive-navigation.tsx",
   )
   assert.equal(siteManifests.chatgpt.navigation.surface, "chatgpt-compound-sidebar")
   assert.equal(siteManifests.chatgpt.navigation.owner, "src/components/sidebar/")
   assert.equal(siteManifests.studio.navigation.surface, "studio-app-shell")
-  assert.equal(siteManifests.studio.navigation.owner, "src/components/app-shell/")
+  assert.equal(siteManifests.studio.navigation.owner, "src/components/studio-app-shell/")
   assert.equal(siteManifests.gemini.navigation.surface, "gemini-sidebar")
   assert.equal(siteManifests.gemini.navigation.owner, "src/components/sidebar/configured-sidebar.tsx")
 })

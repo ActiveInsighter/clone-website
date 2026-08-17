@@ -2,7 +2,7 @@ import type {
   SiteNavigationColumn,
   SiteNavigationItem,
   SiteNavigationLink,
-} from "@/components/navigation/navigation-types";
+} from "@/components/openai-navigation/navigation-types";
 
 export type OpenAiMenuKey = "research" | "products" | "business" | "developers" | "company";
 

@@ -8,7 +8,7 @@ import {
   ConfiguredSidebarMobileTrigger,
 } from "@/components/sidebar/configured-sidebar"
 import { SidebarInset, SidebarRoot } from "@/components/sidebar"
-import { geminiSidebarConfig } from "@/components/gemini-sidebar-data"
+import { geminiSidebarConfig } from "@/components/gemini-site/gemini-sidebar-data"
 
 import "./gemini-sidebar-clone.css"
 

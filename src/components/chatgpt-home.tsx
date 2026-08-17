@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Mic } from "lucide-react"
 
-import { ChatGptSidebarDemo } from "@/components/chatgpt-sidebar-demo"
+import { ChatGptSidebarDemo } from "@/components/chatgpt-sidebar"
 import {
   SidebarInset,
   SidebarRoot,

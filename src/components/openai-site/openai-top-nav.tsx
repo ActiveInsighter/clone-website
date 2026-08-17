@@ -4,7 +4,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState, type ReactNod
 import Link from "next/link";
 import { ArrowLeft, ArrowUp, ArrowUpRight, ChevronDown, Search, X } from "lucide-react";
 
-import { ResponsiveNavigation } from "@/components/navigation/responsive-navigation";
+import { ResponsiveNavigation } from "@/components/openai-navigation/responsive-navigation";
 import { Button } from "@/components/ui/button";
 import {
   openAiLoginItems,

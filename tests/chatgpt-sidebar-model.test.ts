@@ -1,6 +1,6 @@
 import test from "node:test"
 import assert from "node:assert/strict"
-import * as sidebarModel from "../src/components/chatgpt-sidebar-demo/model.ts"
+import * as sidebarModel from "../src/components/chatgpt-sidebar/model.ts"
 
 import {
   chatGptSidebarReducer,
@@ -8,7 +8,7 @@ import {
   flattenVisibleChatGroups,
   getVisibleChatGroups,
   resolveChatGptSidebarSelection,
-} from "../src/components/chatgpt-sidebar-demo/model.ts"
+} from "../src/components/chatgpt-sidebar/model.ts"
 
 test("derives active chat and project destinations from deep-link pathnames", () => {
   const candidate = (

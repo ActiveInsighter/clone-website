@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-import { AppHeader, AppShell } from "@/components/app-shell";
+import { AppHeader, AppShell } from "@/components/studio-app-shell";
 import { primaryNavigation } from "@/config/navigation";
 import { getSitePathname } from "@/sites/pathname";
 

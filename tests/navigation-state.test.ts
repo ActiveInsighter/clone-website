@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import {
   reconcileNavigationStateForViewport,
   reduceNavigationState,
-} from "../src/components/navigation/navigation-state.ts";
+} from "../src/components/openai-navigation/navigation-state.ts";
 
 const base = {
   openMenuId: null,
