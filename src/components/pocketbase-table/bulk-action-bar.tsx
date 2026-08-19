@@ -13,10 +13,10 @@ type BulkActionBarProps = {
 
 export function BulkActionBar({ count, onReset, onDelete, onExport }: BulkActionBarProps) {
   return (
-    <div className="sticky bottom-4 z-20 flex justify-center px-4 pt-4 animate-in fade-in-0 slide-in-from-bottom-3 duration-200">
+    <div className="pointer-events-none absolute inset-x-0 bottom-4 z-20 flex justify-center px-4 animate-in fade-in-0 slide-in-from-bottom-3 duration-200">
       <div
         aria-live="polite"
-        className="flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/12 bg-[#202020]/95 px-3 py-2 text-sm text-white shadow-[0_18px_45px_rgba(0,0,0,0.34)] backdrop-blur"
+        className="pointer-events-auto flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/12 bg-[#202020]/95 px-3 py-2 text-sm text-white shadow-[0_18px_45px_rgba(0,0,0,0.34)] backdrop-blur"
       >
         <span className="px-2 text-white/85">
           Selected <strong className="font-semibold text-white">{count}</strong>{" "}

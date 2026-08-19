@@ -1,5 +1,6 @@
 import test from "node:test"
 import assert from "node:assert/strict"
+import { readFile } from "node:fs/promises"
 
 import {
   filterPocketBaseRecords,
@@ -21,6 +22,16 @@ const records: FixtureRecord[] = [
   { id: "msg_02", owner: "Acme", task: "同步客户", nodeIndex: 3 },
   { id: "msg_03", owner: "Orbit", task: "发送事件", nodeIndex: 8 },
 ]
+
+test("renders the bulk action bar as an overlay instead of a layout participant", async () => {
+  const source = await readFile(
+    new URL("../src/components/pocketbase-table/bulk-action-bar.tsx", import.meta.url),
+    "utf8",
+  )
+
+  assert.match(source, /absolute/)
+  assert.doesNotMatch(source, /sticky/)
+})
 
 test("filters records across visible fields case-insensitively", () => {
   assert.deepEqual(

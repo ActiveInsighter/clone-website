@@ -175,14 +175,14 @@ export function SaasDataTable<T extends IdentifiableRecord>({
   }
 
   return (
-    <section className={cn("flex min-h-0 flex-col", className)}>
+    <section className={cn("flex h-full min-h-0 flex-col", className)}>
       <TableToolbar
         onSearchChange={handleSearchChange}
         placeholder={searchPlaceholder}
         search={globalFilter}
         table={table}
       />
-      <div className="min-h-0 overflow-auto bg-[#1c1c1c] [scrollbar-color:#4a4a4a_transparent]">
+      <div className="relative min-h-0 flex-1 overflow-auto bg-[#1c1c1c] [scrollbar-color:#4a4a4a_transparent]">
         <Table className="min-w-[970px] border-separate border-spacing-0 text-sm">
           <TableHeader className="sticky top-0 z-[4] [&_tr]:border-0">
             {table.getHeaderGroups().map((headerGroup) => (
