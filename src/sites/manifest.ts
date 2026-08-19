@@ -1,4 +1,4 @@
-export type SiteId = "openai" | "chatgpt" | "studio" | "gemini"
+export type SiteId = "openai" | "chatgpt" | "studio" | "gemini" | "pocketbase"
 
 export type NavigationSurface =
   | "marketing-top-nav"
@@ -57,6 +57,15 @@ export const siteManifests = {
     navigation: {
       surface: "gemini-sidebar",
       owner: "src/components/sidebar/configured-sidebar.tsx",
+    },
+  },
+  pocketbase: {
+    id: "pocketbase",
+    label: "PocketBase Collections",
+    defaultPath: "/clones/pocketbase",
+    navigation: {
+      surface: "studio-app-shell",
+      owner: "src/components/pocketbase-app-shell.tsx",
     },
   },
 } as const satisfies Record<SiteId, SiteManifest>

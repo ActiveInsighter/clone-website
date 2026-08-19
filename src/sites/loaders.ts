@@ -11,4 +11,5 @@ export const siteLoaders: Record<SiteId, SiteLoader> = {
   chatgpt: () => import("./chatgpt/entry"),
   studio: () => import("./studio/entry"),
   gemini: () => import("./gemini/entry"),
+  pocketbase: () => import("./pocketbase/entry"),
 }
