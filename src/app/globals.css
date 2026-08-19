@@ -891,3 +891,31 @@
   background: rgb(47 111 237 / 45%);
   color: #fff;
 }
+
+/*
+ * PocketBase skin for the reusable DataTable.
+ * The table itself only consumes shadcn theme tokens; this scope remaps them
+ * to the PocketBase Collections palette so the clone stays pixel-accurate
+ * while the component stays backend- and theme-agnostic.
+ */
+.pocketbase-table-skin {
+  --background: #1c1c1c;
+  --foreground: #fff;
+  --card: #202020;
+  --card-foreground: #fff;
+  --popover: #292929;
+  --popover-foreground: #fff;
+  --primary: #0d0d0d;
+  --primary-foreground: #fff;
+  --secondary: #292929;
+  --secondary-foreground: #fff;
+  --muted: #232323;
+  --muted-foreground: rgb(255 255 255 / 50%);
+  --accent: #252525;
+  --accent-foreground: #fff;
+  --destructive: #fca5a5;
+  --border: rgb(255 255 255 / 8%);
+  --input: rgb(255 255 255 / 12%);
+  --ring: #5a9bff;
+  scrollbar-color: #4a4a4a transparent;
+}

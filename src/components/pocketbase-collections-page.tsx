@@ -1,24 +1,51 @@
 "use client"
 
 import * as React from "react"
-import { Code2, Plus, RefreshCw, Settings2 } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { PocketBaseRecordSheet } from "@/components/pocketbase-record-sheet"
 import {
-  RecordIdCell,
-  RelationChip,
-  RelationHeaderIcon,
-  DateCell,
-  StatusChip,
-  TableTextCell,
-} from "@/components/pocketbase-table/record-cells"
-import { pocketBaseRecords, type PocketBaseRecord } from "@/components/pocketbase-table/data"
-import { SaasDataTable } from "@/components/pocketbase-table/saas-data-table"
-import type { SaasColumnDef } from "@/components/pocketbase-table/types"
+  Code2,
+  Download,
+  EllipsisVertical,
+  Plus,
+  RefreshCw,
+  Settings2,
+  Trash2,
+} from "lucide-react"
+
+import {
+  DataTable,
+  downloadRecordsJson,
+  type DataTableBulkAction,
+  type DataTableClassNames,
+} from "@/components/data-table"
+import { PocketBaseRecordSheet } from "@/components/pocketbase-record-sheet"
+import { pocketBaseRecordColumns } from "@/components/pocketbase-table/columns"
+import {
+  pocketBaseRecords,
+  type PocketBaseRecord,
+} from "@/components/pocketbase-table/data"
+import { Button } from "@/components/ui/button"
 
 type PocketBaseCollectionsPageProps = {
   collectionName: string
+}
+
+/**
+ * PocketBase skin for the reusable DataTable: structural overrides only.
+ * Colors come from the `.pocketbase-table-skin` token scope in globals.css.
+ */
+const tableClassNames: DataTableClassNames = {
+  toolbar:
+    "mx-[30px] border-b-0 bg-transparent px-0 py-0 pb-5 max-[700px]:mx-5",
+  searchInput:
+    "h-[45px] rounded-full border-border bg-secondary pl-10 pr-4 text-sm placeholder:text-muted-foreground/70 focus-visible:border-foreground/20 focus-visible:ring-0",
+  table: "min-w-[970px]",
+  headerCell: "h-[45px]",
+  selectionHeaderCell: "w-[62px] min-w-[62px] pl-[30px] pr-[5px]",
+  selectionCell: "w-[62px] min-w-[62px] pl-[30px] pr-[5px]",
+  rowActionsHeaderCell: "w-[75px] min-w-[75px] px-4",
+  rowActionsCell: "w-[75px] min-w-[75px] px-4",
+  cell: "h-[59px] px-4 text-[13px]",
+  pagination: "px-[30px] max-[700px]:px-5",
 }
 
 export function PocketBaseCollectionsPage({
@@ -28,119 +55,24 @@ export function PocketBaseCollectionsPage({
   const [activeRecord, setActiveRecord] = React.useState<PocketBaseRecord | null>(null)
   const [status, setStatus] = React.useState("Ready")
 
-  const columns = React.useMemo<SaasColumnDef<PocketBaseRecord>[]>(
-    () => [
-      {
-        accessorKey: "id",
-        cell: ({ getValue }) => <RecordIdCell id={getValue<string>()} />,
-        enableHiding: false,
-        header: "id",
-        meta: { className: "w-[172px] min-w-[172px]", label: "id", sortable: true },
-      },
-      {
-        accessorKey: "owner",
-        cell: ({ getValue }) => {
-          const value = getValue<string>()
-          return <RelationChip muted={value === "N/A"}>{value}</RelationChip>
-        },
-        header: () => <span className="inline-flex items-center gap-2"><RelationHeaderIcon /> owner</span>,
-        meta: { className: "w-[190px] min-w-[190px]", label: "owner", sortable: true },
-      },
-      {
-        accessorKey: "task",
-        cell: ({ getValue }) => <RelationChip>{getValue<string>()}</RelationChip>,
-        header: () => <span className="inline-flex items-center gap-2"><RelationHeaderIcon /> task</span>,
-        meta: { className: "w-[190px] min-w-[190px]", label: "task", sortable: true },
-      },
-      {
-        accessorKey: "event",
-        cell: ({ getValue }) => <RelationChip>{getValue<string>()}</RelationChip>,
-        header: () => <span className="inline-flex items-center gap-2"><RelationHeaderIcon /> event</span>,
-        meta: { className: "w-[190px] min-w-[190px]", label: "event", sortable: true },
-      },
-      {
-        accessorKey: "act",
-        cell: ({ getValue }) => <RelationChip>{getValue<string>()}</RelationChip>,
-        header: () => <span className="inline-flex items-center gap-2"><RelationHeaderIcon /> act</span>,
-        meta: { className: "w-[190px] min-w-[190px]", label: "act", sortable: true },
-      },
-      {
-        accessorKey: "nodeIndex",
-        cell: ({ getValue }) => <span className="font-mono text-white/80">{getValue<number>()}</span>,
-        header: () => <span className="inline-flex items-center gap-2"><span className="text-white/55">#</span> nodeIndex</span>,
-        meta: { className: "w-[144px] min-w-[144px]", label: "nodeIndex", sortable: true },
-      },
-      {
-        accessorKey: "attempt",
-        cell: ({ getValue }) => <span className="font-mono text-white/75">{getValue<number>()}</span>,
-        header: "attempt",
-        meta: { className: "w-[126px] min-w-[126px]", label: "attempt", sortable: true },
-      },
-      {
-        accessorKey: "status",
-        cell: ({ getValue }) => <StatusChip status={getValue<string>()} />,
-        header: "status",
-        meta: { className: "w-[180px] min-w-[180px]", label: "status", sortable: true },
-      },
-      {
-        accessorKey: "userMarkdown",
-        cell: ({ getValue }) => <TableTextCell>{getValue<string>()}</TableTextCell>,
-        header: "userMarkdown",
-        meta: { className: "w-[298px] min-w-[298px]", label: "userMarkdown", sortable: true },
-      },
-      {
-        accessorKey: "assistantMarkdown",
-        cell: ({ getValue }) => <TableTextCell>{getValue<string>()}</TableTextCell>,
-        header: "assistantMarkdown",
-        meta: { className: "w-[298px] min-w-[298px]", label: "assistantMarkdown", sortable: true },
-      },
-      {
-        accessorKey: "conversationUrl",
-        cell: ({ getValue }) => <TableTextCell mono>{getValue<string>()}</TableTextCell>,
-        header: "conversationUrl",
-        meta: { className: "w-[298px] min-w-[298px]", label: "conversationUrl", sortable: true },
-      },
-      {
-        accessorKey: "sentAt",
-        cell: ({ getValue }) => <DateCell value={getValue<string>()} />,
-        header: "sentAt",
-        meta: { className: "w-[117px] min-w-[117px]", label: "sentAt", sortable: true },
-      },
-      {
-        accessorKey: "receivedAt",
-        cell: ({ getValue }) => <DateCell value={getValue<string>()} />,
-        header: "receivedAt",
-        meta: { className: "w-[144px] min-w-[144px]", label: "receivedAt", sortable: true },
-      },
-      {
-        accessorKey: "captureMeta",
-        cell: ({ getValue }) => <TableTextCell mono>{getValue<string>()}</TableTextCell>,
-        header: "captureMeta",
-        meta: { className: "w-[298px] min-w-[298px]", label: "captureMeta", sortable: true },
-      },
-      {
-        accessorKey: "checksum",
-        cell: ({ getValue }) => <TableTextCell mono>{getValue<string>()}</TableTextCell>,
-        header: "checksum",
-        meta: { className: "w-[298px] min-w-[298px]", label: "checksum", sortable: true },
-      },
-      {
-        accessorKey: "created",
-        cell: ({ getValue }) => <DateCell value={getValue<string>()} />,
-        header: "created",
-        meta: { className: "w-[123px] min-w-[123px]", label: "created", sortable: true },
-      },
-      {
-        accessorKey: "updated",
-        cell: ({ getValue }) => <DateCell value={getValue<string>()} />,
-        header: "updated",
-        meta: { className: "w-[128px] min-w-[128px]", label: "updated", sortable: true },
-      },
-    ],
-    [],
-  )
+  const bulkActions: DataTableBulkAction<PocketBaseRecord>[] = [
+    {
+      id: "delete",
+      label: "Delete",
+      icon: <Trash2 className="size-3.5" />,
+      destructive: true,
+      action: deleteRecords,
+    },
+    {
+      id: "export",
+      label: "JSON",
+      icon: <Download className="size-3.5" />,
+      keepSelection: true,
+      action: (selected) => downloadRecordsJson(selected, "selected-records"),
+    },
+  ]
 
-  const newRecord = () => {
+  function newRecord() {
     const record: PocketBaseRecord = {
       id: `new${Math.random().toString(36).slice(2, 14)}`,
       owner: "N/A",
@@ -164,19 +96,25 @@ export function PocketBaseCollectionsPage({
     setActiveRecord(record)
   }
 
-  const saveRecord = (record: PocketBaseRecord) => {
+  function saveRecord(record: PocketBaseRecord) {
     setRecords((current) => current.map((item) => (item.id === record.id ? record : item)))
     setStatus("Changes saved")
+  }
+
+  function deleteRecords(selected: PocketBaseRecord[]) {
+    const selectedIds = new Set(selected.map((record) => record.id))
+    setRecords((current) => current.filter((record) => !selectedIds.has(record.id)))
+    setStatus(`${selected.length} record${selected.length === 1 ? "" : "s"} deleted`)
   }
 
   return (
     <main className="flex min-h-0 min-w-0 flex-1 flex-col bg-[#191919] text-white">
       <header className="mx-[30px] mt-5 mb-5 flex h-[45px] shrink-0 items-center justify-between gap-4 max-[700px]:mx-5 max-[700px]:mt-5 max-[700px]:mb-4 max-[700px]:h-auto max-[700px]:min-h-[45px] max-[700px]:flex-wrap">
-        <div className="flex min-w-0 items-center gap-4">
-          <div className="flex items-center gap-3 text-[27px] tracking-[-0.035em] text-white/60">
-            <span>Collections</span>
-            <span aria-hidden="true" className="text-white/25">/</span>
-            <strong className="truncate font-medium text-white">{collectionName}</strong>
+        <div className="flex min-w-0 items-center gap-4 max-[360px]:w-full max-[360px]:gap-2">
+          <div className="flex min-w-0 flex-1 items-center gap-3 text-[27px] tracking-[-0.035em] text-white/60 max-[360px]:gap-2 max-[360px]:text-[24px]">
+            <span className="shrink-0">Collections</span>
+            <span aria-hidden="true" className="shrink-0 text-white/25">/</span>
+            <strong className="min-w-0 truncate font-medium text-white">{collectionName}</strong>
           </div>
           <Button aria-label="Collection settings" className="text-white/55 hover:bg-white/8 hover:text-white" size="icon-sm" type="button" variant="ghost">
             <Settings2 className="size-5" />
@@ -197,17 +135,20 @@ export function PocketBaseCollectionsPage({
         </div>
       </header>
       <div className="min-h-0 flex-1 overflow-hidden">
-        <SaasDataTable
-          columns={columns}
+        <DataTable
+          bulkActions={bulkActions}
+          className="pocketbase-table-skin"
+          classNames={tableClassNames}
+          columns={pocketBaseRecordColumns}
           data={records}
           emptyDescription="No records match this filter."
+          initialPageSize={8}
+          onBulkActionError={() => setStatus("Bulk action failed")}
           onCreate={newRecord}
-          onDeleteSelected={(selected) => {
-            const selectedIds = new Set(selected.map((record) => record.id))
-            setRecords((current) => current.filter((record) => !selectedIds.has(record.id)))
-            setStatus(`${selected.length} record${selected.length === 1 ? "" : "s"} deleted`)
-          }}
           onRowClick={setActiveRecord}
+          rowActionsHeaderIcon={
+            <EllipsisVertical aria-hidden="true" className="ml-auto size-4" />
+          }
           searchPlaceholder="Search term or filter…"
         />
       </div>
@@ -216,6 +157,7 @@ export function PocketBaseCollectionsPage({
         <span>Total: {records.length}</span>
       </footer>
       <PocketBaseRecordSheet
+        collectionName={collectionName}
         onOpenChange={(open) => {
           if (!open) setActiveRecord(null)
         }}

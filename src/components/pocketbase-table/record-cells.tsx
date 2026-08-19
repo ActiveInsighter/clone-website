@@ -15,12 +15,12 @@ export function RelationChip({
   return (
     <span
       className={cn(
-        "inline-flex max-w-[220px] items-center gap-2 rounded-md bg-[#343434] px-2.5 py-1.5 text-[13px] text-white/85",
+        "inline-flex max-w-full items-center gap-2 rounded-md bg-[#343434] px-2.5 py-1.5 text-[13px] text-white/85",
         muted && "text-white/45",
       )}
     >
       <Eye aria-hidden="true" className="size-3.5 shrink-0 text-white/45" />
-      <span className="truncate">{children}</span>
+      <span className="min-w-0 truncate">{children}</span>
     </span>
   )
 }
@@ -38,12 +38,16 @@ export function RecordIdCell({ id }: { id: string }) {
   return (
     <button
       aria-label={`Copy record id ${id}`}
-      className="group/id inline-flex h-[25px] max-w-[146px] items-center gap-1 rounded-md bg-[#343434] px-1.5 py-1 text-left font-mono text-[12px] text-white/85 transition hover:bg-[#404040]"
+      className="group/id inline-flex h-[25px] max-w-full items-center gap-1 rounded-md bg-[#343434] px-1.5 py-1 text-left font-mono text-[12px] text-white/85 transition hover:bg-[#404040]"
       onClick={handleCopy}
       type="button"
     >
-      {copied ? <Check className="size-3.5 text-[#7ee4b5]" /> : <Copy className="size-3.5 text-white/45" />}
-      <span className="truncate">{id}</span>
+      {copied ? (
+        <Check className="size-3.5 shrink-0 text-[#7ee4b5]" />
+      ) : (
+        <Copy className="size-3.5 shrink-0 text-white/45" />
+      )}
+      <span className="min-w-0 truncate">{id}</span>
     </button>
   )
 }
@@ -60,9 +64,14 @@ export function StatusChip({ status }: { status: string }) {
       : "bg-amber-300/12 text-amber-200"
 
   return (
-    <span className={cn("inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[13px]", tone)}>
+    <span
+      className={cn(
+        "inline-flex max-w-full items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[13px]",
+        tone,
+      )}
+    >
       <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-current" />
-      {status}
+      <span className="truncate">{status}</span>
     </span>
   )
 }
@@ -75,7 +84,12 @@ export function TableTextCell({
   mono?: boolean
 }) {
   return (
-    <span className={cn("block max-w-[270px] truncate text-white/70", mono && "font-mono text-xs")}>
+    <span
+      className={cn(
+        "block max-w-full truncate text-white/70",
+        mono && "font-mono text-xs",
+      )}
+    >
       {children}
     </span>
   )

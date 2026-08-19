@@ -16,12 +16,23 @@ import { Textarea } from "@/components/ui/textarea"
 import type { PocketBaseRecord } from "@/components/pocketbase-table/data"
 
 type PocketBaseRecordSheetProps = {
+  collectionName: string
   record: PocketBaseRecord | null
   onOpenChange: (open: boolean) => void
   onSave: (record: PocketBaseRecord) => void
 }
 
 type RelationKey = "owner" | "task" | "event" | "act"
+type TextFieldKey =
+  | "userMarkdown"
+  | "assistantMarkdown"
+  | "conversationUrl"
+  | "sentAt"
+  | "receivedAt"
+  | "captureMeta"
+  | "checksum"
+  | "created"
+  | "updated"
 
 const relationOptions: Record<RelationKey, string[]> = {
   owner: ["N/A", "Acme", "Orbit"],
@@ -29,6 +40,23 @@ const relationOptions: Record<RelationKey, string[]> = {
   event: ["Act 1", "Act 2", "Act 3", "Act 4"],
   act: ["Act 1", "Act 2", "Act 3", "Act 4"],
 }
+
+const textFields: Array<{
+  key: TextFieldKey
+  label: string
+  multiline?: boolean
+  mono?: boolean
+}> = [
+  { key: "userMarkdown", label: "userMarkdown", multiline: true },
+  { key: "assistantMarkdown", label: "assistantMarkdown", multiline: true },
+  { key: "conversationUrl", label: "conversationUrl" },
+  { key: "sentAt", label: "sentAt" },
+  { key: "receivedAt", label: "receivedAt" },
+  { key: "captureMeta", label: "captureMeta", multiline: true, mono: true },
+  { key: "checksum", label: "checksum", multiline: true, mono: true },
+  { key: "created", label: "created" },
+  { key: "updated", label: "updated" },
+]
 
 function RelationField({
   label,
@@ -187,16 +215,17 @@ function StatusField({
   )
 }
 
-export function PocketBaseRecordSheet({ record, onOpenChange, onSave }: PocketBaseRecordSheetProps) {
+export function PocketBaseRecordSheet({
+  collectionName,
+  record,
+  onOpenChange,
+  onSave,
+}: PocketBaseRecordSheetProps) {
   const [draft, setDraft] = React.useState<PocketBaseRecord | null>(record)
 
   React.useEffect(() => {
     setDraft(record)
   }, [record])
-
-  const updateRelation = (key: RelationKey, value: string) => {
-    setDraft((current) => (current ? { ...current, [key]: value } : current))
-  }
 
   const updateField = <K extends keyof PocketBaseRecord>(key: K, value: PocketBaseRecord[K]) => {
     setDraft((current) => (current ? { ...current, [key]: value } : current))
@@ -205,14 +234,14 @@ export function PocketBaseRecordSheet({ record, onOpenChange, onSave }: PocketBa
   return (
     <Sheet open={!!record} onOpenChange={onOpenChange}>
       <SheetContent
-        className="w-[min(620px,100vw)] gap-0 border-white/8 bg-[#1d1d1d] p-0 text-white shadow-[-16px_0_40px_rgba(0,0,0,0.24)] sm:max-w-[620px]"
+        className="data-[side=right]:w-full data-[side=right]:sm:w-[620px] data-[side=right]:sm:max-w-[620px] gap-0 border-white/8 bg-[#1d1d1d] p-0 text-white shadow-[-16px_0_40px_rgba(0,0,0,0.24)]"
         overlayClassName="bg-black/70 backdrop-blur-[1px]"
         showCloseButton={false}
         side="right"
       >
         <SheetHeader className="flex h-[86px] shrink-0 flex-row items-center justify-between border-b border-white/8 px-6 py-5">
-          <SheetTitle className="text-[24px] font-normal tracking-[-0.03em] text-white">
-            Edit <strong className="font-semibold">aw_messages</strong> record
+          <SheetTitle className="min-w-0 truncate text-[24px] font-normal tracking-[-0.03em] text-white">
+            Edit <strong className="font-semibold">{collectionName}</strong> record
           </SheetTitle>
           <Button aria-label="More record actions" className="text-white/60 hover:bg-white/8 hover:text-white" size="icon-sm" type="button" variant="ghost">
             <MoreHorizontal className="size-5" />
@@ -228,33 +257,23 @@ export function PocketBaseRecordSheet({ record, onOpenChange, onSave }: PocketBa
                 </p>
                 <p className="mt-4 font-mono text-sm text-white/55">{draft.id}</p>
               </div>
-              <RelationField label="owner" name="owner" onChange={(value) => updateRelation("owner", value)} value={draft.owner} />
-              <RelationField label="task" name="task" onChange={(value) => updateRelation("task", value)} value={draft.task} />
-              <RelationField label="event" name="event" onChange={(value) => updateRelation("event", value)} value={draft.event} />
-              <RelationField label="act" name="act" onChange={(value) => updateRelation("act", value)} value={draft.act} />
-              <div className="rounded-[9px] border border-white/6 bg-[#2b2b2b] px-5 py-4">
-                <p className="text-[15px] font-semibold text-white/70"># nodeIndex</p>
-                <div className="mt-4">
-                  <Input
-                    className="border-white/8 bg-[#202020] font-mono text-sm text-white/80 focus-visible:border-white/20 focus-visible:ring-0"
-                    min={0}
-                    onChange={(event) => updateField("nodeIndex", Number(event.target.value))}
-                    type="number"
-                    value={draft.nodeIndex}
-                  />
-                </div>
-              </div>
+              <RelationField label="owner" name="owner" onChange={(value) => updateField("owner", value)} value={draft.owner} />
+              <RelationField label="task" name="task" onChange={(value) => updateField("task", value)} value={draft.task} />
+              <RelationField label="event" name="event" onChange={(value) => updateField("event", value)} value={draft.event} />
+              <RelationField label="act" name="act" onChange={(value) => updateField("act", value)} value={draft.act} />
+              <NumberField label="# nodeIndex" onChange={(value) => updateField("nodeIndex", value)} value={draft.nodeIndex} />
               <NumberField label="attempt" onChange={(value) => updateField("attempt", value)} value={draft.attempt} />
               <StatusField onChange={(value) => updateField("status", value)} value={draft.status} />
-              <FieldCard label="userMarkdown" multiline onChange={(value) => updateField("userMarkdown", value)} value={draft.userMarkdown} />
-              <FieldCard label="assistantMarkdown" multiline onChange={(value) => updateField("assistantMarkdown", value)} value={draft.assistantMarkdown} />
-              <FieldCard label="conversationUrl" onChange={(value) => updateField("conversationUrl", value)} value={draft.conversationUrl} />
-              <FieldCard label="sentAt" onChange={(value) => updateField("sentAt", value)} value={draft.sentAt} />
-              <FieldCard label="receivedAt" onChange={(value) => updateField("receivedAt", value)} value={draft.receivedAt} />
-              <FieldCard label="captureMeta" mono multiline onChange={(value) => updateField("captureMeta", value)} value={draft.captureMeta} />
-              <FieldCard label="checksum" mono multiline onChange={(value) => updateField("checksum", value)} value={draft.checksum} />
-              <FieldCard label="created" onChange={(value) => updateField("created", value)} value={draft.created} />
-              <FieldCard label="updated" onChange={(value) => updateField("updated", value)} value={draft.updated} />
+              {textFields.map(({ key, label, multiline, mono }) => (
+                <FieldCard
+                  key={key}
+                  label={label}
+                  mono={mono}
+                  multiline={multiline}
+                  onChange={(value) => updateField(key, value)}
+                  value={draft[key]}
+                />
+              ))}
             </>
           ) : null}
         </div>

@@ -22,7 +22,9 @@ Sheet (right, 620px)
 - Panel is `#1c1c1c` over a black translucent overlay.
 - Form cards are `#2b2b2b` with a 10px radius and 1px low-contrast divider.
 - Header and footer stay fixed while content scrolls.
-- Desktop width is 620px; mobile width is 100%.
+- Desktop width is 620px; mobile width is 100%. Use the same
+  `data-[side=right]` modifier as the shared Sheet primitive so Tailwind Merge
+  replaces its default 75% width instead of leaving the defaults in effect.
 
 ## Behaviors
 
