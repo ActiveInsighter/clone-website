@@ -1,0 +1,54 @@
+[
+  {
+    "href": "https://www.anthropic.com/_next/static/chunks/2gepcixj9k_19.css",
+    "rules": [
+      "@font-face { font-family: anthropicSans; src: url(\"../media/AnthropicSans_Roman_Web-s.p.1e3n6bt4oqimz.woff2\") format(\"woff2\"); font-display: swap; font-style: normal; }",
+      "@font-face { font-family: anthropicSans; src: url(\"../media/AnthropicSans_Italic_Web-s.p.212cqpul8-axk.woff2\") format(\"woff2\"); font-display: swap; font-style: italic; }",
+      "@font-face { font-family: \"anthropicSans Fallback\"; src: local(\"Arial\"); ascent-override: 92.99%; descent-override: 24.13%; line-gap-override: 0%; size-adjust: 106.73%; }",
+      "@font-face { font-family: anthropicSerif; src: url(\"../media/AnthropicSerif_Roman_Web-s.p.0twp0vwi-lncj.woff2\") format(\"woff2\"); font-display: swap; font-style: normal; }",
+      "@font-face { font-family: anthropicSerif; src: url(\"../media/AnthropicSerif_Italic_Web-s.p.1fjksu1uimpf3.woff2\") format(\"woff2\"); font-display: swap; font-style: italic; }",
+      "@font-face { font-family: \"anthropicSerif Fallback\"; src: local(\"Arial\"); ascent-override: 96.05%; descent-override: 24.92%; line-gap-override: 0%; size-adjust: 103.33%; }",
+      "@font-face { font-family: jetBrainsMono; src: url(\"../media/JetBrainsMono_VF-s.368fqwf5c-upc.woff2\") format(\"woff2\"); font-display: swap; }",
+      "@font-face { font-family: \"jetBrainsMono Fallback\"; src: local(\"Arial\"); ascent-override: 77.57%; descent-override: 22.82%; line-gap-override: 0%; size-adjust: 131.49%; }",
+      "@font-face { font-family: anthropicMono; src: url(\"../media/AnthropicMono_Roman_Web-s.p.16xhthj2n-pap.woff2\") format(\"woff2\"); font-display: swap; font-style: normal; }",
+      "@font-face { font-family: anthropicMono; src: url(\"../media/AnthropicMono_Italic_Web-s.p.0x1wr-4z1xgw3.woff2\") format(\"woff2\"); font-display: swap; font-style: italic; }",
+      "@font-face { font-family: \"anthropicMono Fallback\"; src: local(\"Arial\"); ascent-override: 75.48%; descent-override: 19.58%; line-gap-override: 0%; size-adjust: 131.49%; }",
+      "@font-face { font-family: copernicus; src: url(\"../media/Copernicus_Book-s.0ib9wqp9moezr.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: normal; }",
+      "@font-face { font-family: copernicus; src: url(\"../media/Copernicus_Medium-s.2hxcbz3n9luy0.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: normal; }",
+      "@font-face { font-family: \"copernicus Fallback\"; src: local(\"Arial\"); ascent-override: 91.25%; descent-override: 39.11%; line-gap-override: 0%; size-adjust: 115.07%; }",
+      "@font-face { font-family: styreneA; src: url(\"../media/StyreneA_Regular_Web-s.3tdkiv0q360z1.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: normal; }",
+      "@font-face { font-family: styreneA; src: url(\"../media/StyreneA_RegularItalic_Web-s.1hk2e28252z_4.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: italic; }",
+      "@font-face { font-family: styreneA; src: url(\"../media/StyreneA_Medium_Web-s.20q_wexmknm9h.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: normal; }",
+      "@font-face { font-family: styreneA; src: url(\"../media/StyreneA_MediumItalic_Web-s.0mfuiv0dv634g.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: italic; }",
+      "@font-face { font-family: \"styreneA Fallback\"; src: local(\"Arial\"); ascent-override: 87.08%; descent-override: 19.74%; line-gap-override: 0%; size-adjust: 119.55%; }",
+      "@font-face { font-family: styreneB; src: url(\"../media/StyreneB_Regular_Web-s.1qauzgg5osxfx.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: normal; }",
+      "@font-face { font-family: styreneB; src: url(\"../media/StyreneB_Medium_Web-s.0v7chvgzt3x4s.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: normal; }",
+      "@font-face { font-family: \"styreneB Fallback\"; src: local(\"Arial\"); ascent-override: 93.33%; descent-override: 21.16%; line-gap-override: 0%; size-adjust: 111.54%; }",
+      "@font-face { font-family: tiemposText; src: url(\"../media/TiemposText_Regular-s.2savi-aqz1fgw.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: normal; }",
+      "@font-face { font-family: tiemposText; src: url(\"../media/TiemposText_RegularItalic-s.2d31pshyw-nif.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: italic; }",
+      "@font-face { font-family: tiemposText; src: url(\"../media/TiemposText_Medium-s.3c2z153ekitug.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: normal; }",
+      "@font-face { font-family: tiemposText; src: url(\"../media/TiemposText_MediumItalic-s.1m5bj2fgukfwp.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: italic; }",
+      "@font-face { font-family: \"tiemposText Fallback\"; src: local(\"Arial\"); ascent-override: 72.06%; descent-override: 22.63%; line-gap-override: 18.94%; size-adjust: 105.61%; }"
+    ]
+  },
+  {
+    "href": "https://www.anthropic.com/_next/static/chunks/2pnrpp88lh_gg.css",
+    "rules": []
+  },
+  {
+    "href": "https://www.anthropic.com/_next/static/chunks/14_07jj_mytk0.css",
+    "rules": []
+  },
+  {
+    "href": "https://www.anthropic.com/_next/static/chunks/0xmu8wht0n7c1.css",
+    "rules": []
+  },
+  {
+    "href": "https://www.anthropic.com/_next/static/chunks/1mi4v0wtm3pl0.css",
+    "rules": []
+  },
+  {
+    "href": "https://www.anthropic.com/_next/static/chunks/1czqrpqf9krjf.css",
+    "rules": []
+  }
+]

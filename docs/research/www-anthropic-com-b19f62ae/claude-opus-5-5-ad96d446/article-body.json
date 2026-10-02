@@ -1,0 +1,3896 @@
+[
+  {
+    "_key": "c80e0a51aea1",
+    "_type": "manateeNavMarker",
+    "anchor": {
+      "_type": "slug",
+      "current": "introduction"
+    },
+    "heroLabel": "Introduction",
+    "markDefs": null,
+    "navLabel": "Introduction"
+  },
+  {
+    "_key": "18c95c65d607",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "27af4175a8db",
+        "_type": "span",
+        "marks": [],
+        "text": "We’re introducing Claude Opus 5.5, the first model in our new Claude 5.5 family. It performs at the level of Claude Fable 5.1 on most work and costs 40% less to run than Opus 5."
+      }
+    ],
+    "markDefs": [],
+    "style": "articleSummary"
+  },
+  {
+    "_key": "ef45f63d2ea1",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "03448188ae8f",
+        "_type": "span",
+        "marks": [],
+        "text": "Claude Opus 5.5 is our first release since we called for "
+      },
+      {
+        "_key": "8737c4db2360",
+        "_type": "span",
+        "marks": [
+          "1fb375e9f0f3"
+        ],
+        "text": "pacing the frontier"
+      },
+      {
+        "_key": "683cc0abdcba",
+        "_type": "span",
+        "marks": [],
+        "text": ". It was tested before release by external evaluators, including "
+      },
+      {
+        "_key": "adc87bbf1985",
+        "_type": "span",
+        "marks": [
+          "3661b3c0ff57"
+        ],
+        "text": "Frontier Design"
+      },
+      {
+        "_key": "1c7f273da177",
+        "_type": "span",
+        "marks": [],
+        "text": " and "
+      },
+      {
+        "_key": "52b5754c6134",
+        "_type": "span",
+        "marks": [
+          "d0a972976320"
+        ],
+        "text": "METR"
+      },
+      {
+        "_key": "df348caa4b0a",
+        "_type": "span",
+        "marks": [],
+        "text": ". On our automated behavioral audit, the most comprehensive alignment test we run, Opus 5.5 is the strongest-performing model we’ve tested to date. It also comes with the safeguards we’ve developed for our most capable models."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "1fb375e9f0f3",
+        "_type": "link",
+        "blank": true,
+        "href": "https://darioamodei.com/post/we-must-pace-the-frontier"
+      },
+      {
+        "_key": "3661b3c0ff57",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.imaginefrontier.com/"
+      },
+      {
+        "_key": "d0a972976320",
+        "_type": "link",
+        "blank": true,
+        "href": "https://metr.org/"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "a8512855a0d5",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "64afa298da79",
+        "_type": "span",
+        "marks": [],
+        "text": "Here are some of the improvements you can expect from Opus 5.5:"
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "c65fc9f9d1c7",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "d4b2680418ca",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Performance."
+      },
+      {
+        "_key": "d9ec9e24f9dc",
+        "_type": "span",
+        "marks": [],
+        "text": " Opus 5.5 is a major step up from Opus 5. It’s the new leading model, and early testers saw large jumps in performance on their most complex work. One tester completed a 680,000-line code migration in less than a day—work that would have taken an engineering team weeks. It’s good at finding and fixing inefficiencies in software: when we asked it to cut load times across every page of a web app, Opus 5.5 succeeded 39 of 40 times, while Opus 5 made smaller improvements that also altered the app’s behavior. A different tester had several Claude models build a game from a single prompt; Opus 5.5 scored higher than any other model on the strength of its graphics and polish."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "23e9e57e493c",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "295627ff5e64",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Safety."
+      },
+      {
+        "_key": "9d4324fd5d2f",
+        "_type": "span",
+        "marks": [],
+        "text": " Opus 5.5 achieves the best scores of any model to date on our automated behavioral audit, our alignment suite that tests Claude across thousands of simulated scenarios. It is much less likely than recent models to take hard-to-reverse actions or act outside the boundaries it’s been given, and it’s more resistant than Opus 5 to prompt injection. We’ve also broadened our alignment testing to cover longer tasks, impossible tasks, and scenarios modeled on real incidents, though it still has limits. Full details of our evaluation are available in the "
+      },
+      {
+        "_key": "cb4b2caea696",
+        "_type": "span",
+        "marks": [
+          "e304e62f57d7"
+        ],
+        "text": "Opus 5.5 System Card"
+      },
+      {
+        "_key": "0d845f702746",
+        "_type": "span",
+        "marks": [],
+        "text": "."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "e304e62f57d7",
+        "_type": "link",
+        "blank": true,
+        "href": "https://anthropic.com/claude-opus-5-5-system-card"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "8fe994fdfaa7",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "8f8215f6ba23",
+        "_type": "span",
+        "marks": [],
+        "text": "Because Opus 5.5 is comparable to Claude Mythos 5.1 in biology and cybersecurity, we’re deploying it with safeguards similar to those on Claude Fable 5.1. Vetted organizations can apply today to our "
+      },
+      {
+        "_key": "ebb7b81c928b",
+        "_type": "span",
+        "marks": [
+          "4e49328ecccd"
+        ],
+        "text": "Life Sciences Verification Program"
+      },
+      {
+        "_key": "83cb024e57bd",
+        "_type": "span",
+        "marks": [],
+        "text": " to use Opus 5.5 for biology research. In the coming weeks we will also be expanding access to our "
+      },
+      {
+        "_key": "3f9cce19ae87",
+        "_type": "span",
+        "marks": [
+          "7f4e3cbd0d63"
+        ],
+        "text": "Cyber Verification Program"
+      },
+      {
+        "_key": "c06007d026f9",
+        "_type": "span",
+        "marks": [],
+        "text": ", and verified cybersecurity practitioners will be able to use Opus 5.5 for their work."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "4e49328ecccd",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/news/life-sciences-verification-program"
+      },
+      {
+        "_key": "7f4e3cbd0d63",
+        "_type": "link",
+        "blank": true,
+        "href": "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "f128dd367d01",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "a77c3ecf5070",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Cost and speed."
+      },
+      {
+        "_key": "9a9e71a24eca",
+        "_type": "span",
+        "marks": [],
+        "text": " Opus 5.5 requires less compute to serve than Opus 5, and its pricing reflects that. Our tests show that at default settings it will cost 40% less than Opus 5 on typical workloads. Input and output tokens are $4 and $20 per million, 20% less than Opus 5. Cache reads (which make up the majority of agentic and coding work costs) are $0.20 per million tokens, 60% less than Opus 5. Opus 5.5 also generates output more than 30% faster than Opus 5."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "8773ff76526c",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "6f4af0634dfd",
+        "_type": "span",
+        "marks": [],
+        "text": "In addition to the price drop, we’re increasing five-hour usage limits on Pro, Max, Team, and seat-based Enterprise plans. We’re also providing subscription users a rate limit reset, which you can now save and use whenever you choose."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "88dff2b19212",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "cd79ff49284f",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Communication."
+      },
+      {
+        "_key": "2aa5e2b53669",
+        "_type": "span",
+        "marks": [],
+        "text": " Opus 5.5 communicates more naturally than prior models. Early testers found its writing clearer and easier to follow, which addresses some of the common feedback we heard about Opus 5. It puts the most important information up front, and its style makes it a better work partner over long sessions. As one early tester put it, “it writes the way I do.” In our own use, this has made Opus 5.5’s work easier to follow and check—which is a safety benefit as well as a practical one."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "60be36ff208b",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "6f03970a65a3",
+        "_type": "span",
+        "marks": [],
+        "text": "Claude Sonnet 5.5 and Claude Haiku 5.5 will follow in the coming weeks, with many of the same improvements to performance, efficiency, and safety."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "3c95d69ade9e",
+    "_type": "manateeNavMarker",
+    "anchor": {
+      "_type": "slug",
+      "current": "performance-and-cost-effectiveness"
+    },
+    "heroLabel": "Performance and cost",
+    "markDefs": null,
+    "navLabel": "Performance and cost-effectiveness"
+  },
+  {
+    "_key": "54fd2988ddc1",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "1568d7dcf348",
+        "_type": "span",
+        "marks": [],
+        "text": "Performance and cost-effectiveness"
+      }
+    ],
+    "markDefs": [],
+    "style": "h2"
+  },
+  {
+    "_key": "51d17ea9638e",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "7743156ec9a5",
+        "_type": "span",
+        "marks": [],
+        "text": "On our benchmarks, Claude Opus 5.5 leads in agentic coding, computer use, and knowledge work. That said, at these levels of capability we’ve found that benchmark margins have become a less reliable guide to real-world differences. In our own use, the gap between Opus 5.5 and Claude Fable 5.1 is narrower than these scores suggest."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "6920924806c1",
+    "_type": "benchmarkGrid",
+    "caption": [
+      {
+        "_key": "noteintro",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "noteintro0",
+            "_type": "span",
+            "marks": [],
+            "text": "Unless otherwise noted, all Claude Opus 5.5 results use adaptive thinking at max effort. Terminal-Bench 4.0 results are reported for Claude Opus 5.5 at xhigh effort and GPT-6 Astra at high effort, as reported by OpenAI; these represent each model’s highest score. Claude Opus 5.5 was evaluated with its production safeguards enabled. When they intervened, cybersecurity tasks were completed by Claude Opus 4.8, and biology and frontier LLM development tasks were completed by Claude Opus 5. This likely reduces Claude Opus 5.5’s performance on these benchmarks."
+          }
+        ],
+        "markDefs": [],
+        "style": "left"
+      },
+      {
+        "_key": "note1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "note1a",
+            "_type": "span",
+            "marks": [
+              "sup"
+            ],
+            "text": "1"
+          },
+          {
+            "_key": "f63eeae943cd",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "  Terminal-Bench 4.0:"
+          },
+          {
+            "_key": "note1c",
+            "_type": "span",
+            "marks": [],
+            "text": " The standard error is ±2.6 pts for Claude Opus 5.5 and ±1.6–2 pts for the other Claude models. The public leaderboard (5 trials/task, Claude Code harness) reports Claude Opus 5 at 51.8%; our setup reproduces it at 52.3%, within noise. GPT-6 Astra and GPT-5.6 Sol figures are as reported by OpenAI."
+          }
+        ],
+        "markDefs": [],
+        "style": "left"
+      },
+      {
+        "_key": "note2",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "note2a",
+            "_type": "span",
+            "marks": [
+              "sup"
+            ],
+            "text": "2"
+          },
+          {
+            "_key": "9e2cebc6a0cf",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "  AutomationBench:"
+          },
+          {
+            "_key": "note2c",
+            "_type": "span",
+            "marks": [],
+            "text": " AutomationBench results were run and reported by Zapier. These runs were performed without fallback models, so safeguard interventions were considered failures—this resulted in a lower score than Claude Opus 5.5 would achieve in practice. Claude Opus 5.5 results come from Zapier’s own evaluation during early access. Results for Opus 5, GPT-5.6 Sol, and GPT-6 Astra come from Zapier’s public leaderboard."
+          }
+        ],
+        "markDefs": [],
+        "style": "left"
+      },
+      {
+        "_key": "note3",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "note3a",
+            "_type": "span",
+            "marks": [
+              "sup"
+            ],
+            "text": "3"
+          },
+          {
+            "_key": "note3b",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "  Terminal-Bench-Science 0.1:"
+          },
+          {
+            "_key": "note3c",
+            "_type": "span",
+            "marks": [],
+            "text": " The standard error is ±3.5–5 pts per model. The public leaderboard (3 trials/task, Claude Code harness) reports Claude Opus 5 at 30.0%; our setup reproduces it at 29.0%, within noise. The GPT-6 Astra figure is as reported by OpenAI."
+          }
+        ],
+        "markDefs": [],
+        "style": "left"
+      }
+    ],
+    "competitorModels": "GPT-6 Astra, GPT-5.6 Sol",
+    "data": "category,benchmark,qualifier,Opus 5.5,Fable 5.1,Opus 5,GPT-6 Astra,GPT-5.6 Sol\nAgentic coding,Terminal-Bench 4.0¹,,66.4%,55.8%,52.3%,57.9%,37.3%\nAgentic coding,FrontierCode v1.1 (Main),,54.4%,50.3%,48.0%,53.3%,47.5%\nAgentic coding,CursorBench 4.0,,57.8%,51.8%,46.6%,—,41.7%\nKnowledge work,GDPval-AA v2.1,,1846,1735,1708,1542,1588\nBusiness workflows,AutomationBench²,,40.0%,31.4%,26.9%,41.4%,28.8%\nMultidisciplinary reasoning,Humanity's Last Exam,with tools,67.7%,65.6%,63.6%,57.2%,—\nAgentic scientific research,Terminal-Bench-Science 0.1³,,58.7%,52.6%,29.0%,64.6%,22.4%\nComputer use,OSWorld 2.1,partial,81.8%,80.7%,74.0%,—,—\nVisual chart recognition,Chartography,with tools,89.0%,88.4%,83.4%,—,—",
+    "highlightModel": "Opus 5.5",
+    "markDefs": null,
+    "palette": "peach"
+  },
+  {
+    "_key": "gridnote1",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "gridnote1n",
+        "_type": "span",
+        "marks": [
+          "sup"
+        ],
+        "text": ""
+      }
+    ],
+    "markDefs": [],
+    "style": "footnote"
+  },
+  {
+    "_key": "6f97019793d4",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "40918ddfe15a",
+        "_type": "span",
+        "marks": [],
+        "text": "Where Opus 5.5’s advantage is very clear is efficiency. It costs less per token than Opus 5 and uses fewer tokens per task, which nets out to a 40% drop in costs."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "c4222c82ee46",
+    "_type": "table",
+    "columnWidth": "inline-width",
+    "cta": null,
+    "layout": {
+      "_type": "object",
+      "direction": "horizontal",
+      "fixedFirstColumn": false
+    },
+    "markDefs": null,
+    "rows": [
+      {
+        "_key": "12517972cacb",
+        "_type": "tableRow",
+        "cells": [
+          {
+            "_key": "8d96f7b4fe82",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "f638c4cd5d2b",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "1d24cdaeda29",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Prices per 1M tokens"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "eef2e526cff4",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "47839e3c5e1f",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "5dae207372be",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Claude Opus 5.5"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "94e77cb7d332",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "4f2e56286305",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "8ff9c731af73",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Claude Opus 5"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        ],
+        "isHeaderRow": true
+      },
+      {
+        "_key": "7340bf5aeb73",
+        "_type": "tableRow",
+        "cells": [
+          {
+            "_key": "6d2f4dfe5aed",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "133435745d08",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "9900177b9d37",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Cache reads"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "a3a14b3c2f0d",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "a2ba3a5f418a",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "fd96a86bfa06",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "$$0.20"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "fde48423e9fe",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "d262f9ae4c13",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "862da4cf398d",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "$$0.50"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        ],
+        "isHeaderRow": false
+      },
+      {
+        "_key": "a4918c796ea4",
+        "_type": "tableRow",
+        "cells": [
+          {
+            "_key": "c1ea3e44aba0",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "694bde1a1db0",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "6b11c7031288",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Input tokens"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "dd2eceda7d81",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "a21aa3a39a8e",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "96e9ea94e2a4",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "$$4"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "bfabdefe55af",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "82c60c024073",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "4042465438f7",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "$$5"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        ],
+        "isHeaderRow": false
+      },
+      {
+        "_key": "8e27c9933bd9",
+        "_type": "tableRow",
+        "cells": [
+          {
+            "_key": "4be283bf12e3",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "3afded98232d",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "3778b3755f52",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Output tokens"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "a50b7d3feda4",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "d6b710bfc24f",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "b22ed9a5f911",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "$$20"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "b5611c7eba3d",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "95413d20860a",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "7091ca4b278a",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "$$25"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        ],
+        "isHeaderRow": false
+      },
+      {
+        "_key": "952547753ba5",
+        "_type": "tableRow",
+        "cells": [
+          {
+            "_key": "8390d1b4e7c0",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "594b0687e7de",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "6a356da4ad1c",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Cache writes"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "cde55548e792",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "1adf2c51a325",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "97cb9116dc25",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "$$5"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          },
+          {
+            "_key": "f24d8d888d5e",
+            "_type": "tableCell",
+            "content": [
+              {
+                "_key": "4b75b09ae9c3",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "e1ab5d7280ca",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "$$6.25"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        ],
+        "isHeaderRow": false
+      }
+    ],
+    "title": "Pricing"
+  },
+  {
+    "_key": "9a03a8e7af59",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "b1663df09bc7",
+        "_type": "span",
+        "marks": [],
+        "text": ""
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "e8d5738da6d6",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "4b5435e324fc",
+        "_type": "span",
+        "marks": [],
+        "text": "Fast mode for Opus 5.5 is also available in Claude Code and the Claude Platform with up to 2.5x speed. It costs $8 per million input tokens and $40 per million output tokens."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "11d3a0f7e6ba",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "f56b7250baf5",
+        "_type": "span",
+        "marks": [],
+        "text": "Coding"
+      }
+    ],
+    "markDefs": [],
+    "style": "h2"
+  },
+  {
+    "_key": "520c6438c705",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "f2921083a870",
+        "_type": "span",
+        "marks": [],
+        "text": "Opus 5.5 is particularly good at long and sprawling jobs like codebase-wide migrations and audits. An early tester used it to audit and fix a 200,000-line codebase in under three hours, where Opus 5 took over 20 hours and used 2.5x as many tokens. In an internal test, we asked Opus 5.5 and Fable 5.1 to translate HAProxy, widely used software that balances web traffic loads across servers, from C into Rust. Both rewrites passed nearly all of HAProxy’s own regression tests, but Opus 5.5 finished in 9.5 hours compared to 12 for Fable 5.1, and cost 51% less."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "239fc42e060b",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "2706aef7be42",
+        "_type": "span",
+        "marks": [],
+        "text": "Opus 5.5 delivers frontier results on agentic coding at a fraction of the cost. At its default effort level on FrontierCode, it beats GPT-6 Astra at roughly 20% of the cost per task. On Terminal Bench 4.0, it matches Astra for about 40% of the cost, while on CursorBench it beats GPT-5.6 Sol by 11 points for about a third of the cost."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "9d51ceea7f10",
+    "_type": "viewSwitcher",
+    "markDefs": null,
+    "views": [
+      {
+        "_key": "4d4800ae0fa2",
+        "_type": "view",
+        "body": [
+          {
+            "_key": "tuskchartterminalbench",
+            "_type": "chart",
+            "animate": true,
+            "chartType": "line",
+            "data": "series,x,y,label,labelPlacement\nopus55,1.29,38.5,Low,\nopus55,2.94,57.6,Med,\nopus55,3.88,64.2,High,\nopus55,7.35,66.4,Xhigh,\nopus55,11.24,64.8,Max,\nfable51,5.7,40.2,Low,hidden\nfable51,7.8,43.4,Med,hidden\nfable51,10.5,49.4,High,hidden\nfable51,15.8,51.3,Xhigh,hidden\nfable51,19.5,55.8,Max,hidden\nopus5,4.25,28.5,Low,hidden\nopus5,7,41.2,Med,hidden\nopus5,10.64,47,High,hidden\nopus5,13.48,50.6,Xhigh,hidden\nopus5,15.83,52.3,Max,hidden\ngpt56sol,1.46,7.9,Low,hidden\ngpt56sol,2.69,20.9,Med,hidden\ngpt56sol,4.12,26.1,High,hidden\ngpt56sol,5.39,28.5,Xhigh,hidden\ngpt56sol,7.89,37.3,Max,hidden\ngpt6astra,4.95,49.7,Low,hidden\ngpt6astra,6.15,53.9,Med,hidden\ngpt6astra,7.21,57.9,High,hidden\ngpt6astra,7.48,57.6,Xhigh,hidden\ngpt6astra,10.35,56.7,Max,hidden",
+            "footnote": [
+              {
+                "_key": "note",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "note0",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Terminal-Bench 4.0 measures how well a model can complete complex, multi-step professional tasks within a command line interface. Opus 5.5 at default effort beats Opus 5 at max effort for about a fifth of the cost. It matches GPT-6 Astra at about 40% of the cost."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ],
+            "markDefs": null,
+            "series": [
+              {
+                "_key": "wtbopus55",
+                "_type": "series",
+                "color": "orange",
+                "fill": "solid",
+                "id": "opus55",
+                "name": "**Opus 5.5**",
+                "outline": false
+              },
+              {
+                "_key": "wtbfable51",
+                "_type": "series",
+                "color": "aqua",
+                "fill": "solid",
+                "id": "fable51",
+                "name": "**Fable 5.1**",
+                "outline": false
+              },
+              {
+                "_key": "wtbopus5",
+                "_type": "series",
+                "color": "yellow",
+                "fill": "solid",
+                "id": "opus5",
+                "name": "**Opus 5**",
+                "outline": false
+              },
+              {
+                "_key": "wtbgpt6astra",
+                "_type": "series",
+                "color": "gray-550",
+                "fill": "solid",
+                "id": "gpt6astra",
+                "name": "**GPT-6 Astra**",
+                "outline": false
+              },
+              {
+                "_key": "wtbgpt56sol",
+                "_type": "series",
+                "color": "gray-300",
+                "fill": "solid",
+                "id": "gpt56sol",
+                "name": "**GPT-5.6 Sol**",
+                "outline": false
+              }
+            ],
+            "subtitle": "Accuracy vs Cost",
+            "title": "Terminal-Bench 4.0",
+            "xAxis": {
+              "format": "currency",
+              "label": "Cost per attempt (USD, log scale)",
+              "max": 25,
+              "min": 1.1,
+              "scale": "log",
+              "ticks": "2,5,10,20"
+            },
+            "yAxis": {
+              "format": "percent",
+              "label": "Score (%)",
+              "max": 75,
+              "min": 0,
+              "scale": "linear",
+              "ticks": "0,10,20,30,40,50,60,70"
+            }
+          }
+        ],
+        "label": "Agentic terminal coding"
+      },
+      {
+        "_key": "8fed885984d6",
+        "_type": "view",
+        "body": [
+          {
+            "_key": "tuskchartfrontiercode",
+            "_type": "chart",
+            "chartType": "line",
+            "data": "series,x,y,label,labelPlacement\nopus55,0.4036,47.3,Low,\nopus55,0.8016,54.64,Med,\nopus55,1.0896,53.99,High,below\nopus55,2.2545,51.42,Xhigh,below\nopus55,6.191,54.43,Max,\nfable51,2.4665,52.8,Low,hidden\nfable51,3.2845,50.91,Med,hidden\nfable51,5.2741,50.34,High,hidden\nfable51,9.2739,48.73,Xhigh,hidden\nfable51,12.8218,50.28,Max,hidden\nopus5,2.6415,41.95,Low,hidden\nopus5,4.6066,53.38,Med,hidden\nopus5,7.615,47.99,High,hidden\nopus5,8.9885,43.65,Xhigh,hidden\nopus5,12.2814,48.04,Max,hidden\ngpt56sol,1.7476,35.44,Low,hidden\ngpt56sol,2.4986,39.93,Med,hidden\ngpt56sol,3.2488,45.06,High,hidden\ngpt56sol,3.8806,46.84,Xhigh,hidden\ngpt56sol,4.8477,47.49,Max,hidden\ngpt6astra,1.5927,45.27,Low,hidden\ngpt6astra,2.2845,48.83,Med,hidden\ngpt6astra,2.847,50.94,High,hidden\ngpt6astra,3.0961,50.62,Xhigh,hidden\ngpt6astra,4.3632,53.26,Max,hidden",
+            "footnote": [
+              {
+                "_key": "note",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "note0",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "FrontierCode measures whether an agent’s code changes would be merged. At default effort (medium), Opus 5.5 scores 54.6%, higher than all other models, beating GPT-6 Astra’s top score (53.3%) for about a fifth of the cost per task."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ],
+            "markDefs": null,
+            "series": [
+              {
+                "_key": "wfcopus55",
+                "_type": "series",
+                "color": "orange",
+                "fill": "solid",
+                "id": "opus55",
+                "name": "**Opus 5.5**",
+                "outline": false
+              },
+              {
+                "_key": "wfcfable51",
+                "_type": "series",
+                "color": "aqua",
+                "fill": "solid",
+                "id": "fable51",
+                "name": "**Fable 5.1**",
+                "outline": false
+              },
+              {
+                "_key": "wfcopus5",
+                "_type": "series",
+                "color": "yellow",
+                "fill": "solid",
+                "id": "opus5",
+                "name": "**Opus 5**",
+                "outline": false
+              },
+              {
+                "_key": "wfcgpt6astra",
+                "_type": "series",
+                "color": "gray-550",
+                "fill": "solid",
+                "id": "gpt6astra",
+                "name": "**GPT-6 Astra**",
+                "outline": false
+              },
+              {
+                "_key": "wfcgpt56sol",
+                "_type": "series",
+                "color": "gray-300",
+                "fill": "solid",
+                "id": "gpt56sol",
+                "name": "**GPT-5.6 Sol**",
+                "outline": false
+              }
+            ],
+            "subtitle": "Accuracy vs Cost",
+            "title": "FrontierCode v1.1, main set",
+            "xAxis": {
+              "format": "currency",
+              "label": "Cost per task (USD, log scale)",
+              "max": 20,
+              "min": 0.35,
+              "scale": "log",
+              "ticks": "0.5,1,2,5,10"
+            },
+            "yAxis": {
+              "format": "percent",
+              "label": "Score (%)",
+              "max": 58,
+              "min": 32,
+              "ticks": "35,40,45,50,55"
+            }
+          }
+        ],
+        "label": "Agentic coding: FrontierCode"
+      },
+      {
+        "_key": "2d2f6e0e30d4",
+        "_type": "view",
+        "body": [
+          {
+            "_key": "tuskchartcursorbench",
+            "_type": "chart",
+            "chartType": "line",
+            "data": "series,x,y,label,labelPlacement\nopus55,1.18,43.7,Low,\nopus55,2.9,52.5,Med,below\nopus55,3.97,56,High,\nopus55,6.99,56,Xhigh,\nopus55,13.43,57.8,Max,\nfable51,5.44,45.1,Low,hidden\nfable51,7.05,46.8,Med,hidden\nfable51,9.08,49.2,High,hidden\nfable51,13.01,51.6,Xhigh,hidden\nfable51,17.28,51.8,Max,hidden\nopus5,4.87,40.7,Low,hidden\nopus5,6.94,43.3,Med,hidden\nopus5,9,44.7,High,hidden\nopus5,11.43,46.1,Xhigh,hidden\nopus5,11.95,46.6,Max,hidden\ngpt56sol,0.87,24.6,Low,hidden\ngpt56sol,1.77,31.1,Med,hidden\ngpt56sol,2.85,35.7,High,hidden\ngpt56sol,4.4,37.7,Xhigh,hidden\ngpt56sol,8.23,41.7,Max,hidden",
+            "footnote": [
+              {
+                "_key": "note",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "note0",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "CursorBench evaluates coding agents on ambiguous, multi-file tasks taken from real Cursor sessions. At default effort (medium), Opus 5.5 scores 52.5%, compared to 51.8% for Fable 5.1 (max) and 46.6% for Opus 5 (max). It beats GPT-5.6 Sol’s top score (41.7%) by 11 points for about a third of the cost per task."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ],
+            "markDefs": null,
+            "series": [
+              {
+                "_key": "wcbopus55",
+                "_type": "series",
+                "color": "orange",
+                "fill": "solid",
+                "id": "opus55",
+                "name": "**Opus 5.5**",
+                "outline": false
+              },
+              {
+                "_key": "wcbfable51",
+                "_type": "series",
+                "color": "aqua",
+                "fill": "solid",
+                "id": "fable51",
+                "name": "**Fable 5.1**",
+                "outline": false
+              },
+              {
+                "_key": "wcbopus5",
+                "_type": "series",
+                "color": "yellow",
+                "fill": "solid",
+                "id": "opus5",
+                "name": "**Opus 5**",
+                "outline": false
+              },
+              {
+                "_key": "wcbgpt56sol",
+                "_type": "series",
+                "color": "gray-300",
+                "fill": "solid",
+                "id": "gpt56sol",
+                "name": "**GPT-5.6 Sol**",
+                "outline": false
+              }
+            ],
+            "subtitle": "Accuracy vs Cost",
+            "title": "CursorBench 4.0",
+            "xAxis": {
+              "format": "currency",
+              "label": "Cost per task (USD, log scale)",
+              "max": 30,
+              "min": 0.8,
+              "scale": "log",
+              "ticks": "1,2,5,10,20"
+            },
+            "yAxis": {
+              "format": "percent",
+              "label": "Score (%)",
+              "max": 62,
+              "min": 22,
+              "ticks": "25,30,35,40,45,50,55,60"
+            }
+          }
+        ],
+        "label": "Agentic coding: CursorBench"
+      }
+    ]
+  },
+  {
+    "_key": "4d6783769ec3",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "1a4eba1ea973",
+        "_type": "span",
+        "marks": [],
+        "text": "\n\nOur early testers reported similar efficiency and intelligence gains:"
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "0d0b4687b59f",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "738f5e0d09f5",
+        "_type": "span",
+        "marks": [],
+        "text": ""
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "c5d912a6394a",
+    "_type": "testimonialTabs",
+    "authorLabel": "Author",
+    "companyLabel": "Company",
+    "markDefs": null,
+    "palette": "peach",
+    "quotes": [
+      {
+        "_key": "3cedcb33c375",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Mario Rodriguez",
+        "authorRole": "Chief Product Officer",
+        "company": "GitHub",
+        "quote": [
+          {
+            "_key": "0a96ad28f6ac",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "8d7043fd3124",
+                "_type": "span",
+                "marks": [],
+                "text": "“Developers want agents that can take on real software work and finish it. In our testing across GitHub Copilot CLI and VS Code, Claude Opus 5.5 used among the fewest tokens and steps we measured. In VS Code, it solved more terminal tasks than Opus 5 in less than half the steps. More than making individual tasks more efficient, it’s making developers’ bigger projects more achievable.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "b41cd43cf3e6",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Sean Heintz",
+        "authorRole": "Staff Software Developer",
+        "company": "Clio",
+        "quote": [
+          {
+            "_key": "dbcfcfd2e11b",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "82b4c87d9e1a",
+                "_type": "span",
+                "marks": [],
+                "text": "“I handed Claude Opus 5.5 a large engineering task across six of our repositories and let it run overnight, unattended. It stayed on task for over 18 hours defining how our services talk to each other and working out how each one should apply that. Compared with Opus 5, it hit milestones faster and required minimal reworking. Its code comments were short and useful instead of long and prose-heavy. I’m struggling to find anything negative to say.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "b8aeee0e48c8",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Fabian Hedin",
+        "authorRole": "CTO and Co-founder",
+        "company": "Lovable",
+        "quote": [
+          {
+            "_key": "450e2e644838",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "d40413959d82",
+                "_type": "span",
+                "marks": [],
+                "text": "“For Lovable builders, Opus 5.5 means faster builds with the same quality, whether you’re starting from scratch or working on a live app. It gathers context once, makes fewer and more complete edits, and doesn’t get stuck retrying, finishing in a third to half fewer steps and using significantly fewer tokens along the way.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "8d5a479f924e",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Harley Barnes",
+        "authorRole": "Executive Manager, AI Technology",
+        "company": "Quantium",
+        "quote": [
+          {
+            "_key": "428b5838e9d3",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "be3f7eea161e",
+                "_type": "span",
+                "marks": [],
+                "text": "“We tested Claude Opus 5.5 across Chat, Cowork, and Claude Code, the full range of how our teams work. A complex coding task that previously took 38 prompts over four days came in at 11 prompts over three hours, with more production-ready outputs and less rework. For our teams solving complex problems at pace, that means less time iterating and more time interrogating: testing assumptions, pressure-testing outputs, and landing on the best solution for our clients.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "06b42c13a096",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Aleksandar Mitic",
+        "authorRole": "Senior Engineer",
+        "company": "Spotify",
+        "quote": [
+          {
+            "_key": "a913643bb323",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "bfc859a5eadb",
+                "_type": "span",
+                "marks": [],
+                "text": "“With Claude Opus 5.5, we’ve seen a clear improvement in token efficiency across our internal evaluations, as we’ve been able to complete the same tasks both cheaper and faster.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "4ad688b3a2ae",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Noyan Tokgozoglu",
+        "authorRole": "Global Head of AI Engineering",
+        "company": "Optiver",
+        "quote": [
+          {
+            "_key": "a7c1d412d4cb",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "7a2c6e9a84d0",
+                "_type": "span",
+                "marks": [],
+                "text": "“We test models on real engineering and trading-desk work. On our agentic coding tasks, Claude Opus 5.5 matched Opus 5’s quality in about half the turns, time and output tokens, cutting the cost of that workload by 40 to 50%. It posted the highest score we’ve recorded on one desk’s trading-support suite, passing tasks earlier Claude models had failed, and topped all eight models on our analysis task.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "1ec9a5df5172",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Mitch Fierro",
+        "authorRole": "Engineering",
+        "company": "Column",
+        "quote": [
+          {
+            "_key": "3b3676f863d7",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "bf4aeb60ce33",
+                "_type": "span",
+                "marks": [],
+                "text": "“Claude Opus 5.5 delegates to subagents far more effectively and checks its own work in creative ways. Self-verification loops feel easier to set up. It found savings opportunities in our cloud bill that previous models had missed, and in code review it caught a bug by checking external docs for a third-party integration we’d modeled wrong several commits earlier.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "40fde191fcf7",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Deepak Singh",
+        "authorRole": "VP of Agentic AI",
+        "company": "Kiro",
+        "quote": [
+          {
+            "_key": "e7aafe82fe0a",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "60b6e443b56c",
+                "_type": "span",
+                "marks": [],
+                "text": "“Every call an agent makes is time and cost a developer feels. On a public benchmark of real command-line tasks, Claude Opus 5.5 solved more than Opus 5 while making about 40% fewer calls and using half the tokens. For developers building with Kiro, that means faster, more affordable agent sessions for routine tasks and complex challenges alike. Opus 5.5 will soon be available in Kiro.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      }
+    ],
+    "testimonialLabel": "Quote"
+  },
+  {
+    "_key": "42c72dfbab3f",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "3e11db6f72bb",
+        "_type": "span",
+        "marks": [],
+        "text": "The most secure coding agent"
+      }
+    ],
+    "markDefs": [],
+    "style": "h2"
+  },
+  {
+    "_key": "b9721da79047",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "672586d3697b",
+        "_type": "span",
+        "marks": [],
+        "text": "Enterprises that use agents within their systems need to know that those agents are operating as intended, particularly when they run autonomously for many hours. Opus 5.5 has a classifier that screens every action before it runs, an open-source sandbox that security teams can audit, and code review that catches vulnerabilities before they merge."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "7d426451a6fb",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "9b6941a8b660",
+        "_type": "span",
+        "marks": [],
+        "text": "The model itself also has stronger defenses. On prompt injection attacks, it matches or beats Opus 5 in every setting we tested, including coding, tool use, computer use, and web browsing. On a benchmark run by the AI security firm Gray Swan, Opus 5.5 ties Fable 5.1 for the lowest prompt injection success rate of any model tested."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "598657b70b14",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "5e1f144dc659",
+        "_type": "span",
+        "marks": [],
+        "text": "Knowledge work"
+      }
+    ],
+    "markDefs": [],
+    "style": "h2"
+  },
+  {
+    "_key": "5911c1c720f1",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "7a6b3aee2b9e",
+        "_type": "span",
+        "marks": [],
+        "text": "Opus 5.5 is a reliable and adept researcher. In one internal test, we asked Opus 5.5, Fable 5.1, and Opus 5 to write a report on a company’s quarterly performance using only the information it could find on a copy of the web where the earnings release was hard to locate. An automated grader checked every figure and quote against sources. Across different effort settings, 16 out of 18 of Opus 5.5’s reports cleared our quality bar, where any invented figure or quote would have failed. Neither Fable 5.1 nor Opus 5 cleared that bar in any attempt."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "b0c222d6535b",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "35c851dd045b",
+        "_type": "span",
+        "marks": [],
+        "text": "It’s also strong in financial analysis and business work. Walleye Capital, an investment firm and early tester, reported that Opus 5.5 largely solved their evaluation suite on its lowest setting; on higher settings, it performed even better, noticing an error in their evaluation instructions and correcting for it. No other model had caught this error before."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "2001248a3157",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "c5c6eb802c45",
+        "_type": "span",
+        "marks": [],
+        "text": "In another test, we tasked both Opus 5.5 and Opus 5 with analyzing a proposed merger between two fictional HR software companies. Each built a financial model in Excel, then turned it into an executive presentation on whether the deal made sense at its price. Both models reached the same conclusions about the deal, but Opus 5.5’s model was more thorough and its presentation easier to read, while Opus 5’s had minor errors. Opus 5.5 finished in 63 minutes compared to 93 for Opus 5, and cost 50% less to produce."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "e1b4b577729b",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "d4d244b48161",
+        "_type": "span",
+        "marks": [],
+        "text": "On knowledge work evaluations, Opus 5.5 outperforms other models while also using fewer tokens. On GDPval-AA v2.1, a test of real-world work across 44 occupations, Opus 5.5 scores 1846 Elo, ahead of Fable 5.1 and Opus 5. At default effort (medium), Opus 5.5 beats GPT-6 Astra at max effort for about a fifth of the cost per task. It likewise outperformed other models on benchmarks measuring business workflows and large-scale data collection."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "ab3c85d1d836",
+    "_type": "viewSwitcher",
+    "markDefs": null,
+    "views": [
+      {
+        "_key": "10bb7f0a4d5e",
+        "_type": "view",
+        "body": [
+          {
+            "_key": "tuskchartgdpval",
+            "_type": "chart",
+            "animate": true,
+            "chartType": "line",
+            "data": "series,x,y,label,labelPlacement\nopus55,0.2137,1224,Low,below\nopus55,0.8563,1576,Med,\nopus55,1.5424,1692,High,\nopus55,4.2104,1820,Xhigh,\nopus55,8.9154,1846,Max,\nfable51,1.4147,1450,Low,hidden\nfable51,2.1682,1536,Med,hidden\nfable51,3.4287,1617,High,hidden\nfable51,7.0862,1721,Xhigh,hidden\nfable51,9.5863,1735,Max,hidden\nopus5,0.5817,1294,Low,hidden\nopus5,1.3639,1476,Med,hidden\nopus5,3.0266,1581,High,hidden\nopus5,4.962,1676,Xhigh,hidden\nopus5,6.7647,1708,Max,hidden\ngpt56sol,0.2677,1289,Low,hidden\ngpt56sol,0.5954,1403,Med,hidden\ngpt56sol,1.106,1480,High,hidden\ngpt56sol,1.7042,1548,Xhigh,hidden\ngpt56sol,2.8099,1588,Max,hidden\ngpt6astra,0.8545,1366,Low,hidden\ngpt6astra,1.8223,1468,Med,hidden\ngpt6astra,2.4321,1485,High,hidden\ngpt6astra,3.038,1516,Xhigh,hidden\ngpt6astra,4.5293,1542,Max,hidden",
+            "decimals": 0,
+            "footnote": [
+              {
+                "_key": "note",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "note0",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Artificial Analysis’s GDPval-AA v2.1 evaluates agents on real-world professional work across 44 occupations. At max effort, Opus 5.5 scores 1846 Elo, where Fable 5.1 scores 1735 and Opus 5 scores 1708. At default effort (medium), Opus 5.5 beats GPT-6 Astra at max effort for about a fifth of the cost per task."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ],
+            "markDefs": null,
+            "series": [
+              {
+                "_key": "wgdopus55",
+                "_type": "series",
+                "color": "orange",
+                "fill": "solid",
+                "id": "opus55",
+                "name": "**Opus 5.5**",
+                "outline": false
+              },
+              {
+                "_key": "wgdfable51",
+                "_type": "series",
+                "color": "aqua",
+                "fill": "solid",
+                "id": "fable51",
+                "name": "**Fable 5.1**",
+                "outline": false
+              },
+              {
+                "_key": "wgdopus5",
+                "_type": "series",
+                "color": "yellow",
+                "fill": "solid",
+                "id": "opus5",
+                "name": "**Opus 5**",
+                "outline": false
+              },
+              {
+                "_key": "wgdgpt6astra",
+                "_type": "series",
+                "color": "gray-550",
+                "fill": "solid",
+                "id": "gpt6astra",
+                "name": "**GPT-6 Astra**",
+                "outline": false
+              },
+              {
+                "_key": "wgdgpt56sol",
+                "_type": "series",
+                "color": "gray-300",
+                "fill": "solid",
+                "id": "gpt56sol",
+                "name": "**GPT-5.6 Sol**",
+                "outline": false
+              }
+            ],
+            "subtitle": "Elo vs Cost",
+            "title": "GDPval-AA v2.1",
+            "xAxis": {
+              "format": "currency",
+              "label": "Estimated cost per task (USD, log scale)",
+              "max": 12,
+              "min": 0.18,
+              "scale": "log",
+              "ticks": "0.2,0.5,1,2,5,10"
+            },
+            "yAxis": {
+              "format": "number",
+              "label": "Elo",
+              "max": 1900,
+              "min": 1150,
+              "scale": "linear",
+              "ticks": "1200,1300,1400,1500,1600,1700,1800"
+            }
+          }
+        ],
+        "label": "GDPval-AA v2.1"
+      },
+      {
+        "_key": "8084b5934111",
+        "_type": "view",
+        "body": [
+          {
+            "_key": "tuskchartautomationbench",
+            "_type": "chart",
+            "animate": true,
+            "chartType": "line",
+            "data": "series,x,y,label,labelPlacement\nopus55,0.5,23.3,Low,\nopus55,0.64,28.6,Med,below\nopus55,0.7,32,High,\nopus55,0.86,34.4,Xhigh,\nopus55,1.37,40,Max,\nopus5,0.75,20.4,Low,hidden\nopus5,0.89,23.9,Med,hidden\nopus5,1.03,20.6,High,hidden\nopus5,1.15,25.3,Xhigh,hidden\nopus5,1.27,26.9,Max,hidden\ngpt56sol,0.42,11.7,Low,hidden\ngpt56sol,0.57,19.6,Med,hidden\ngpt56sol,0.64,24.8,High,hidden\ngpt56sol,0.74,26.3,Xhigh,hidden\ngpt56sol,0.91,28.8,Max,hidden\ngpt6astra,1.08,30.3,Low,hidden\ngpt6astra,1.28,34.1,Med,hidden\ngpt6astra,1.45,37.1,High,hidden\ngpt6astra,1.53,39,Xhigh,hidden\ngpt6astra,1.77,41.4,Max,hidden",
+            "footnote": [
+              {
+                "_key": "note",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "note0",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "AutomationBench, built by Zapier, tests whether an agent can carry out real business workflows across many connected apps. Opus 5.5 outscores Opus 5 and GPT-5.6 Sol at every effort level."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ],
+            "markDefs": null,
+            "series": [
+              {
+                "_key": "wabopus55",
+                "_type": "series",
+                "color": "orange",
+                "fill": "solid",
+                "id": "opus55",
+                "name": "**Opus 5.5**",
+                "outline": false
+              },
+              {
+                "_key": "wabopus5",
+                "_type": "series",
+                "color": "yellow",
+                "fill": "solid",
+                "id": "opus5",
+                "name": "**Opus 5**",
+                "outline": false
+              },
+              {
+                "_key": "wabgpt6astra",
+                "_type": "series",
+                "color": "gray-550",
+                "fill": "solid",
+                "id": "gpt6astra",
+                "name": "**GPT-6 Astra**",
+                "outline": false
+              },
+              {
+                "_key": "wabgpt56sol",
+                "_type": "series",
+                "color": "gray-300",
+                "fill": "solid",
+                "id": "gpt56sol",
+                "name": "**GPT-5.6 Sol**",
+                "outline": false
+              }
+            ],
+            "subtitle": "Accuracy vs Cost",
+            "title": "AutomationBench",
+            "xAxis": {
+              "format": "currency",
+              "label": "Cost per task (USD, log scale)",
+              "max": 2.1,
+              "min": 0.38,
+              "scale": "log",
+              "ticks": "0.5,1,2"
+            },
+            "yAxis": {
+              "format": "percent",
+              "label": "Pass rate (%)",
+              "max": 45,
+              "min": 0,
+              "scale": "linear",
+              "ticks": "0,10,20,30,40"
+            }
+          }
+        ],
+        "label": "AutomationBench"
+      },
+      {
+        "_key": "430c7aca0d7c",
+        "_type": "view",
+        "body": [
+          {
+            "_key": "tuskchartwandr",
+            "_type": "chart",
+            "animate": true,
+            "chartType": "line",
+            "data": "series,x,y,label,labelPlacement\nopus55,1.2,31.2,Low,\nopus55,11.2,62.8,Med,\nopus55,16.88,67.3,High,\nopus55,29.06,71.3,Xhigh,\nopus55,37.92,72.3,Max,\nfable51,23.25,63.3,Low,hidden\nfable51,27.41,64.5,Med,hidden\nfable51,33.62,66.7,High,hidden\nfable51,42.81,67.7,Xhigh,hidden\nfable51,49.02,68.7,Max,hidden\nopus5,10.65,50.5,Low,hidden\nopus5,23.97,58.1,Med,hidden\nopus5,43.49,64.6,High,hidden\nopus5,53.84,67,Xhigh,hidden\nopus5,61.62,67.2,Max,hidden",
+            "footnote": [
+              {
+                "_key": "note",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "note0",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Perplexity’s WANDR benchmark measures agents on large data collection tasks. Opus 5.5 outperforms Fable 5.1 and Opus 5 at a lower cost per task"
+                  },
+                  {
+                    "_key": "48534ce5c2b9",
+                    "_type": "span",
+                    "marks": [
+                      "sup"
+                    ],
+                    "text": "4"
+                  },
+                  {
+                    "_key": "bc1a558c256b",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "."
+                  }
+                ],
+                "markDefs": [],
+                "style": "left"
+              },
+              {
+                "_key": "60888dee615c",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "458a16670ed8",
+                    "_type": "span",
+                    "marks": [
+                      "sup"
+                    ],
+                    "text": "4"
+                  },
+                  {
+                    "_key": "55b6a9f2719c",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "WANDR:"
+                  },
+                  {
+                    "_key": "079fca155294",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " Claude models were run with offline versions of the web search and web fetch tools, programmatic tool calling, code execution, and a 980k-token task budget. This differs from Perplexity’s published setup, scores are not directly comparable across the two and we only show models scored under the same conditions."
+                  }
+                ],
+                "markDefs": [],
+                "style": "left"
+              }
+            ],
+            "markDefs": null,
+            "series": [
+              {
+                "_key": "wwdopus55",
+                "_type": "series",
+                "color": "orange",
+                "fill": "solid",
+                "id": "opus55",
+                "name": "**Opus 5.5**",
+                "outline": false
+              },
+              {
+                "_key": "wwdfable51",
+                "_type": "series",
+                "color": "aqua",
+                "fill": "solid",
+                "id": "fable51",
+                "name": "**Fable 5.1**",
+                "outline": false
+              },
+              {
+                "_key": "wwdopus5",
+                "_type": "series",
+                "color": "yellow",
+                "fill": "solid",
+                "id": "opus5",
+                "name": "**Opus 5**",
+                "outline": false
+              }
+            ],
+            "subtitle": "Accuracy vs Cost",
+            "title": "WANDR",
+            "xAxis": {
+              "format": "currency",
+              "label": "Cost per attempt (USD, log scale)",
+              "max": 70,
+              "min": 1,
+              "scale": "log",
+              "ticks": "1,2,5,10,20,50"
+            },
+            "yAxis": {
+              "format": "percent",
+              "label": "Score (%)",
+              "max": 78,
+              "min": 25,
+              "scale": "linear",
+              "ticks": "30,40,50,60,70"
+            }
+          }
+        ],
+        "label": "WANDR"
+      }
+    ]
+  },
+  {
+    "_key": "72a8b2177149",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "61947b1f9e17",
+        "_type": "span",
+        "marks": [],
+        "text": "\n\nOur customers have reported similar results. Here’s what they told us about working with the model:\n\n"
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "253d2f0df583",
+    "_type": "testimonialTabs",
+    "authorLabel": "Author",
+    "companyLabel": "Company",
+    "markDefs": null,
+    "palette": "peach",
+    "quotes": [
+      {
+        "_key": "1ae2c29f7fc0",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Carl Bennett",
+        "authorRole": "CIO",
+        "company": "Deloitte Consulting LLP",
+        "quote": [
+          {
+            "_key": "9ed7f1378fbd",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "152f76a77d77",
+                "_type": "span",
+                "marks": [],
+                "text": "“Even at its lowest effort setting, Claude Opus 5.5 caught 72% of known bugs in our code reviews to Opus 5’s 56% at high effort, with fewer false alarms and a fraction of the output. On US consulting analysis, low thinking effort matched its higher thinking settings on half the output and passed our quality checks. When more lower thinking efforts are deployed in production, that’s client-ready work delivered efficiently.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "157289bfcdae",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Strib Walker",
+        "authorRole": "Head of Product",
+        "company": "Rogo",
+        "quote": [
+          {
+            "_key": "6397ced9c9a8",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "a2efd38ba2cb",
+                "_type": "span",
+                "marks": [],
+                "text": "“Financial firms need outputs that are consistently correct. At its lowest effort setting, Claude Opus 5.5 beat Opus 5 at high effort on our BigFinance Bench with about 60% fewer output tokens. Its answers are shorter and better structured, and its slides come out denser, more in line with industry standards.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "5269cc9f1b60",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Min Chen",
+        "authorRole": "Chief AI Officer",
+        "company": "LexisNexis Legal & Professional",
+        "quote": [
+          {
+            "_key": "16325004ff1b",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "14b3f396fe1d",
+                "_type": "span",
+                "marks": [],
+                "text": "“Evaluating new models is central to the multi-model approach behind the LexisNexis Legal Intelligence Engine. In our initial evaluations, Claude Opus 5.5 identified highly relevant citations consistently, demonstrated strength with statutes, and structured its answers around the central legal frameworks and key issues. These are the kinds of capabilities we look for to help our customers accomplish more with Lexis+ with Protégé.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "b2938613e198",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Frank Corrao",
+        "authorRole": "Head of Central Equity Quant Research Engineering",
+        "company": "Walleye Capital",
+        "quote": [
+          {
+            "_key": "d324f0d5da74",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "933c41aec043",
+                "_type": "span",
+                "marks": [],
+                "text": "“In quant research, one wrong assumption can undermine a result. At its lowest effort setting, Claude Opus 5.5 largely solved our evaluation task. At higher settings, it went even further: it detected that the minute indexing in our own instructions was off by one and corrected for it, noting that this would cost it points with the grader. It was right, and no model we’ve tested had caught and acted on that before.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "0816d6ce6847",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Izzy Miller",
+        "authorRole": "AI Engineer",
+        "company": "Hex",
+        "quote": [
+          {
+            "_key": "b8bf95b90cb6",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "59a00f12aab5",
+                "_type": "span",
+                "marks": [],
+                "text": "“As models get better at data work, we’re seeing more convincing-sounding conclusions the data doesn’t support. Claude Opus 5.5 keeps digging past the first plausible answer. One task in our DataBench benchmark asks whether packages were late or tracking was just slow. Opus 5 checked delivery confirmations and called tracking healthy. Opus 5.5 found the packages were late and tracking was broken too. We’re bringing it into the Hex agent for this work.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "7b2b32a775c7",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Omar Bari",
+        "authorRole": "VP Applied Research",
+        "company": "Thomson Reuters Labs",
+        "quote": [
+          {
+            "_key": "eca4a45a8382",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "ce85ead33ed8",
+                "_type": "span",
+                "marks": [],
+                "text": "“CoCounsel combines multiple models with our content and expertise for complex legal work. With Claude Opus 5.5, we’re seeing better results in our expert evaluations and on our internal benchmarks, alongside gains in speed and token efficiency. We’re excited for customers to experience that difference in the back-and-forth with CoCounsel as a sounding board, weighing evidence and refining their thinking in ways benchmarks don’t fully capture.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "c4c7948252fb",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Aabhas Sharma",
+        "authorRole": "CTO",
+        "company": "Hebbia",
+        "quote": [
+          {
+            "_key": "9dc431f8065b",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "8f07d161764f",
+                "_type": "span",
+                "marks": [],
+                "text": "“On end-to-end finance workflows graded against expert rubrics, Claude Opus 5.5 covered 86.6% of what we look for versus 60.3% for Opus 5. On retrieval evals, it achieved our best-ever citation recall with better token efficiency than Opus 5, which keeps our cost per research task in check.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "872ebbef3868",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Peter Albert",
+        "authorRole": "Co-Founder",
+        "company": "Viktor",
+        "quote": [
+          {
+            "_key": "46c0c0743025",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "74b9eabd03f1",
+                "_type": "span",
+                "marks": [],
+                "text": "“Viktor is an AI employee that lives in Slack and Microsoft Teams, so every step he takes shows up in our costs. At the same effort, Claude Opus 5.5 needs fewer steps and tool calls per task than Opus 5 and costs nearly half as much, while getting twice as many of our hardest tasks right.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      }
+    ],
+    "testimonialLabel": "Quote"
+  },
+  {
+    "_key": "837b6526dd6c",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "503ffcacdaca",
+        "_type": "span",
+        "marks": [],
+        "text": "Communication"
+      }
+    ],
+    "markDefs": [],
+    "style": "h2"
+  },
+  {
+    "_key": "030cf318da6f",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "4d40fdb19933",
+        "_type": "span",
+        "marks": [],
+        "text": "We’ve made major improvements to the way Opus 5.5 writes and communicates, one of the most common areas of feedback we heard about Opus 5. Its messages are much easier to understand at a glance, which testers said helped during long working sessions. It puts the most important information up front, is less likely to use jargon or idiosyncratic phrases, and follows the writing rules you give it. We find that this makes Opus 5.5 a noticeably better collaborator. Here’s a side-by-side comparison of the two models:"
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "506aec971dc7",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "63db5c1633a5",
+        "_type": "span",
+        "marks": [],
+        "text": ""
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "0bbab7062619",
+    "_type": "modelComparison",
+    "examples": [
+      {
+        "_key": "9ae8d84b0652",
+        "_type": "modelComparisonExample",
+        "label": "Explaining a bug",
+        "latest": {
+          "_type": "modelComparisonSide",
+          "artifact": {
+            "_createdAt": "2026-09-21T01:45:51Z",
+            "_id": "ce644bd5-7516-4a81-80d0-28961884ace1",
+            "_rev": "AhZgt4bxebZGD87UnxFuYj",
+            "_type": "artifactChat",
+            "_updatedAt": "2026-09-22T16:19:09Z",
+            "name": "Opus 5.5 · Invoice bug",
+            "outputSpeed": 160,
+            "prompt": "Please explain the issue to me.",
+            "response": [
+              {
+                "_key": "e53f601e8739",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "604f544dacce",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "The extra drop is a bug in the billing refactor"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "8e2de43404d1",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "9656d4afb35e",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "The free-tier change accounts for only "
+                  },
+                  {
+                    "_key": "48ed3d7da82e",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "$$1.50"
+                  },
+                  {
+                    "_key": "9b683f838a38",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " of acme’s August drop. The other "
+                  },
+                  {
+                    "_key": "4b206c76d925",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "$$9.92"
+                  },
+                  {
+                    "_key": "64659c0f2a5e",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " comes from a bug in commit "
+                  },
+                  {
+                    "_key": "4d109046b42a",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "0552feb"
+                  },
+                  {
+                    "_key": "4c4145bb4505",
+                    "_type": "span",
+                    "marks": [],
+                    "text": ". That commit was labelled “No behaviour change,” but it stops counting usage from the last day of the month."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "929aaa5c25c4",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "b359bc493a38",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "What changed"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "ba47d1ba5923",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "2af68bd4de55",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Before the merge, "
+                  },
+                  {
+                    "_key": "fcdef275ec20",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "aggregate.py"
+                  },
+                  {
+                    "_key": "ff64e0328e95",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " used a half-open interval:"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "36cf7eaef80e",
+                "_type": "responseCode",
+                "code": "start <= e.ts < next_month_start(year, month)    # [Aug 1 00:00, Sep 1 00:00)"
+              },
+              {
+                "_key": "a6b96d0a598d",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "35ad5c7b0ade",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "The refactor moved this into "
+                  },
+                  {
+                    "_key": "76c8328a57e4",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "Period.contains"
+                  },
+                  {
+                    "_key": "595296e374f0",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " and made the interval closed on the wrong boundary:"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "24f901ea3b2e",
+                "_type": "responseCode",
+                "code": "last_day = next_month_start(...) - timedelta(days=1)    # = 2026-08-31T00:00:00Z\nreturn self.first_day <= ts <= self.last_day"
+              },
+              {
+                "_key": "177bec6c5b99",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "2cabea6ee14e",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "last_day"
+                  },
+                  {
+                    "_key": "61b7abfebf6a",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " is a timestamp at midnight, not a whole day. So every event after "
+                  },
+                  {
+                    "_key": "e1fa6327cc6e",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "2026-08-31T00:00:00Z"
+                  },
+                  {
+                    "_key": "a06ae1ecfd77",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " is excluded. The September period starts Sep 1, so it doesn’t pick these events up either. The usage isn’t moved to another month; it’s never billed at all."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        },
+        "previous": {
+          "_type": "modelComparisonSide",
+          "artifact": {
+            "_createdAt": "2026-09-21T01:45:51Z",
+            "_id": "615b6c36-1708-45a7-94c1-3e293498d1ca",
+            "_rev": "AhZgt4bxebZGD87UnxFuMj",
+            "_type": "artifactChat",
+            "_updatedAt": "2026-09-22T16:19:00Z",
+            "name": "Opus 5 · Invoice bug",
+            "prompt": "Please explain the issue to me.",
+            "response": [
+              {
+                "_key": "7f4453ce0e40",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "6c7c642f1d4c",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "What I found"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "bf7be6c25692",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "d79aeef6bcbe",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "The extra drop isn’t the free tier — it’s a regression in "
+                  },
+                  {
+                    "_key": "ace191da75d5",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "0552feb"
+                  },
+                  {
+                    "_key": "4c88683f28ec",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " (“extract billing period boundaries into periods.py”, labelled “No behaviour change”)."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "c3cbd9dec69d",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "fd46c18284ec",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "The bug"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "1d7c72e38c60",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "faa6b10ad0a5",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "aggregate.monthly_usage"
+                  },
+                  {
+                    "_key": "41f7e5b12db8",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " used to do a half-open interval:"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "75a9049ce104",
+                "_type": "responseCode",
+                "code": "start, end = month_start(year, month), next_month_start(year, month)\nif start <= e.ts < end:"
+              },
+              {
+                "_key": "8e022ba802df",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "3563e92f190d",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "It now does:"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "3da46959f7bd",
+                "_type": "responseCode",
+                "code": "if period.contains(e.ts)"
+              },
+              {
+                "_key": "9031244e09a6",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "50b8b40ff3a9",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "and in "
+                  },
+                  {
+                    "_key": "a2b74e3b741d",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "periods.py"
+                  },
+                  {
+                    "_key": "601dfe4e3bf1",
+                    "_type": "span",
+                    "marks": [],
+                    "text": ":"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "255cc2fadcd5",
+                "_type": "responseCode",
+                "code": "@property\ndef last_day(self) -> datetime:\n    return next_month_start(...) - timedelta(days=1)   # 2026-08-31 00:00:00 UTC\n\ndef contains(self, ts):\n    return self.first_day <= ts <= self.last_day"
+              },
+              {
+                "_key": "bb6fdbb04bd2",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "ebd60234f4bd",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "last_day"
+                  },
+                  {
+                    "_key": "430e5936db94",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " is a datetime at midnight, not a whole day. Subtracting one day from Sep 1 00:00 gives Aug 31 "
+                  },
+                  {
+                    "_key": "c0cd3367cdd7",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "00:00"
+                  },
+                  {
+                    "_key": "bc416ed41ddf",
+                    "_type": "span",
+                    "marks": [],
+                    "text": ", and the comparison is inclusive, so the period effectively ends at the first instant of the 31st. "
+                  },
+                  {
+                    "_key": "4dcc94ec9902",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Every event timestamped after midnight on the last day of the month is silently dropped"
+                  },
+                  {
+                    "_key": "dcf8fbd23aab",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " — roughly one day of usage per account, per month."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "e20b452c85aa",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "f03e0e4866ed",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "The new "
+                  },
+                  {
+                    "_key": "142825bbec72",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "test_periods.py"
+                  },
+                  {
+                    "_key": "0d7d0d901c23",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " doesn’t catch it because it only checks "
+                  },
+                  {
+                    "_key": "a5a4b4638a31",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "last_day.date()"
+                  },
+                  {
+                    "_key": "2d6e341cd3c1",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " (which is correctly "
+                  },
+                  {
+                    "_key": "247867733513",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "2026-08-31"
+                  },
+                  {
+                    "_key": "3eb1588b695c",
+                    "_type": "span",
+                    "marks": [],
+                    "text": ") and tests "
+                  },
+                  {
+                    "_key": "817edb0924c5",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "contains"
+                  },
+                  {
+                    "_key": "6d6fb9d39fef",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " at Aug 1 00:00, Aug 15 12:00, Jul 31 23:59 and Sep 1 00:00 — it never probes anywhere inside the 31st."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "_key": "c6a65dd43ec4",
+        "_type": "modelComparisonExample",
+        "label": "Summarizing a thread",
+        "latest": {
+          "_type": "modelComparisonSide",
+          "artifact": {
+            "_createdAt": "2026-09-21T01:45:51Z",
+            "_id": "b8de2863-1092-4050-81d4-a84b4683d318",
+            "_rev": "63p4Bf9ByF5ahSXExFWnL4",
+            "_type": "artifactChat",
+            "_updatedAt": "2026-09-22T16:19:37Z",
+            "name": "Opus 5.5 · Friday export",
+            "outputSpeed": 160,
+            "prompt": "Summarize this Slack thread for my manager in three bullet points:\n\n[09:41] Dana Osei: I’ll tell them. I’ll also confirm nobody else reads the Friday file.\n[09:43] Marcus Webb: I can move the schedule, it’s a one-line cron change. But not until Dana confirms.\n[10:02] Dana Osei: Finance says the Friday file is only used Monday. Sunday night is fine.",
+            "response": [
+              {
+                "_key": "2a5c207d620e",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "def32da2d625",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Problem:"
+                  },
+                  {
+                    "_key": "4b4d420d23bd",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " The Friday orders export has failed twice this month. The warehouse query times out after 2 hours because order volume is up ~40% since the summer sale. As a result, Finance was missing weekend numbers for their Monday 9am review."
+                  }
+                ],
+                "level": 1,
+                "listItem": "bullet",
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "17078acb051f",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "088df9f87f44",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Immediate fixes:"
+                  },
+                  {
+                    "_key": "293f113664d8",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " The export will move to Sunday 10pm starting next week, and the Friday run will be dropped (Marcus). Finance has confirmed this works for them (Dana). The ops dashboard tile that depended on the Friday file now reads from the live table (Sam, done). A failure alert now pages the on-call channel (Priya, done and tested). For this Friday only, Marcus will increase the warehouse slot as a ~$300 one-off stopgap, which Dana approved."
+                  }
+                ],
+                "level": 1,
+                "listItem": "bullet",
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "801d3014ac04",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "d23d08d2597a",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Longer-term fix:"
+                  },
+                  {
+                    "_key": "234b35d7afab",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " Ji-woo will rewrite the query to process only new orders, re-scanning the last 3 days to catch late arrivals. This should cut runtime from hours to minutes. The work will take ~2 weeks including testing, with a design doc due for review by Thursday."
+                  }
+                ],
+                "level": 1,
+                "listItem": "bullet",
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        },
+        "previous": {
+          "_type": "modelComparisonSide",
+          "artifact": {
+            "_createdAt": "2026-09-21T01:45:51Z",
+            "_id": "1985fd17-e4af-4c65-b5a4-4fa8bbb995c9",
+            "_rev": "63p4Bf9ByF5ahSXExFWn2g",
+            "_type": "artifactChat",
+            "_updatedAt": "2026-09-22T16:19:19Z",
+            "name": "Opus 5 · Friday export",
+            "prompt": "Summarize this Slack thread for my manager in three bullet points:\n\n[09:41] Dana Osei: I’ll tell them. I’ll also confirm nobody else reads the Friday file.\n[09:43] Marcus Webb: I can move the schedule, it’s a one-line cron change. But not until Dana confirms.\n[10:02] Dana Osei: Finance says the Friday file is only used Monday. Sunday night is fine.",
+            "response": [
+              {
+                "_key": "30f497c9d97b",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "61d0dde6125a",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Friday orders export — #data-platform, Tuesday"
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "a655756799b4",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "2265320ba553",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Problem:"
+                  },
+                  {
+                    "_key": "bc5e1240c35a",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " The Friday orders export timed out again (second failure this month) after running 2h on the warehouse query; order volume is up ~40% since the summer sale. Finance was left without weekend numbers for their Monday 9am review, and both failures only surfaced on Monday."
+                  }
+                ],
+                "level": 1,
+                "listItem": "bullet",
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "c822ae8cb3e2",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "4d750f6caedf",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Fixed same day:"
+                  },
+                  {
+                    "_key": "1cb166335a8e",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " The Saturday ops dashboard tile was repointed to read the live table instead of the export (Sam), finance confirmed the Friday file is only used on Mondays (Dana), a failure alert now pages the on-call channel (Priya), and the export moves to Sunday 10pm from next week with the Friday run dropped (Marcus). A one-off ~$300 warehouse upgrade covers this Friday as a stopgap."
+                  }
+                ],
+                "level": 1,
+                "listItem": "bullet",
+                "markDefs": [],
+                "style": "normal"
+              },
+              {
+                "_key": "ef16d7d165e0",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "8107dacf1cce",
+                    "_type": "span",
+                    "marks": [
+                      "strong"
+                    ],
+                    "text": "Still in progress:"
+                  },
+                  {
+                    "_key": "cf9139789e13",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " Ji-woo owns rewriting the query to run incrementally (re-scanning the last 3 days to catch late-arriving orders), expected to cut runtime from hours to minutes — design doc Thursday, roughly two weeks including testing. The schedule change buys time in the meantime."
+                  }
+                ],
+                "level": 1,
+                "listItem": "bullet",
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "_key": "a96ede567a74",
+        "_type": "modelComparisonExample",
+        "label": "Explaining a design change",
+        "latest": {
+          "_type": "modelComparisonSide",
+          "artifact": {
+            "_createdAt": "2026-09-21T01:37:51Z",
+            "_id": "ad1587f2-2ebe-403d-b78d-5f9dce563e01",
+            "_rev": "E6X7FRPxWoEEyO8JcAZ54a",
+            "_type": "artifactChat",
+            "_updatedAt": "2026-09-22T16:20:04Z",
+            "name": "Opus 5.5",
+            "outputSpeed": 160,
+            "prompt": "Write Python that reads a chess position (FEN) and lists which pieces are under attack. Use TensorFlow for speed. Here's my design: build an 8x8 tensor board, generate an attack map for each piece type from its movement pattern, and flag opposing pieces on attacked squares. Change anything you think is wrong, and in your final summary explain each change you made and why.",
+            "response": [
+              {
+                "_key": "745c0cea298e",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "eb7642181ee5",
+                    "_type": "span",
+                    "marks": [],
+                    "text": "Blocked lines (bishops, rooks, queens). A fixed mask can't say “stop at the first piece in the way.” I added a second stack of masks marking the squares strictly between every two squares on the same line. One matrix multiply with the board's occupancy counts the blockers on every line at once, and an attack survives only if that count is zero. Knights and single steps have nothing between them, so one rule covers every piece."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        },
+        "previous": {
+          "_type": "modelComparisonSide",
+          "artifact": {
+            "_createdAt": "2026-09-21T01:33:09Z",
+            "_id": "4cdf540c-4e3b-4b2d-9c46-0fdd03ae7574",
+            "_rev": "AhZgt4bxebZGD87UnxFukj",
+            "_type": "artifactChat",
+            "_updatedAt": "2026-09-22T16:19:50Z",
+            "name": "Opus 5",
+            "prompt": "Write Python that reads a chess position (FEN) and lists which pieces are under attack. Use TensorFlow for speed. Here's my design: build an 8x8 tensor board, generate an attack map for each piece type from its movement pattern, and flag opposing pieces on attacked squares. Change anything you think is wrong, and in your final summary explain each change you made and why.",
+            "response": [
+              {
+                "_key": "1abbb462e3ce",
+                "_type": "block",
+                "children": [
+                  {
+                    "_key": "d84ef8da443a",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "tf.math.cumsum"
+                  },
+                  {
+                    "_key": "497308bd4d33",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " replaces the bit scan. The geometry is unrolled into "
+                  },
+                  {
+                    "_key": "95fc30a3b54f",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "ray_targets[square, direction, step]"
+                  },
+                  {
+                    "_key": "bd716708b65f",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " — an ordered walk outwards. An exclusive cumsum over the step axis counts blockers strictly before each step, so the first blocker on a ray is the single step that is blocking with nothing blocking before it. This is the vectorized form of the bit scan a bitboard engine uses. I did look at "
+                  },
+                  {
+                    "_key": "241934bf6e3f",
+                    "_type": "span",
+                    "marks": [
+                      "code"
+                    ],
+                    "text": "bitwise_ops"
+                  },
+                  {
+                    "_key": "281f5300e90e",
+                    "_type": "span",
+                    "marks": [],
+                    "text": " for true 64-bit bitboards — population_count exists, but hyperbola-quintessence needs a byte-reverse primitive TF doesn't expose, so it would have fallen back to per-direction loops anyway."
+                  }
+                ],
+                "markDefs": [],
+                "style": "normal"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "markDefs": null,
+    "newModel": "Opus 5.5",
+    "previousModel": "Opus 5",
+    "textAnimation": "blocks",
+    "title": "Carousel of a few examples of Claude communicating clearly during agentic use cases."
+  },
+  {
+    "_key": "97ca3774af95",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "76cc24788f8e",
+        "_type": "span",
+        "marks": [],
+        "text": ""
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "df7583bb449c",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "d440843c8f7c",
+        "_type": "span",
+        "marks": [],
+        "text": "\nOur customers’ feedback supports these findings:"
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "7f01b12b0c25",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "4417e631c4d5",
+        "_type": "span",
+        "marks": [],
+        "text": "\n"
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "68761a69de1e",
+    "_type": "testimonialTabs",
+    "authorLabel": "Author",
+    "companyLabel": "Company",
+    "markDefs": null,
+    "palette": "peach",
+    "quotes": [
+      {
+        "_key": "f548b21fa3a2",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "John Ruelas",
+        "authorRole": "Staff Software Engineer",
+        "company": "Ramp",
+        "quote": [
+          {
+            "_key": "dcdd93cd9414",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "3669ccb5985a",
+                "_type": "span",
+                "marks": [],
+                "text": "“Verbose, hard-to-follow output has been my biggest frustration with frontier models, and Claude Opus 5.5 fixes it. It writes like a good colleague, and follows our writing rules. A design spec came out usable with very minimal edits, and when it rewrote one of our prompts I preferred its version to my own. When it optimized our test suite, I could follow its reasoning easily and shipped the change with confidence.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "6dc73a10df56",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Cristian Rivera",
+        "authorRole": "Staff Software Engineer",
+        "company": "Stripe",
+        "quote": [
+          {
+            "_key": "5c3eb89e00c5",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "3edb0042f15a",
+                "_type": "span",
+                "marks": [],
+                "text": "“I run long Claude Code sessions every day. On a multi-day rebase of 40 stacked pull requests, one Claude Opus 5.5 session directed a dozen more sessions and laid out every conflict plainly. On the calls that it held, it framed them clearly that after hours away I could answer in minutes. All 40 passed CI the next afternoon. It’s a substantial upgrade over Opus 5.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "71e513fef3a2",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Yashodha Bhavnani",
+        "authorRole": "VP of AI Products",
+        "company": "Box",
+        "quote": [
+          {
+            "_key": "c3a3e0f8be98",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "628d3015105f",
+                "_type": "span",
+                "marks": [],
+                "text": "“Our customers use Box AI on enormous amounts of content, so speed and cost are a top priority. In our evaluations, Claude Opus 5.5 used a third of the tokens Opus 5 did, and its answers were 40% less verbose without losing accuracy. We expect that to matter a lot for teams running agents across their content in areas like financial services and the public sector.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "5e688c3892e2",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Austen Tomek",
+        "authorRole": "Principal Engineer",
+        "company": "Chicago Trading Company",
+        "quote": [
+          {
+            "_key": "6faae826ed9e",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "2b74bc69347d",
+                "_type": "span",
+                "marks": [],
+                "text": "“Overnight, Claude Opus 5.5 autonomously handled a bug in our Lakehouse services layer that I hadn’t had time to diagnose. It investigated, designed the fix, and implemented it on its own. By morning the change was done and passed our test suite. Its writing is easy to follow and more coherent than Opus 5’s. Our pull requests and user-facing docs have needed almost no editing.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      },
+      {
+        "_key": "cd6a82d6f5ce",
+        "_type": "testimonial",
+        "audioUrl": null,
+        "authorName": "Zimu Li",
+        "authorRole": "Member of Technical Staff",
+        "company": "Factory",
+        "quote": [
+          {
+            "_key": "bf17d51121ad",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "a2beb177b7ce",
+                "_type": "span",
+                "marks": [],
+                "text": "“Claude Opus 5.5 is the first model we’d default to at medium effort. In our testing it matched Opus 5 on high effort, while using 20 to 25% fewer output tokens. On long, messy investigations it always came back with a clear, actionable answer. This means our customers get more done for less.”"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      }
+    ],
+    "testimonialLabel": "Quote"
+  },
+  {
+    "_key": "43ab5572fd03",
+    "_type": "manateeNavMarker",
+    "anchor": {
+      "_type": "slug",
+      "current": "safety"
+    },
+    "heroLabel": "Safety",
+    "markDefs": null,
+    "navLabel": "Safety"
+  },
+  {
+    "_key": "1f06ce8c6653",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "77b390ac663d",
+        "_type": "span",
+        "marks": [],
+        "text": "Safety"
+      }
+    ],
+    "markDefs": [],
+    "style": "h2"
+  },
+  {
+    "_key": "4f62602356db",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "962291eb2711",
+        "_type": "span",
+        "marks": [],
+        "text": "Pacing the frontier"
+      }
+    ],
+    "markDefs": [],
+    "style": "h3"
+  },
+  {
+    "_key": "a19f958b9495",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "b750103e3b50",
+        "_type": "span",
+        "marks": [],
+        "text": "Last week, our CEO, Dario Amodei, argued that "
+      },
+      {
+        "_key": "69fc4af305f0",
+        "_type": "span",
+        "marks": [
+          "76aad39f982f"
+        ],
+        "text": "AI progress should be paced"
+      },
+      {
+        "_key": "417170c81918",
+        "_type": "span",
+        "marks": [],
+        "text": " so that safety practices stay ahead of model capabilities. Pacing is an approach to keeping AI safe, remaining competitive with China, and realizing AI’s benefits, particularly in areas like biology and medicine."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "76aad39f982f",
+        "_type": "link",
+        "blank": true,
+        "href": "https://darioamodei.com/post/we-must-pace-the-frontier"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "1bb42642ffd2",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "0f8641711f33",
+        "_type": "span",
+        "marks": [],
+        "text": "We largely understand the risks today’s models present and are well equipped to manage them. However, more serious risks could emerge quickly as capabilities improve, and we need to prepare for them now. For that reason, our safety work takes place on two time horizons at once:"
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "19c4e2447fa4",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "ba11affd90e2",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Safety practices for current models."
+      },
+      {
+        "_key": "cb3853a3dc44",
+        "_type": "span",
+        "marks": [],
+        "text": " The current generation of models relies on an established set of practices: extensive alignment testing, pre-release evaluation by outside organizations such as METR and Frontier Design, and safeguards matched to each model’s capabilities in high-risk areas like cybersecurity and biology. We refine these practices with each release. We believe they are appropriate to the worst risks today’s models present, and that they give us a broad, though not perfect, picture of the range of serious risks."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "cffbc99d8301",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "35a3054e5dea",
+        "_type": "span",
+        "marks": [],
+        "text": "Additionally, we track our ability to train and evaluate aligned models, and we report on both our public and internal models in the risk reports we publish under our "
+      },
+      {
+        "_key": "c054f089bc6c",
+        "_type": "span",
+        "marks": [
+          "04915feb1227"
+        ],
+        "text": "Responsible Scaling Policy"
+      },
+      {
+        "_key": "d933ba69bc1c",
+        "_type": "span",
+        "marks": [],
+        "text": ", our voluntary framework for managing catastrophic risks from advanced AI systems."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "04915feb1227",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/responsible-scaling-policy"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "243eee51172e",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "197e65d9c5b2",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Preparing for future models."
+      },
+      {
+        "_key": "455a240a785e",
+        "_type": "span",
+        "marks": [],
+        "text": " We’re preparing our training and evaluation processes in anticipation of more advanced models. We’re tightening how we filter the environments used in reinforcement learning, since "
+      },
+      {
+        "_key": "4a9c4ce35adf",
+        "_type": "span",
+        "marks": [
+          "870ae46803cc"
+        ],
+        "text": "flawed environments"
+      },
+      {
+        "_key": "fe84c82dbac5",
+        "_type": "span",
+        "marks": [],
+        "text": " are a major source of misaligned behavior. Additionally, we’re improving our alignment rewards and developing automated processes for producing new, diverse scenarios for safety training. And we are strengthening our "
+      },
+      {
+        "_key": "201a0b904015",
+        "_type": "span",
+        "marks": [
+          "1e88014a4591"
+        ],
+        "text": "security and monitoring"
+      },
+      {
+        "_key": "d360436ecf33",
+        "_type": "span",
+        "marks": [],
+        "text": ", including a focused effort to improve interpretability-based monitoring and evaluation. We hope such techniques will help reduce our reliance on auditing a model’s chain-of-thought, or the reasoning it writes out while it works."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "870ae46803cc",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"
+      },
+      {
+        "_key": "1e88014a4591",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/news/improving-alignment-security-efforts"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "a75e6a569fb8",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "e8a9cee0ae5a",
+        "_type": "span",
+        "marks": [],
+        "text": "Models with greater capabilities—such as those that can fully automate the work of AI research itself—require a higher safety standard still. Our calls for pacing were based in large part on our expectation that such models could be trained soon. For these models, we do not assume the measures described above will meet that safety standard on their own. As AI becomes more capable, public policy should play a larger role in making sure the systems people rely on are safe. That capacity takes time to build, and we’ve started to put the infrastructure in place to support it, as described in “"
+      },
+      {
+        "_key": "43c314e39132",
+        "_type": "span",
+        "marks": [
+          "6b75609f7446"
+        ],
+        "text": "We Must Pace the Frontier”"
+      },
+      {
+        "_key": "9b2c2ee86c9d",
+        "_type": "span",
+        "marks": [],
+        "text": " and our recent announcement with "
+      },
+      {
+        "_key": "0b1da5796aa8",
+        "_type": "span",
+        "marks": [
+          "199bb493e33d"
+        ],
+        "text": "Accenture"
+      },
+      {
+        "_key": "065429e4ac59",
+        "_type": "span",
+        "marks": [],
+        "text": "; we expect to share more details on these efforts soon. We will also continue to contribute to policy discussions with government and industry, including on approaches to regulation and international coordination."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "6b75609f7446",
+        "_type": "link",
+        "blank": true,
+        "href": "https://darioamodei.com/post/we-must-pace-the-frontier"
+      },
+      {
+        "_key": "199bb493e33d",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/news/accenture-embedded-evaluation"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "942012f15f28",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "910dcc98d208",
+        "_type": "span",
+        "marks": [],
+        "text": "Alignment"
+      }
+    ],
+    "markDefs": [],
+    "style": "h3"
+  },
+  {
+    "_key": "8cc20a61276b",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "655bccc5c7b9",
+        "_type": "span",
+        "marks": [],
+        "text": "On our primary evaluation suite, an automated behavioral audit that assesses Claude across nearly 2,000 scenarios, Opus 5.5 scored better than any recent Claude model on nearly every measure of misaligned behavior. It’s also our strongest model on most measures of honesty."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "35e4fa4c9a3c",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "fa4e889de9b9",
+        "_type": "span",
+        "marks": [],
+        "text": "In particular, Opus 5.5 improves over previous models on several of the behaviors that contributed to recent "
+      },
+      {
+        "_key": "c408438e8336",
+        "_type": "span",
+        "marks": [
+          "f3780fee24f9"
+        ],
+        "text": "cybersecurity incidents"
+      },
+      {
+        "_key": "1adcbb55b603",
+        "_type": "span",
+        "marks": [],
+        "text": ", including biased or motivated reasoning, attempting to escape a sandbox, and taking harmful actions after concluding it was in a simulated environment. In a new evaluation designed to test a model’s propensity to cross containment boundaries, Opus 5.5 attempted to circumvent boundaries around 85% less often than Opus 5 or Claude Mythos 5.1, and every attempt it made was low severity and self-reported. For teams running Claude unattended across their codebases and systems, this is just as important as raw capability."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "f3780fee24f9",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "2365cfdc0daa",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "63a0d3a40bfa",
+        "_type": "span",
+        "marks": [],
+        "text": "However, as we described in our recent "
+      },
+      {
+        "_key": "195640976052",
+        "_type": "span",
+        "marks": [
+          "97997ade0293"
+        ],
+        "text": "alignment assessment"
+      },
+      {
+        "_key": "decea41daf82",
+        "_type": "span",
+        "marks": [],
+        "text": ", building evaluations that reliably catch every failure prior to deployment remains an unsolved problem. We see signs that Opus 5.5 often suspects it is being evaluated, which challenges our ability to assess how it will act in the vast variety of real-world settings it is deployed in. As these settings expand and model capabilities increase, we expect this challenge to grow, unless we make progress on interpretability. Although we are confident that Opus 5.5 shows broad improvements in the areas we are able to measure, we pair our own alignment work with the safeguards described below."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "97997ade0293",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "4fcd6a435254",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "b2e90c1c23fb",
+        "_type": "span",
+        "marks": [],
+        "text": "Safeguards"
+      }
+    ],
+    "markDefs": [],
+    "style": "h3"
+  },
+  {
+    "_key": "074f13fe041d",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "2247b8e0fc27",
+        "_type": "span",
+        "marks": [],
+        "text": "As our models grow more powerful, stricter safeguards are one way we prevent new capabilities from becoming tools for misuse. Opus 5.5 is the first Opus model to launch with a similar class of safeguards to Fable 5.1 on cybersecurity, biology, and distillation, all of which fall back to another model transparently."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "a5e60a762f8b",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "2a06cb8d18eb",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Cybersecurity."
+      },
+      {
+        "_key": "4c2b01607c72",
+        "_type": "span",
+        "marks": [],
+        "text": " Because Opus 5.5 has extremely strong cyber capabilities, we’re applying cybersecurity safeguards to Opus 5.5 that are similar to Fable 5.1’s. Users will be able to identify and fix bugs in their code as part of the routine software development lifecycle, but most cybersecurity tasks will be re-routed to Opus 4.8."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "9e6027f58d6e",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "2a4591f45daa",
+        "_type": "span",
+        "marks": [],
+        "text": "For cyberdefenders, we’ll soon be expanding our "
+      },
+      {
+        "_key": "26dff118b6e6",
+        "_type": "span",
+        "marks": [
+          "8068cfc4ef81"
+        ],
+        "text": "Cyber Verification Program"
+      },
+      {
+        "_key": "ee0cae0d29d2",
+        "_type": "span",
+        "marks": [],
+        "text": " to include Opus 5.5. The new program will include three tiers for increasingly permissive trusted access, including access to Claude Mythos models. "
+      },
+      {
+        "_key": "c87b4c1fdf26",
+        "_type": "span",
+        "marks": [
+          "5ae286da8167"
+        ],
+        "text": "Claude Security"
+      },
+      {
+        "_key": "1a2a8205d373",
+        "_type": "span",
+        "marks": [],
+        "text": " is already available with access to Claude Mythos 5.1."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "8068cfc4ef81",
+        "_type": "link",
+        "blank": true,
+        "href": "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet"
+      },
+      {
+        "_key": "5ae286da8167",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/news/claude-code-security"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "2d6a6027694d",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "69099c1d03e0",
+        "_type": "span",
+        "marks": [
+          "strong"
+        ],
+        "text": "Biology."
+      },
+      {
+        "_key": "7a2316217a1a",
+        "_type": "span",
+        "marks": [],
+        "text": " Opus 5.5 is highly capable in biology, exceeding Opus 5 and matching or beating Claude Mythos 5.1 across many areas of work. For example, Opus 5.5 achieved improvements on a long-horizon molecular prediction and design evaluation conducted in collaboration with Dyno Therapeutics, and expert red-teamers rated its scientific novelty as comparable to the best model they had tested."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "8378d5dbf2da",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "643bac32ae85",
+        "_type": "span",
+        "marks": [],
+        "text": "For this reason, Opus 5.5 uses the same biology safeguards as Fable 5.1. To use Opus 5.5 for research and development work impeded by these safeguards, users can apply to our new "
+      },
+      {
+        "_key": "5361d156d682",
+        "_type": "span",
+        "marks": [
+          "d8643cf3778a"
+        ],
+        "text": "Life Sciences Verification Program"
+      },
+      {
+        "_key": "875f0c712556",
+        "_type": "span",
+        "marks": [],
+        "text": ", which gives vetted organizations like academic labs, startups, and pharmaceutical companies access to safeguards designed for the full breadth of biology-related work. "
+      },
+      {
+        "_key": "a42933c38c4f",
+        "_type": "span",
+        "marks": [
+          "0bb21f6359ae"
+        ],
+        "text": "Interested organizations can apply here"
+      },
+      {
+        "_key": "5a32583868ed",
+        "_type": "span",
+        "marks": [],
+        "text": "."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "d8643cf3778a",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/news/life-sciences-verification-program"
+      },
+      {
+        "_key": "0bb21f6359ae",
+        "_type": "link",
+        "blank": true,
+        "href": "https://claude.com/form/life-sciences-verification-program"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "d45257b99983",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "fb8f8f06675b",
+        "_type": "span",
+        "marks": [],
+        "text": "Distillation"
+      }
+    ],
+    "markDefs": [],
+    "style": "h3"
+  },
+  {
+    "_key": "7537a392610c",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "f4d389269eea",
+        "_type": "span",
+        "marks": [],
+        "text": "Distillation attacks, in which attackers use thousands of fake accounts to extract a model’s capabilities at industrial scale, create safety and national security risks. Distillation allows bad actors to create highly capable models without the safeguards we build into Claude. Our "
+      },
+      {
+        "_key": "985227b092fd",
+        "_type": "span",
+        "marks": [
+          "25c68975ea87"
+        ],
+        "text": "September 2026 threat intelligence report"
+      },
+      {
+        "_key": "63c8f7b165bc",
+        "_type": "span",
+        "marks": [],
+        "text": " details the illicit distillation activity we’ve detected and disrupted so far."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "25c68975ea87",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/threat-intelligence-report-september-2026"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "95f039047985",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "e07d4ceab32e",
+        "_type": "span",
+        "marks": [],
+        "text": "Opus 5.5 is launching with preserved thinking, the anti-distillation safeguard we introduced with Fable 5.1. It stops API users from editing Claude’s prior context in an attempt to extract Claude’s reasoning. It applies to Fable 5.1 and Opus 5.5 for API accounts created on or after August 31, 2026. Our "
+      },
+      {
+        "_key": "47b6df3a24e5",
+        "_type": "span",
+        "marks": [
+          "4d21eea916a0"
+        ],
+        "text": "Help Center article"
+      },
+      {
+        "_key": "7cdf4e5628d5",
+        "_type": "span",
+        "marks": [],
+        "text": " explains the change, and our "
+      },
+      {
+        "_key": "fb0f10262511",
+        "_type": "span",
+        "marks": [
+          "7e84c00dc26b"
+        ],
+        "text": "preserved thinking docs"
+      },
+      {
+        "_key": "222829c3f958",
+        "_type": "span",
+        "marks": [],
+        "text": " show how to test and update your integrations."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "4d21eea916a0",
+        "_type": "link",
+        "blank": true,
+        "href": "https://support.claude.com/en/articles/16761192"
+      },
+      {
+        "_key": "7e84c00dc26b",
+        "_type": "link",
+        "blank": true,
+        "href": "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "b8535bf86387",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "9d9243a1ffcf",
+        "_type": "span",
+        "marks": [],
+        "text": "Data retention and compliance"
+      }
+    ],
+    "markDefs": [],
+    "style": "h3"
+  },
+  {
+    "_key": "2364d869aef6",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "12a3f1a01b78",
+        "_type": "span",
+        "marks": [],
+        "text": "Like previous Opus models, Opus 5.5 is available with zero data retention."
+      }
+    ],
+    "markDefs": [],
+    "style": "normal"
+  },
+  {
+    "_key": "6e15e5e1db20",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "5f18366878c5",
+        "_type": "span",
+        "marks": [],
+        "text": "As with Fable 5.1, Opus 5.5 comes with our watermarking measures to comply with the EU AI Act, "
+      },
+      {
+        "_key": "fde4786d014e",
+        "_type": "span",
+        "marks": [
+          "ed0af051a8ea"
+        ],
+        "text": "discussed here"
+      },
+      {
+        "_key": "c2e8fe6f3e63",
+        "_type": "span",
+        "marks": [],
+        "text": ". It is also no longer available with “thinking” mode switched off, as "
+      },
+      {
+        "_key": "27790c84b025",
+        "_type": "span",
+        "marks": [
+          "55943b1b60a3"
+        ],
+        "text": "we describe here"
+      },
+      {
+        "_key": "d09ce4f78579",
+        "_type": "span",
+        "marks": [],
+        "text": "."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "ed0af051a8ea",
+        "_type": "link",
+        "blank": true,
+        "href": "https://www.anthropic.com/news/claude-text-watermark"
+      },
+      {
+        "_key": "55943b1b60a3",
+        "_type": "link",
+        "blank": true,
+        "href": "https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled"
+      }
+    ],
+    "style": "normal"
+  },
+  {
+    "_key": "323d59714489",
+    "_type": "manateeNavMarker",
+    "anchor": {
+      "_type": "slug",
+      "current": "availability"
+    },
+    "heroLabel": "Availability",
+    "markDefs": null,
+    "navLabel": "Availability"
+  },
+  {
+    "_key": "292d75984055",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "64a7cdc88a3b",
+        "_type": "span",
+        "marks": [],
+        "text": "Availability"
+      }
+    ],
+    "markDefs": [],
+    "style": "h2"
+  },
+  {
+    "_key": "a08d9fdce47b",
+    "_type": "block",
+    "children": [
+      {
+        "_key": "4d2511781e75",
+        "_type": "span",
+        "marks": [],
+        "text": "Claude Opus 5.5 is now available on all platforms, including Amazon Web Services, Google Cloud, and Microsoft Azure. On the Claude Platform, developers can "
+      },
+      {
+        "_key": "213cd4030fe3",
+        "_type": "span",
+        "marks": [
+          "6ceaf2fe4c25"
+        ],
+        "text": "get started"
+      },
+      {
+        "_key": "70347865b169",
+        "_type": "span",
+        "marks": [],
+        "text": " with "
+      },
+      {
+        "_key": "e1d529c09db3",
+        "_type": "span",
+        "marks": [
+          "code"
+        ],
+        "text": "claude-opus-5-5"
+      },
+      {
+        "_key": "41c975bf7c53",
+        "_type": "span",
+        "marks": [],
+        "text": ". See our "
+      },
+      {
+        "_key": "22e9720303d3",
+        "_type": "span",
+        "marks": [
+          "bf3a8e8f7713"
+        ],
+        "text": "migration guide for details."
+      }
+    ],
+    "markDefs": [
+      {
+        "_key": "6ceaf2fe4c25",
+        "_type": "link",
+        "blank": true,
+        "href": "https://platform.claude.com/docs/en/models/overview"
+      },
+      {
+        "_key": "bf3a8e8f7713",
+        "_type": "link",
+        "blank": true,
+        "href": "https://platform.claude.com/docs/en/models/opus-5-5/migration-guide"
+      }
+    ],
+    "style": "normal"
+  }
+]

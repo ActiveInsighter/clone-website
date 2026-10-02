@@ -1,0 +1,190 @@
+[
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicMono_Italic_Web-s.p.0x1wr-4z1xgw3.woff2",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicMono_Roman_Web-s.p.16xhthj2n-pap.woff2",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSans_Italic_Web-s.p.212cqpul8-axk.woff2",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSans_Roman_Web-s.p.1e3n6bt4oqimz.woff2",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSerif_Italic_Web-s.p.1fjksu1uimpf3.woff2",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSerif_Roman_Web-s.p.0twp0vwi-lncj.woff2",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/2gepcixj9k_19.css",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/2pnrpp88lh_gg.css",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/14_07jj_mytk0.css",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/0xmu8wht0n7c1.css",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/1mi4v0wtm3pl0.css",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/1czqrpqf9krjf.css",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/36b_fuzc7uyob.js",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/1ey0h8xsfa_wx.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/2q4-4somkyld6.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/1b3l1r0ibcx_k.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/turbopack-1hsruj7cezfxl.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/1fvd0nqqmo54p.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/2rz2zj_oc4b-2.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/3yo_tfv2i4geb.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/0nawt0ap340lw.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/3ivs8n8bmmln4.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/3syu72y118s_7.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/2q7zgbd7qicdr.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/0zgp5us6zzclv.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/1vrtejelmfhno.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/3u0m-ev5_8d4d.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/2vqnn7fn6b0o0.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/0ar0r03233i0c.css",
+    "type": "link"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/JetBrainsMono_VF-s.368fqwf5c-upc.woff2",
+    "type": "css"
+  },
+  {
+    "url": "https://www.anthropic.com/images/icons/favicon-32x32.png",
+    "type": "other"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/0e31udosiqtjv.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/41_gzyyozy8zz.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/kv09.1mnd4p0zfd843.bin",
+    "type": "fetch"
+  },
+  {
+    "url": "https://www.anthropic.com/favicon.ico",
+    "type": "other"
+  },
+  {
+    "url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a63576fc5e4af0139e2eb432b9a6316f16348d7c-2560x1440.webp?w=1920&fm=webp&q=80",
+    "type": "img"
+  },
+  {
+    "url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a06ccc910a8ee460345ff4f0c46d99a17af7f9bd-2560x1440.webp?w=1920&fm=webp&q=80",
+    "type": "img"
+  },
+  {
+    "url": "https://www.anthropic.com/api/country",
+    "type": "fetch"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/3ikv1zfcxpxsn.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/08ogo2hkyo8_1.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/2266cpy760jk_.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/28ar0zrtrcg1g.js",
+    "type": "script"
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/chunks/1vb6c7tw6e3-a.js",
+    "type": "script"
+  },
+  {
+    "url": "https://assets.claude.ai/sdk/antalytics/atm/anthropic_com/latest.umd.js",
+    "type": "script"
+  },
+  {
+    "url": "https://assets.claude.ai/sdk/antalytics/latest.umd.js",
+    "type": "script"
+  },
+  {
+    "url": "https://a.anthropic.com/isolated-segment.html?v=7498a279ecb9",
+    "type": "iframe"
+  },
+  {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-KWW2N9TQ",
+    "type": "script"
+  }
+]

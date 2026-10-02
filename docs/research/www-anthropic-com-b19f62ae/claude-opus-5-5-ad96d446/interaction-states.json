@@ -1,0 +1,43 @@
+[
+  {
+    "label": "Agentic terminal coding",
+    "text": "Terminal-Bench 4.0\nAccuracy vs Cost\nOpus 5.5\nFable 5.1\nOpus 5\nGPT-6 Astra\nGPT-5.6 Sol\n0\n10\n20\n30\n40\n50\n60\n70\nScore (%)\n2\n5\n10\n20\nCost per attempt (USD, log scale)\nLow\nMed\nHigh\nXhigh\nMax\n\nTerminal-Bench 4.0 measures how well a model can complete complex, multi-step professional tasks within a command line interface. Opus 5.5 at default effort beats Opus 5 at max effort for about a fifth of the cost. It matches GPT-6 Astra at about 40% of the cost.",
+    "svg": null
+  },
+  {
+    "legend": "Opus 5",
+    "pressed": "true"
+  },
+  {
+    "tooltip": "Terminal-Bench 4.0\nAccuracy vs Cost\nOpus 5.5\nFable 5.1\nOpus 5\nGPT-6 Astra\nGPT-5.6 Sol\n0\n10\n20\n30\n40\n50\n60\n70\nScore (%)\n2\n5\n10\n20\nCost per attempt (USD, log scale)\nLow\nMed\nHigh\nXhigh\nMax\n\nTerminal-Bench 4.0 measures how well a model can complete complex, multi-step professional tasks within a command line interface. Opus 5.5 at default effort beats Opus 5 at max effort for about a fifth of the cost. It matches GPT-6 Astra at about 40% of the cost."
+  },
+  {
+    "label": "Agentic coding: FrontierCode",
+    "text": "FrontierCode v1.1, main set\nAccuracy vs Cost\nOpus 5.5\nFable 5.1\nOpus 5\nGPT-6 Astra\nGPT-5.6 Sol\n35\n40\n45\n50\n55\n0\nScore (%)\n0.50\n1\n2\n5\n10\nCost per task (USD, log scale)\nLow\nMed\nHigh\nXhigh\nMax\n\nFrontierCode measures whether an agent’s code changes would be merged. At default effort (medium), Opus 5.5 scores 54.6%, higher than all other models, beating GPT-6 Astra’s top score (53.3%) for about a fifth of the cost per task.",
+    "svg": null
+  },
+  {
+    "label": "Agentic coding: CursorBench",
+    "text": "CursorBench 4.0\nAccuracy vs Cost\nOpus 5.5\nFable 5.1\nOpus 5\nGPT-5.6 Sol\n25\n30\n35\n40\n45\n50\n55\n60\n0\nScore (%)\n1\n2\n5\n10\n20\nCost per task (USD, log scale)\nLow\nMed\nHigh\nXhigh\nMax\n\nCursorBench evaluates coding agents on ambiguous, multi-file tasks taken from real Cursor sessions. At default effort (medium), Opus 5.5 scores 52.5%, compared to 51.8% for Fable 5.1 (max) and 46.6% for Opus 5 (max). It beats GPT-5.6 Sol’s top score (41.7%) by 11 points for about a third of the cost per task.",
+    "svg": null
+  },
+  {
+    "label": "GDPval-AA v2.1",
+    "text": "CursorBench 4.0\nAccuracy vs Cost\nOpus 5.5\nFable 5.1\nOpus 5\nGPT-5.6 Sol\n25\n30\n35\n40\n45\n50\n55\n60\n0\nScore (%)\n1\n2\n5\n10\n20\nCost per task (USD, log scale)\nLow\nMed\nHigh\nXhigh\nMax\n\nCursorBench evaluates coding agents on ambiguous, multi-file tasks taken from real Cursor sessions. At default effort (medium), Opus 5.5 scores 52.5%, compared to 51.8% for Fable 5.1 (max) and 46.6% for Opus 5 (max). It beats GPT-5.6 Sol’s top score (41.7%) by 11 points for about a third of the cost per task.",
+    "svg": null
+  },
+  {
+    "label": "AutomationBench",
+    "text": "CursorBench 4.0\nAccuracy vs Cost\nOpus 5.5\nFable 5.1\nOpus 5\nGPT-5.6 Sol\n25\n30\n35\n40\n45\n50\n55\n60\n0\nScore (%)\n1\n2\n5\n10\n20\nCost per task (USD, log scale)\nLow\nMed\nHigh\nXhigh\nMax\n\nCursorBench evaluates coding agents on ambiguous, multi-file tasks taken from real Cursor sessions. At default effort (medium), Opus 5.5 scores 52.5%, compared to 51.8% for Fable 5.1 (max) and 46.6% for Opus 5 (max). It beats GPT-5.6 Sol’s top score (41.7%) by 11 points for about a third of the cost per task.",
+    "svg": null
+  },
+  {
+    "label": "WANDR",
+    "text": "CursorBench 4.0\nAccuracy vs Cost\nOpus 5.5\nFable 5.1\nOpus 5\nGPT-5.6 Sol\n25\n30\n35\n40\n45\n50\n55\n60\n0\nScore (%)\n1\n2\n5\n10\n20\nCost per task (USD, log scale)\nLow\nMed\nHigh\nXhigh\nMax\n\nCursorBench evaluates coding agents on ambiguous, multi-file tasks taken from real Cursor sessions. At default effort (medium), Opus 5.5 scores 52.5%, compared to 51.8% for Fable 5.1 (max) and 46.6% for Opus 5 (max). It beats GPT-5.6 Sol’s top score (41.7%) by 11 points for about a third of the cost per task.",
+    "svg": null
+  },
+  {
+    "comparison": "Explaining a bug",
+    "text": "QUOTE\n\n“Verbose, hard-to-follow output has been my biggest frustration with frontier models, and Claude Opus 5.5 fixes it. It writes like a good colleague, and follows our writing rules. A design spec came out usable with very minimal edits, and when it rewrote one of our prompts I preferred its version to my own. When it optimized our test suite, I could follow its reasoning easily and shipped the change with confidence.”\n\nCOMPANY\nRamp\nAUTHOR\nJohn Ruelas, Staff Software Engineer"
+  }
+]

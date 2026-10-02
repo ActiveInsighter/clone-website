@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicMono_Italic_Web-s.p.0x1wr-4z1xgw3.woff2",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/fonts/AnthropicMono_Italic.woff2",
+    "bytes": 70384
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSerif_Roman_Web-s.p.0twp0vwi-lncj.woff2",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/fonts/AnthropicSerif_Roman.woff2",
+    "bytes": 175356
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicMono_Roman_Web-s.p.16xhthj2n-pap.woff2",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/fonts/AnthropicMono_Roman.woff2",
+    "bytes": 66056
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSerif_Italic_Web-s.p.1fjksu1uimpf3.woff2",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/fonts/AnthropicSerif_Italic.woff2",
+    "bytes": 166724
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSans_Roman_Web-s.p.1e3n6bt4oqimz.woff2",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/fonts/AnthropicSans_Roman.woff2",
+    "bytes": 118340
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/AnthropicSans_Italic_Web-s.p.212cqpul8-axk.woff2",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/fonts/AnthropicSans_Italic.woff2",
+    "bytes": 129868
+  },
+  {
+    "url": "https://www.anthropic.com/_next/static/media/JetBrainsMono_VF-s.368fqwf5c-upc.woff2",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/fonts/JetBrainsMono.woff2",
+    "bytes": 113504
+  },
+  {
+    "url": "https://www.anthropic.com/images/icons/favicon-32x32.png",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/favicon.png",
+    "bytes": 1359
+  },
+  {
+    "url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a06ccc910a8ee460345ff4f0c46d99a17af7f9bd-2560x1440.webp?w=1920&fm=webp&q=80",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/images/hero-0.webp",
+    "bytes": 464906
+  },
+  {
+    "url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a63576fc5e4af0139e2eb432b9a6316f16348d7c-2560x1440.webp?w=1920&fm=webp&q=80",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/images/hero-1.webp",
+    "bytes": 314960
+  }
+]
