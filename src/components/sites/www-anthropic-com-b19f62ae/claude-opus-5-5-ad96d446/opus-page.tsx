@@ -58,7 +58,7 @@ function ArticleContent({ node }: { node: ArticleNode }) {
 /** The source article is composed from product-neutral, data-driven evidence components. */
 export function OpusPage() {
   return (
-    <div className="opus-page" data-clone-site="anthropic" data-evidence-theme="light" lang="en">
+    <div className="opus-page" data-clone-site="anthropic" data-evidence-theme="paper" lang="en">
       <OpusHeader />
       <OpusHero sections={sections} />
       <main id="main-content" className="opus-main" tabIndex={-1}>
