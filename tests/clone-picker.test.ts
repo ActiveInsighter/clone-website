@@ -11,6 +11,7 @@ test("builds one explicit selector link for every registered clone", () => {
       { id: "chatgpt", label: "ChatGPT", href: "/clones/chatgpt" },
       { id: "studio", label: "Studio", href: "/clones/studio" },
       { id: "gemini", label: "Gemini", href: "/clones/gemini" },
+      { id: "anthropic", label: "Anthropic · Opus 5.5", href: "/clones/anthropic/claude-opus-5-5" },
     ],
   )
 })

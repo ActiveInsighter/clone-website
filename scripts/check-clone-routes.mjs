@@ -66,6 +66,10 @@ try {
   const unknown = await request("/clones/does-not-exist")
   assert.equal(unknown.status, 404)
   console.log("PASS unknown clone returns 404")
+  const gallery = await request("/components/evidence")
+  assert.equal(gallery.status, 200)
+  assert.ok((await gallery.text()).includes("A reusable presentation system"))
+  console.log("PASS reusable component gallery")
 } finally {
   if (server.exitCode === null && server.signalCode === null) {
     const exited = once(server, "exit")

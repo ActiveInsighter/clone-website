@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 
-import { getCloneSite, siteManifests } from "@/sites"
+import { getCloneSite, getStaticCloneParams } from "@/sites"
 import { siteLoaders } from "@/sites/loaders"
 
 type ClonePageProps = {
@@ -13,7 +13,7 @@ type ClonePageProps = {
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return Object.keys(siteManifests).map((siteId) => ({ siteId, path: [] }))
+  return getStaticCloneParams()
 }
 
 export default async function ClonePage({ params }: ClonePageProps) {

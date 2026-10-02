@@ -31,7 +31,7 @@ export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] })
         seed = (seed * 16807) % 2147483647
         const value = seed % 256
         pixels.data[i] = pixels.data[i + 1] = pixels.data[i + 2] = value
-        pixels.data[i + 3] = 40
+        pixels.data[i + 3] = 18
       }
       grainContext.putImageData(pixels, 0, 0)
     }
@@ -64,7 +64,8 @@ export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] })
       }
       context.setTransform(dpr, 0, 0, dpr, 0, 0)
       const horizon = Math.min(height * 0.72, 860) + pointerY * (motion.matches ? 0 : 3)
-      const sky = context.createLinearGradient(0, top, 0, horizon)
+      const skyTop = motion.matches ? 0 : Math.max(top, Math.min(-rect.top, 300))
+      const sky = context.createLinearGradient(0, skyTop, 0, horizon + 28)
       sky.addColorStop(0, "#080f18")
       sky.addColorStop(0.17, "#183958")
       sky.addColorStop(0.36, "#47779d")
@@ -72,24 +73,18 @@ export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] })
       sky.addColorStop(0.69, "#9095b1")
       sky.addColorStop(0.83, "#c9a297")
       sky.addColorStop(0.9, "#e8ad6a")
-      sky.addColorStop(0.96, "#e47232")
-      sky.addColorStop(1, "#b92e18")
+      sky.addColorStop(0.94, "#e47232")
+      sky.addColorStop(0.965, "#b92e18")
+      sky.addColorStop(1, "#291c1e")
       context.fillStyle = sky
       context.fillRect(0, 0, width, height)
-      // A very shallow arc gives the horizon the source's panoramic curvature.
-      const ground = context.createLinearGradient(0, horizon - 25, 0, height)
-      ground.addColorStop(0, "#612a20")
-      ground.addColorStop(0.09, "#291c1e")
+      // Blend the distant horizon into the foreground without a hard silhouette.
+      const ground = context.createLinearGradient(0, horizon + 28, 0, height)
+      ground.addColorStop(0, "#291c1e")
       ground.addColorStop(0.5, "#141211")
       ground.addColorStop(1, "#0d0c0b")
       context.fillStyle = ground
-      context.beginPath()
-      context.moveTo(0, horizon + 20)
-      context.quadraticCurveTo(width / 2, horizon - 44, width, horizon + 20)
-      context.lineTo(width, height)
-      context.lineTo(0, height)
-      context.closePath()
-      context.fill()
+      context.fillRect(0, horizon + 28, width, height - horizon - 28)
       const texture = context.createPattern(grain, "repeat")
       if (texture) {
         context.fillStyle = texture

@@ -189,3 +189,8 @@ docker compose up dev --build # 在开发模式下运行，端口 3001
 ## 许可证
 
 MIT
+
+
+## Evidence 可复用组件库
+
+Anthropic Opus 5.5 复刻页面：`/clones/anthropic/claude-opus-5-5`。组件展示页：`/components/evidence`。参阅[组件 API 与迁移说明](docs/components/evidence.md)，了解 shadcn 表格、Recharts 图表、主题和叙述交互组件的复用方式。

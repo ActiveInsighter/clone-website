@@ -1,6 +1,7 @@
 export {
   getClonePickerItems,
   getSiteManifest,
+  getStaticCloneParams,
   siteManifests,
   type ClonePickerItem,
   type NavigationSurface,

@@ -1,5 +1,4 @@
-import { ArrowUpRight } from "lucide-react"
-import Link from "next/link"
+import { DestinationCard } from "@/components/destination-card"
 
 import { getClonePickerItems } from "@/sites"
 
@@ -23,21 +22,9 @@ export function ClonePicker() {
 
         <nav aria-label="复刻网站" className="mt-12 grid gap-3 sm:grid-cols-3">
           {items.map((item) => (
-            <Link
-              className="group flex min-h-44 flex-col justify-between rounded-2xl border border-white/12 bg-white/[0.045] p-5 transition-colors hover:border-white/30 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-              href={item.href}
-              key={item.id}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <span className="text-xl font-medium tracking-[-0.02em]">{item.label}</span>
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="size-5 text-white/45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"
-                />
-              </div>
-              <span className="text-sm text-white/45">{item.href}</span>
-            </Link>
+            <DestinationCard href={item.href} title={item.label} key={item.id} />
           ))}
+          <DestinationCard href="/components/evidence" title="Evidence 组件库" description="图表、表格与叙述交互 · 可切换数据和主题" />
         </nav>
 
         <p className="mt-8 text-sm text-white/35">

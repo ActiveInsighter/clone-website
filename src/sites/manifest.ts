@@ -1,15 +1,20 @@
-export type SiteId = "openai" | "chatgpt" | "studio" | "gemini"
+export type SiteId = "openai" | "chatgpt" | "studio" | "gemini" | "anthropic"
 
 export type NavigationSurface =
   | "marketing-top-nav"
   | "chatgpt-compound-sidebar"
   | "studio-app-shell"
   | "gemini-sidebar"
+  | "editorial-top-nav"
 
 export interface SiteManifest {
   readonly id: SiteId
   readonly label: string
   readonly defaultPath: string
+  readonly metadata?: {
+    readonly title: string
+    readonly description: string
+  }
   readonly navigation: {
     readonly surface: NavigationSurface
     readonly owner: string
@@ -59,12 +64,35 @@ export const siteManifests = {
       owner: "src/components/sidebar/configured-sidebar.tsx",
     },
   },
+  anthropic: {
+    id: "anthropic",
+    label: "Anthropic · Opus 5.5",
+    defaultPath: "/clones/anthropic/claude-opus-5-5",
+    metadata: {
+      title: "Introducing Claude Opus 5.5 · Anthropic Clone",
+      description: "A faithful Opus 5.5 page with reusable benchmark tables, interactive cost-performance charts, and editorial components.",
+    },
+    navigation: {
+      surface: "editorial-top-nav",
+      owner: "src/components/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/",
+    },
+  },
 } as const satisfies Record<SiteId, SiteManifest>
 
 export function getSiteManifest(siteId: string): SiteManifest | undefined {
-  if (!(siteId in siteManifests)) return undefined
+  if (!Object.hasOwn(siteManifests, siteId)) return undefined
 
   return siteManifests[siteId as SiteId]
+}
+
+export function getStaticCloneParams(): { siteId: SiteId; path: string[] }[] {
+  return Object.values(siteManifests).map(({ id, defaultPath }) => {
+    const prefix = `/clones/${id}`
+    if (defaultPath !== prefix && !defaultPath.startsWith(`${prefix}/`)) {
+      throw new Error(`Clone route must belong to its site: ${defaultPath}`)
+    }
+    return { siteId: id, path: defaultPath.slice(prefix.length).split("/").filter(Boolean) }
+  })
 }
 
 export function getClonePickerItems(): readonly ClonePickerItem[] {

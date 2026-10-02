@@ -217,12 +217,15 @@
 
 @media (max-width: 599px) {
   .evidence-benchmark {
-    --evidence-label-width: 200px;
+    --evidence-label-width: 128px;
+    --evidence-value-width: 104px;
   }
 
   .evidence-benchmark-table tbody :is(th, td) {
-    height: 82px;
+    height: 96px;
   }
+
+  .evidence-benchmark-table :is(th, td) { padding: 10px 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

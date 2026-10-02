@@ -1,0 +1,21 @@
+.evidence-gallery { background: var(--evidence-paper); min-height: 100vh; overflow-x: clip; font-family: var(--evidence-sans); padding: 0 24px 100px; }
+.evidence-gallery-inner { max-width: 1000px; margin: auto; }
+.evidence-gallery-nav { display: flex; justify-content: space-between; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--evidence-grid); font-size: 13px; }
+.evidence-gallery-nav a:hover { text-decoration: underline; }
+.evidence-gallery-header { padding: 76px 0 40px; max-width: 650px; }
+.evidence-gallery-eyebrow { font-family: var(--evidence-mono); text-transform: uppercase; font-size: 11px; letter-spacing: .1em; }
+.evidence-gallery-header h1 { font-family: var(--evidence-serif); font-size: clamp(64px, 10vw, 100px); line-height: 1.1; letter-spacing: -.055em; margin: 20px 0 24px; }
+.evidence-gallery-header > p:last-child { font-size: 19px; line-height: 1.8; color: var(--evidence-muted); }
+.evidence-gallery-controls { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 24px 0; border-top: 1px solid var(--evidence-grid); border-bottom: 1px solid var(--evidence-grid); }
+.evidence-gallery-controls > div { display: flex; gap: 8px; align-items: center; }
+.evidence-gallery-controls span { font-size: 13px; margin-right: 8px; }
+.evidence-gallery-controls button { background: transparent; color: var(--evidence-ink); border-color: var(--evidence-grid); }
+.evidence-gallery-controls button[aria-pressed="true"] { background: var(--evidence-highlight); border-color: var(--evidence-highlight-line); }
+.evidence-gallery-disclaimer { font-size: 12px; line-height: 1.7; color: var(--evidence-muted); margin-top: 16px; }
+.evidence-gallery-section { margin-top: 80px; }
+.evidence-gallery-section > h2 { font-family: var(--evidence-serif); font-size: 32px; font-weight: 500; letter-spacing: -.02em; margin-bottom: 16px; }
+.evidence-gallery-section > p { max-width: 640px; font-size: 15px; line-height: 1.8; color: var(--evidence-muted); margin-bottom: 32px; }
+.evidence-gallery-section > .evidence-chart-tabs, .evidence-gallery-section > .evidence-chart, .evidence-gallery-section > .evidence-testimonials, .evidence-gallery-section > .evidence-response-comparison { margin-top: 40px; }
+.evidence-gallery-section > .evidence-response { margin-top: 48px; }
+.evidence-gallery-integration pre { white-space: pre; overflow: auto; background: var(--evidence-grid); padding: 24px; margin: 24px 0; font-size: 13px; line-height: 1.8; }
+@media(max-width:600px) { .evidence-gallery { padding-inline: 20px; } .evidence-gallery-nav { font-size: 11px; } .evidence-gallery-header { padding-top: 48px; } .evidence-gallery-section > h2 { font-size: 27px; } }

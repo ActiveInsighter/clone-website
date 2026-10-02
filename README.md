@@ -184,3 +184,8 @@ This repository's existing multi-site routing conventions are in `AGENTS.md`. Se
 ## License
 
 MIT
+
+
+## Evidence component library
+
+Anthropic Opus 5.5: `/clones/anthropic/claude-opus-5-5`. Reusable component gallery: `/components/evidence`. See [component APIs and migration guide](docs/components/evidence.md) for shadcn tables, Recharts charts, themes and editorial interactions.

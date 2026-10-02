@@ -40,3 +40,9 @@ jobs:
 
       - name: Verify production clone routes
         run: npm run test:routes
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify reusable component interactions
+        run: npm run test:e2e

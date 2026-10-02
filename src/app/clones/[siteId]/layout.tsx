@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: CloneLayoutProps): Promise<Me
   if (!manifest) notFound()
 
   return {
-    title: `${manifest.label} Clone`,
-    description: `${manifest.label} website replica`,
+    title: manifest.metadata?.title ?? `${manifest.label} Clone`,
+    description: manifest.metadata?.description ?? `${manifest.label} website replica`,
   }
 }
 
