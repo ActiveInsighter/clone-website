@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- Synchronize the official template workflow to v0.5.1: one canonical skill in `.agents/skills/clone-website/`, an on-demand inspection reference, and a thin Claude Code bridge.
+- Remove duplicate legacy prompts and obsolete synchronization scripts; keep existing multi-site routing guidance and bilingual project documentation.
+- Pin Next.js and eslint-config-next to 16.3.8 (newer than the upstream 16.3.5 pin) to address GHSA-vcvr-r3jv-pc5j; refresh vulnerable transitive dependencies in the npm lockfile.
+- Run all existing application tests and production HTTP route checks in CI.
+- Provide an explicit empty catch-all path when generating static clone roots so all four site links resolve in production instead of returning 404.
 - Raised the project Node.js baseline to 24 across local development, CI, Docker, and contributor-facing documentation
 
 ## [0.3.1] - 2026-03-29

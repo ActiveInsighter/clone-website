@@ -26,6 +26,7 @@ A reusable template for reverse-engineering any website into a clean, modern Nex
 - `npm run lint` — ESLint check
 - `npm run typecheck` — TypeScript check
 - `npm run check` — Run lint + typecheck + build
+- `npm run test:routes` — Verify built clone routes over HTTP
 
 ## Code Style
 - TypeScript strict mode, no `any`
@@ -59,11 +60,24 @@ docs/
   research/         # Inspection output (design tokens, components, layout)
   design-references/ # Screenshots and visual references
 scripts/            # Asset download scripts
+.agents/skills/clone-website/ # Canonical workflow and inspection reference
+.claude/commands/clone-website.md # Thin Claude Code bridge
 ```
 
-## MOST IMPORTANT NOTES
-- When launching agent teams, ALWAYS have each teammate work in their own worktree branch and merge everyone's work at the end, resolving merge conflicts with the full project context.
-- After editing `AGENTS.md`, run `bash scripts/sync-agent-rules.sh` to regenerate platform-specific instruction files.
-- `.claude/skills/clone-website/SKILL.md` is the source of truth for the shared clone-website workflow. After editing it, run `node scripts/sync-skills.mjs` to regenerate the skill for Codex, OpenCode, Claude Code, and other supported agents.
+## Agent Workflow
+- `.agents/skills/clone-website/SKILL.md` is the canonical upstream cloning workflow for Codex, Cursor, and OpenCode.
+- `.claude/commands/clone-website.md` is a thin Claude Code bridge. Keep workflow instructions in the canonical skill rather than duplicating them across agents.
+- Read `.agents/skills/clone-website/references/inspection-guide.md` on demand during inspection.
+- When launching agent teams, keep each teammate in its own worktree branch and merge with the full project context.
 
-@docs/research/INSPECTION_GUIDE.md
+## Existing Multi-Site Project
+This repository already uses one Next.js application and one server for OpenAI, ChatGPT, Studio, and Gemini. Apply these project conventions when following the upstream skill:
+
+- Keep `/` as the redirect to `/clones`, and keep `/clones` as the site picker. These are user-authored routes, not untouched template scaffold.
+- Map new source pathnames under `/clones/<siteId>/<source-path>` using the existing `src/app/clones/[siteId]/[[...path]]/page.tsx` entry. A source `/` maps to `/clones/<siteId>`. Record the source URL, site ID, and local route in the output plan.
+- Keep site entry points under `src/sites/<siteId>/`; register new sites in `src/sites/manifest.ts` and `src/sites/loaders.ts`. Extend their routing contracts as needed without replacing the shared route entry for a single clone.
+- Reuse the established component owners in the site manifest when updating an existing site. Use the upstream collision-resistant namespaces for new research, screenshots, components, assets, and downloaders; preserve the existing artifact paths.
+- Scope each site's fonts, CSS tokens, animations, and metadata to its route or `[data-clone-site]` wrapper. Use the existing combined application for additional sites unless the user requests another architecture.
+- An explicit request to update an existing clone authorizes that route update. For a request to add a clone, choose a unique site ID and check for collisions before writing.
+- Verify `/clones/openai`, `/clones/chatgpt`, `/clones/studio`, and `/clones/gemini` remain available, and unknown site IDs return 404.
+- Run `npm test`, `npm run check`, and `npm run test:routes` after application or dependency changes.

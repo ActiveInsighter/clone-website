@@ -11,7 +11,7 @@
 
 一套可复用的模板，借助 AI 编程代理将任意网站反向工程为干净、现代的 Next.js 代码库。
 
-**推荐：使用 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) + Opus 5 以获得最佳效果**，同时也支持其他多种 AI 编程代理。
+**推荐：使用 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) + Opus 5.5 以获得最佳效果**，同时支持 Codex、Cursor 和 OpenCode。
 
 只需给定目标 URL，运行 `/clone-website`，AI 代理就会自动完成站点检查、设计 token 与资源提取、组件规格编写，并派出并行构建器逐个还原页面区块。
 
@@ -78,6 +78,7 @@ http://localhost:3000/clones            # 站点选择页
 http://localhost:3000/clones/openai
 http://localhost:3000/clones/chatgpt
 http://localhost:3000/clones/studio
+http://localhost:3000/clones/gemini
 ```
 
 每个站点仍然拥有独立的路由入口，修改站点代码时使用 Next.js Fast Refresh 热更新，不需要为每个网站重复启动端口。未知的站点路径会返回 404，不会回退到另一个复刻网站。
@@ -86,19 +87,10 @@ http://localhost:3000/clones/studio
 
 | 代理                                                          | 状态                        |
 | ------------------------------------------------------------- | --------------------------- |
-| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **推荐** — Opus 5           |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **推荐** — Opus 5.5           |
 | [OpenAI Codex 桌面端 / CLI](https://developers.openai.com/codex/) | 已支持 — 仓库 Skill + 浏览器 MCP |
 | [OpenCode](https://opencode.ai/)                              | 已支持                      |
-| [GitHub Copilot](https://github.com/features/copilot)         | 已支持                      |
 | [Cursor](https://cursor.com/)                                 | 已支持                      |
-| [Windsurf](https://codeium.com/windsurf)                      | 已支持                      |
-| [Gemini CLI](https://github.com/google-gemini/gemini-cli)     | 已支持                      |
-| [Cline](https://github.com/cline/cline)                       | 已支持                      |
-| [Roo Code](https://github.com/RooCodeInc/Roo-Code)            | 已支持                      |
-| [Continue](https://continue.dev/)                             | 已支持                      |
-| [Amazon Q](https://aws.amazon.com/q/developer/)               | 已支持                      |
-| [Augment Code](https://www.augmentcode.com/)                  | 已支持                      |
-| [Aider](https://aider.chat/)                                  | 已支持                      |
 
 ## 前置要求
 
@@ -118,7 +110,7 @@ http://localhost:3000/clones/studio
 
 1. **侦察（Reconnaissance）** — 截图、提取设计 token、扫描交互行为（滚动、点击、悬停、响应式）
 2. **基础搭建（Foundation）** — 更新字体、颜色、全局样式，下载全部资源
-3. **组件规格（Component Specs）** — 编写详细的规格文件（`docs/research/components/`），包含精确的计算 CSS 值、状态、行为和内容
+3. **组件规格（Component Specs）** — 编写详细的规格文件（`docs/research/<site-key>/<page-key>/components/`），包含精确的计算 CSS 值、状态、行为和内容
 4. **并行构建（Parallel Build）** — 在 git worktree 中分派构建器代理，每个代理负责一个区块或组件
 5. **组装与 QA（Assembly & QA）** — 合并 worktree、拼接页面、与原站进行视觉对比
 
@@ -154,14 +146,10 @@ public/
 docs/
   research/         # 提取产物与组件规格
   design-references/ # 截图参考
-scripts/
-  sync-agent-rules.sh  # 重新生成各代理指令文件
-  sync-skills.mjs      # 为所有平台重新生成 /clone-website 指令
-.agents/skills/clone-website/SKILL.md # Codex 桌面端/CLI 仓库级 Skill
-.codex/config.toml     # 项目级 Codex 浏览器 MCP 配置
+.agents/skills/clone-website/ # 官方统一 Skill 与检查指南
+.claude/commands/clone-website.md # Claude Code 轻量入口
 AGENTS.md           # 代理指令（单一事实来源）
 CLAUDE.md           # Claude Code 配置（引用 AGENTS.md）
-GEMINI.md           # Gemini CLI 配置（引用 AGENTS.md）
 ```
 
 ## 常用命令
@@ -172,6 +160,7 @@ npm run build    # 生产构建
 npm run lint     # ESLint 检查
 npm run typecheck # TypeScript 检查
 npm run check    # 同时运行 lint + typecheck + build
+npm run test:routes # 构建后验证站点访问和 404 行为
 ```
 
 ### 使用 Docker
@@ -181,28 +170,17 @@ docker compose up app --build # 构建并运行应用
 docker compose up dev --build # 在开发模式下运行，端口 3001
 ```
 
-## 为其他平台更新指令
+## 代理支持与模板更新
 
-有两个单一事实来源文件驱动所有平台支持。编辑源文件后运行同步脚本即可：
+官方模板已同步至 [v0.5.1](https://github.com/JCodesMore/ai-website-cloner-template/releases/tag/v0.5.1)。统一提示词位于 `.agents/skills/clone-website/`，Codex、Cursor 和 OpenCode 直接发现该 Skill；Claude Code 通过 `.claude/commands/clone-website.md` 调用。后续直接编辑统一 Skill，不再维护重复提示词或运行同步脚本。
 
-| 内容                   | 事实来源                                  | 同步命令                               |
-| ---------------------- | ---------------------------------------- | -------------------------------------- |
-| 项目指令               | `AGENTS.md`                              | `bash scripts/sync-agent-rules.sh`     |
-| `/clone-website` 指令  | `.claude/skills/clone-website/SKILL.md`  | `node scripts/sync-skills.mjs`         |
+在 Codex 中打开本项目，启用浏览器自动化工具后发送：
 
-每个脚本会自动重新生成各平台对应的副本。能够直接读取源文件的代理无需重新生成。
+```text
+使用 clone-website skill 复刻：https://example.com
+```
 
-### OpenAI Codex 桌面端 / CLI
-
-1. 将当前已有仓库添加为项目并打开。
-2. Codex 会自动读取 `AGENTS.md`，并发现 `.agents/skills/clone-website/SKILL.md`。
-3. 使用类似下面的请求运行共享工作流：
-   ```text
-   使用 clone-website skill 复刻：https://example.com
-   ```
-4. 项目级 `.codex/config.toml` 会通过 Windows `cmd`/`npx` 启动 Chrome DevTools MCP，不保存密钥或本机绝对路径。
-
-旧版 `.codex/skills/clone-website/SKILL.md` 会继续保持同步，以兼容已有 Codex CLI 配置。OpenCode 仍然使用 `.opencode/commands/clone-website.md` 提供的 `/clone-website <url>`。
+已有多站点路由约定保留在 `AGENTS.md`。固定的上游版本和本项目保留的行为见[升级记录](docs/template-upgrade.md)。浏览器 MCP 需要在代理中配置，仓库没有提供 Codex MCP 配置文件。中文文档作为本项目说明保留，官方目前只维护英文 README。
 
 ## Star 历史
 

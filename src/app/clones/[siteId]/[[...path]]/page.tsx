@@ -13,7 +13,7 @@ type ClonePageProps = {
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return Object.keys(siteManifests).map((siteId) => ({ siteId }))
+  return Object.keys(siteManifests).map((siteId) => ({ siteId, path: [] }))
 }
 
 export default async function ClonePage({ params }: ClonePageProps) {

@@ -6,7 +6,7 @@
 
 A reusable template for reverse-engineering any website into a clean, modern Next.js codebase using AI coding agents. 
 
-**Recommended: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with Opus 5 for best results** — but works with a variety of AI coding agents.
+**Recommended: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with Opus 5.5 for best results** — also supports Codex, Cursor, and OpenCode.
 
 Point it at a URL, run `/clone-website`, and your AI agent will inspect the site, extract design tokens and assets, write component specs, and dispatch parallel builders to reconstruct every section.
 
@@ -73,6 +73,7 @@ http://localhost:3000/clones            # clone selector
 http://localhost:3000/clones/openai
 http://localhost:3000/clones/chatgpt
 http://localhost:3000/clones/studio
+http://localhost:3000/clones/gemini
 ```
 
 Each clone has its own route entry and uses Next.js Fast Refresh during development. Unknown site paths return 404 instead of falling back to another clone.
@@ -81,19 +82,10 @@ Each clone has its own route entry and uses Next.js Fast Refresh during developm
 
 | Agent                                                         | Status                     |
 | ------------------------------------------------------------- | -------------------------- |
-| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **Recommended** — Opus 5   |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **Recommended** — Opus 5.5   |
 | [OpenAI Codex Desktop / CLI](https://developers.openai.com/codex/) | Supported — repo skill + browser MCP |
 | [OpenCode](https://opencode.ai/)                              | Supported                  |
-| [GitHub Copilot](https://github.com/features/copilot)         | Supported                  |
 | [Cursor](https://cursor.com/)                                 | Supported                  |
-| [Windsurf](https://codeium.com/windsurf)                      | Supported                  |
-| [Gemini CLI](https://github.com/google-gemini/gemini-cli)     | Supported                  |
-| [Cline](https://github.com/cline/cline)                       | Supported                  |
-| [Roo Code](https://github.com/RooCodeInc/Roo-Code)            | Supported                  |
-| [Continue](https://continue.dev/)                             | Supported                  |
-| [Amazon Q](https://aws.amazon.com/q/developer/)               | Supported                  |
-| [Augment Code](https://www.augmentcode.com/)                  | Supported                  |
-| [Aider](https://aider.chat/)                                  | Supported                  |
 
 ## Prerequisites
 
@@ -113,7 +105,7 @@ The `/clone-website` skill runs a multi-phase pipeline:
 
 1. **Reconnaissance** — screenshots, design token extraction, interaction sweep (scroll, click, hover, responsive)
 2. **Foundation** — updates fonts, colors, globals, downloads all assets
-3. **Component Specs** — writes detailed spec files (`docs/research/components/`) with exact computed CSS values, states, behaviors, and content
+3. **Component Specs** — writes detailed spec files (`docs/research/<site-key>/<page-key>/components/`) with exact computed CSS values, states, behaviors, and content
 4. **Parallel Build** — dispatches builder agents in git worktrees, one per section/component
 5. **Assembly & QA** — merges worktrees, wires up the page, runs visual diff against the original
 
@@ -149,14 +141,10 @@ public/
 docs/
   research/         # Extraction output & component specs
   design-references/ # Screenshots
-scripts/
-  sync-agent-rules.sh  # Regenerate agent instruction files
-  sync-skills.mjs      # Regenerate /clone-website for all platforms
-.agents/skills/clone-website/SKILL.md # Codex Desktop/CLI repository skill
-.codex/config.toml     # Project-scoped Codex browser MCP configuration
+.agents/skills/clone-website/ # Canonical skill and inspection reference
+.claude/commands/clone-website.md # Thin Claude Code bridge
 AGENTS.md           # Agent instructions (single source of truth)
 CLAUDE.md           # Claude Code config (imports AGENTS.md)
-GEMINI.md           # Gemini CLI config (imports AGENTS.md)
 ```
 
 ## Commands
@@ -167,6 +155,7 @@ npm run build  # Production build
 npm run lint   # ESLint check
 npm run typecheck # TypeScript check
 npm run check  # Run lint + typecheck + build
+npm run test:routes # Verify production clone routes after building
 ```
 
 ### If using docker
@@ -176,29 +165,17 @@ docker compose up app --build # build and run the app
 docker compose up dev --build # run the app in dev mode on port 3001
 ```
 
-## Updating for Other Platforms
+## Agent Support and Template Updates
 
-Two source-of-truth files power all platform support. Edit the source, then run the sync script:
+The official template is synchronized to [v0.5.1](https://github.com/JCodesMore/ai-website-cloner-template/releases/tag/v0.5.1). The portable workflow lives in `.agents/skills/clone-website/`; Codex, Cursor, and OpenCode discover it directly. Claude Code uses `.claude/commands/clone-website.md`. Edit the canonical skill directly; generated copies and synchronization scripts are no longer used.
 
-| What                   | Source of truth                         | Sync command                       |
-| ---------------------- | --------------------------------------- | ---------------------------------- |
-| Project instructions   | `AGENTS.md`                             | `bash scripts/sync-agent-rules.sh` |
-| `/clone-website` skill | `.claude/skills/clone-website/SKILL.md` | `node scripts/sync-skills.mjs`     |
+Open this repository in Codex with browser automation enabled and ask:
 
-Each script regenerates the platform-specific copies automatically. Agents that read the source files natively need no regeneration.
+```text
+Use the clone-website skill to clone https://example.com
+```
 
-### OpenAI Codex Desktop / CLI
-
-1. Add or open this existing repository as a project.
-2. Codex reads `AGENTS.md` and discovers `.agents/skills/clone-website/SKILL.md` automatically.
-3. Run the shared workflow with a request such as:
-   ```text
-   Use the clone-website skill to clone https://example.com
-   ```
-4. The project-scoped `.codex/config.toml` starts the Chrome DevTools MCP through Windows `cmd`/`npx` without storing keys or machine-specific paths.
-
-The legacy `.codex/skills/clone-website/SKILL.md` copy remains synchronized for older Codex CLI setups. OpenCode continues to use `/clone-website <url>` from `.opencode/commands/clone-website.md`.
-
+This repository's existing multi-site routing conventions are in `AGENTS.md`. See [the upgrade record](docs/template-upgrade.md) for the pinned upstream revision and retained project behavior. Browser MCP must be configured in the agent; this repository does not supply a Codex MCP configuration.
 
 ## Star History
 
