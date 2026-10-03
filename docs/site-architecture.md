@@ -75,3 +75,17 @@ Node.js 24+，npm 11.9.0。`build:assets` 先生成独立 Evidence 下载包，�
 `public/_redirects` 保留 `/` 到 `/clones` 的 HTTP 跳转。`public/_headers` 给带内容哈希的 `/_next/static/` 文件设置长期缓存，其余文件使用 Cloudflare 默认重新验证。配置依据：[Redirects](https://developers.cloudflare.com/workers/static-assets/redirects/)、[Headers](https://developers.cloudflare.com/workers/static-assets/headers/)。
 
 凭据由本机 Wrangler 登录或 `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` 提供，不写入项目。
+
+## 本次部署与验证
+
+2026-10-03 已部署到 [Cloudflare 网站入口](https://clone-website-lab.2212148739lbw.workers.dev/clones)。
+
+- 本地开发分支：`codex/site-isolation-cloudflare-assets`。
+- 应用提交：`dd12c03`；部署版本：`eb80ff74-c9d6-4f74-bc51-2141cf75f065`。
+- `npm run check`：架构检查、ESLint、TypeScript、Next.js 生产构建通过。
+- `npm test`：72 项通过，包括独立组件包编译与站点路由契约。
+- Next.js 生产服务器和 Wrangler 静态预览：53 条站点路径、选择页、组件库、根跳转与未知路径 404 通过；13 项浏览器测试通过。
+- 正式地址：同一套路由 HTTP 检查通过；3 项站点隔离浏览器测试通过，包含跨站导航、手机布局、弹层与主题继承。
+- Cloudflare 返回 HTML 200 和预期响应头。静态资源只上传 `out/`，现有依赖版本未改动；新增固定版本 Wrangler 部署工具。
+
+代码提交保存在本地分支，本次未推送 GitHub。
