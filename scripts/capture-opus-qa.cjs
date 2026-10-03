@@ -6,6 +6,22 @@ const { join } = require("node:path")
 const root = join(__dirname, "../docs/design-references/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446")
 const base = process.env.QA_BASE_URL || "http://127.0.0.1:3000"
 
+async function loadHero(page, suffix) {
+  await page.goto(`${base}/clones/anthropic/claude-opus-5-5`)
+  await page.evaluate(() => document.fonts.ready)
+  await page.locator('.opus-hero:not([data-renderer="loading"])').waitFor()
+  await page.screenshot({ path: join(root, `clone-hero-intro-${suffix}.png`) })
+  await page.evaluate(() => window.scrollTo({ top: 100, behavior: "instant" }))
+  await page.locator('.opus-hero[data-phase="settled"]').waitFor()
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }))
+  await page.waitForFunction(() => scrollY === 0)
+  await page.waitForFunction(() => {
+    const header = document.querySelector(".opus-header")
+    return header && getComputedStyle(header).transform === "none" && getComputedStyle(header).opacity === "1"
+  })
+  await page.screenshot({ path: join(root, `clone-hero-settled-${suffix}.png`) })
+}
+
 async function capture() {
   mkdirSync(root, { recursive: true })
   const browser = await chromium.launch({
@@ -14,10 +30,9 @@ async function capture() {
   })
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
-    await page.goto(`${base}/clones/anthropic/claude-opus-5-5`)
-    await page.evaluate(() => document.fonts.ready)
+    await loadHero(page, "1440")
     await page.screenshot({ path: join(root, "clone-desktop.png"), fullPage: true })
-    await page.evaluate(() => window.scrollTo(0, 300))
+    await page.evaluate(() => window.scrollTo({ top: 300, behavior: "instant" }))
     await page.waitForTimeout(350)
     await page.screenshot({ path: join(root, "clone-hero-scroll-300.png") })
     // Hide fixed navigation only for isolated component screenshots.
@@ -40,8 +55,7 @@ async function capture() {
     }
     for (const width of [768, 390]) {
       await page.setViewportSize({ width, height: 900 })
-      await page.goto(`${base}/clones/anthropic/claude-opus-5-5`)
-      await page.evaluate(() => document.fonts.ready)
+      await loadHero(page, width)
       await page.screenshot({ path: join(root, `clone-${width}.png`), fullPage: true })
     }
     await page.setViewportSize({ width: 1440, height: 900 })

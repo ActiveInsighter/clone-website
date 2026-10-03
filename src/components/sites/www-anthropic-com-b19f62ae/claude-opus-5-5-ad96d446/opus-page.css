@@ -73,6 +73,8 @@
 
 .opus-header { position: fixed; z-index: 40; inset: 0 0 auto; padding: 16px 20px; color: #faf9f5; font-family: var(--font-anthropic-sans); font-size: 15px; line-height: 20px; letter-spacing: 0; transition: transform 240ms ease, background-color 240ms ease, color 240ms ease; }
 .opus-header[data-hidden="true"] { transform: translateY(-110%); }
+.opus-page:has(.opus-hero[data-phase="intro"]) .opus-header { opacity: 0; transform: translateY(-110%); pointer-events: none; }
+.opus-page .opus-header:focus-within { opacity: 1; transform: none; pointer-events: auto; }
 .opus-header[data-tone="paper"] { color: #141413; background: #faf9f5; }
 .opus-header-inner { display: flex; align-items: center; gap: 24px; max-width: 1270px; margin: auto; }
 .opus-logo { display: flex; flex: 0 0 auto; align-items: center; }

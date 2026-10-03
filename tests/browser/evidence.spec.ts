@@ -1,11 +1,19 @@
-import { expect, test } from "@playwright/test"
+import { expect, test, type Page } from "@playwright/test"
 
 const opus = "/clones/anthropic/claude-opus-5-5"
+
+async function settleHero(page: Page) {
+  await page.evaluate(() => window.scrollTo({ top: 100, behavior: "instant" }))
+  await expect(page.locator(".opus-hero")).toHaveAttribute("data-phase", "settled")
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }))
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0)
+}
 
 test("source page renders real data and independently interactive chart instances", async ({ page }) => {
   const errors: string[] = []
   page.on("pageerror", error => errors.push(error.message))
   await page.goto(opus)
+  await settleHero(page)
   await page.getByRole("button", { name: "Research", exact: true }).click()
   await expect(page.getByRole("menuitem", { name: "Alignment", exact: true })).toHaveAttribute("href", "https://www.anthropic.com/research/team/alignment")
   await page.keyboard.press("Escape")
@@ -43,6 +51,11 @@ test("gallery accepts replacement data and applies an inherited dark theme", asy
   await expect(page.locator(".evidence-chart-frame").first()).toHaveCSS("background-color", "rgb(30, 30, 27)")
   await page.getByRole("tab", { name: "Engineering", exact: true }).click()
   await expect(page.getByRole("blockquote")).toContainText("One component, several datasets")
+  await page.getByRole("tab", { name: "Linear scale", exact: true }).click()
+  await page.getByRole("button", { name: "Linear comparison", exact: true }).click()
+  await expect(page.getByRole("tab", { name: "Linear scale", exact: true })).toHaveCount(0)
+  await expect(page.getByRole("tab", { name: "Cost & performance", exact: true })).toHaveAttribute("aria-selected", "true")
+  await expect(page.getByRole("tabpanel").first()).toContainText("Reliability per dollar")
 })
 
 test("response playback pauses, resumes, replays and resets when changing examples", async ({ page }) => {
@@ -65,6 +78,99 @@ test("response playback pauses, resumes, replays and resets when changing exampl
   await expect(responses.locator(".evidence-response__visual").first()).toBeEmpty()
   await responses.getByRole("button", { name: "Replay both responses" }).click()
   await expect(responses.getByRole("status")).toHaveText("Playing")
+})
+
+test("hero renders local artwork, stays sticky and retains its settled state", async ({ page }) => {
+  await page.goto(opus)
+  const hero = page.locator(".opus-hero")
+  await expect(hero).toHaveAttribute("data-phase", "intro")
+  await expect(hero).toHaveAttribute("data-renderer", "webgl")
+  await expect(page.locator(".opus-hero-intro")).toHaveCSS("opacity", "1")
+  await expect(page.locator(".opus-header")).toHaveCSS("opacity", "0")
+  const canvas = page.locator(".opus-hero-canvas")
+  expect(await canvas.evaluate((element: HTMLCanvasElement) => element.width > 0 && element.height > 0)).toBe(true)
+  await page.evaluate(() => window.scrollTo({ top: 100, behavior: "instant" }))
+  await expect(hero).toHaveAttribute("data-phase", "settled")
+  expect(Math.abs((await page.locator(".opus-hero-stage").boundingBox())!.y)).toBeLessThan(1)
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }))
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0)
+  await expect(hero).toHaveAttribute("data-phase", "settled")
+  await expect(page.locator(".opus-hero-landing")).toHaveCSS("opacity", "1")
+  await page.getByRole("navigation", { name: "Article contents" }).getByRole("link", { name: /Performance and cost/ }).click()
+  await expect.poll(() => page.evaluate(() => location.hash)).toBe("#performance-and-cost-effectiveness")
+})
+
+test("hero falls back on WebGL context loss and restores without losing content", async ({ page }) => {
+  await page.goto(opus)
+  const hero = page.locator(".opus-hero")
+  await expect(hero).toHaveAttribute("data-renderer", "webgl")
+  await settleHero(page)
+  const extension = await page.locator(".opus-hero-canvas").evaluateHandle((canvas: HTMLCanvasElement) => {
+    const extension = canvas.getContext("webgl")?.getExtension("WEBGL_lose_context")
+    if (!extension) throw new Error("Chromium context-loss extension unavailable")
+    return extension
+  })
+  await extension.evaluate(extension => extension.loseContext())
+  await expect(hero).toHaveAttribute("data-renderer", "fallback")
+  await expect(page.locator(".opus-hero-artwork-middle")).toBeVisible()
+  await expect(page.locator(".opus-hero-canvas")).toHaveCSS("opacity", "0")
+  await expect(page.getByRole("heading", { name: "Claude Opus 5.5", exact: true })).toBeVisible()
+  await extension.evaluate(extension => extension.restoreContext())
+  await extension.dispose()
+  await expect(hero).toHaveAttribute("data-renderer", "webgl")
+  await expect(hero).toHaveAttribute("data-phase", "settled")
+})
+
+test("artwork and article remain usable when WebGL is unavailable", async ({ page }) => {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext
+    Object.defineProperty(HTMLCanvasElement.prototype, "getContext", {
+      value(this: HTMLCanvasElement, mode: string, ...args: unknown[]) {
+        return mode.startsWith("webgl") ? null : Reflect.apply(original, this, [mode, ...args])
+      },
+    })
+  })
+  await page.goto(opus)
+  await expect(page.locator(".opus-hero")).toHaveAttribute("data-renderer", "fallback")
+  await settleHero(page)
+  await expect(page.locator(".opus-hero-artwork-middle")).toBeVisible()
+  await expect(page.locator(".opus-hero-landing")).toHaveCSS("opacity", "1")
+  await expect(page.locator(".evidence-benchmark tbody tr")).toHaveCount(9)
+})
+
+test("Claude menu preserves source destinations and menus close across breakpoints", async ({ page }) => {
+  await page.goto(opus)
+  await settleHero(page)
+  await page.getByRole("button", { name: "Claude options", exact: true }).click()
+  await expect(page.getByRole("menuitem", { name: "Overview", exact: true })).toHaveAttribute("href", "https://claude.com/product/overview")
+  await expect(page.getByRole("menuitem", { name: "Opus", exact: true })).toHaveAttribute("href", "https://www.anthropic.com/claude/opus")
+  await page.keyboard.press("Escape")
+  await expect(page.getByRole("menu")).toHaveCount(0)
+  await page.getByRole("button", { name: "Research", exact: true }).click()
+  await expect(page.getByRole("menu")).toBeVisible()
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect(page.getByRole("menu")).toHaveCount(0)
+  await page.getByRole("button", { name: "Open navigation" }).click()
+  const dialog = page.getByRole("dialog")
+  await expect(dialog.getByRole("link", { name: "Log in to Claude", exact: true })).toHaveAttribute("href", "https://claude.ai/login")
+  await expect(dialog.getByRole("link", { name: "Download app", exact: true })).toHaveAttribute("href", "https://claude.ai/download")
+  await dialog.locator("summary").filter({ hasText: "Research" }).click()
+  await expect(dialog.getByRole("link", { name: "Alignment", exact: true })).toBeVisible()
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await expect(dialog).toHaveCount(0)
+  await page.getByRole("button", { name: "Claude options", exact: true }).click()
+  await expect(page.getByRole("menuitem", { name: "Pricing", exact: true })).toBeVisible()
+})
+
+test("gallery offers a downloadable portable component archive", async ({ page, request }) => {
+  await page.goto("/components/evidence")
+  const download = page.getByRole("link", { name: "下载独立组件包" })
+  await expect(download).toHaveAttribute("href", "/downloads/evidence-kit.tar.gz")
+  const response = await request.get("/downloads/evidence-kit.tar.gz")
+  expect(response.status()).toBe(200)
+  const archive = await response.body()
+  expect(Array.from(archive.subarray(0, 2))).toEqual([0x1f, 0x8b])
+  expect(archive.length).toBeGreaterThan(30_000)
 })
 
 test("mobile table scrolls with pinned labels and subject without overflowing the page", async ({ page }) => {
@@ -93,6 +199,8 @@ test("mobile table scrolls with pinned labels and subject without overflowing th
 test("reduced motion provides full answers and settled hero without playback", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" })
   await page.goto(opus)
+  await expect(page.locator(".opus-hero")).toHaveAttribute("data-phase", "settled")
+  expect((await page.locator(".opus-hero").boundingBox())!.height).toBe(900)
   const response = page.locator(".evidence-response")
   await response.scrollIntoViewIfNeeded()
   await expect(response.getByRole("status")).toHaveText("Complete")

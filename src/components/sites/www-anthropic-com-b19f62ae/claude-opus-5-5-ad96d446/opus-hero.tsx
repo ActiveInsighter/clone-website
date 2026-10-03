@@ -37,16 +37,24 @@ export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] })
 
     function paint(now: number) {
       frame = 0
-      if (!hero || !stage || destroyed || !visible || document.hidden) return
+      if (!hero || !stage || destroyed || document.hidden) return
       const heroRect = hero.getBoundingClientRect()
       const width = stage.clientWidth, height = stage.clientHeight
-      if (!width || !height || heroRect.bottom <= 0) return
+      if (!width || !height) return
       const travelled = Math.max(0, -heroRect.top)
       if (travelled > 1 && startedAt === undefined) startedAt = now
       const scrollProgress = clampHero(travelled / Math.max(120, height * 0.18))
       const settleProgress = startedAt === undefined ? 0 : smoothHero((now - startedAt) / 950)
       progress = motion.matches ? 1 : Math.max(progress, scrollProgress, settleProgress)
       hero.dataset.phase = progress >= 0.999 ? "settled" : progress > 0.01 ? "revealing" : "intro"
+      stage.dataset.expanded = String(progress > 0.8)
+      if (ready !== (progress > 0.8)) {
+        ready = progress > 0.8
+        setLandingReady(ready)
+      }
+      // A direct jump to the article still settles the intro. Pause GPU work,
+      // while retaining that progress for the next visit to the top.
+      if (!visible || heroRect.bottom <= 0) return
       const scene = createHeroFrame(width, height, smoothHero(progress))
       stage.dataset.geometry = "true"
       stage.style.setProperty("--opus-intro-size", `${clampHero(width * (0.03 + 0.05 * clampHero((1000 - width) / 600)), 22, 58)}px`)
@@ -55,11 +63,6 @@ export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] })
       stage.style.setProperty("--opus-intro-opacity", `${1 - smoothHero(progress / 0.45)}`)
       stage.style.setProperty("--opus-landing-opacity", `${smoothHero((progress - 0.2) / 0.6)}`)
       stage.style.setProperty("--opus-title-rise", `${(1 - smoothHero(progress)) * 100}px`)
-      stage.dataset.expanded = String(progress > 0.8)
-      if (ready !== (progress > 0.8)) {
-        ready = progress > 0.8
-        setLandingReady(ready)
-      }
       for (const layer of scene.layers) {
         const image = fallbackRefs.current[layer.artwork.id]
         const { anchor, pivot, rotation, scale } = layer.placement
@@ -73,7 +76,7 @@ export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] })
       if (!motion.matches && startedAt !== undefined && progress < 1) frame = requestAnimationFrame(paint)
     }
     function schedule() {
-      if (!frame && visible && !destroyed && !document.hidden) frame = requestAnimationFrame(paint)
+      if (!frame && !destroyed && !document.hidden) frame = requestAnimationFrame(paint)
     }
     async function initialize() {
       const signal = loader.signal
@@ -107,7 +110,7 @@ export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] })
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting
       if (!visible) { cancelAnimationFrame(frame); frame = 0 }
-      else schedule()
+      schedule()
     })
     observer.observe(hero)
     const resize = new ResizeObserver(schedule)
