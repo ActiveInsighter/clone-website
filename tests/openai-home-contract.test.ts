@@ -4,7 +4,7 @@ import test from "node:test";
 import {
   openAiFeatureCards,
   openAiPromptSuggestions,
-} from "../src/components/openai-site/openai-home-data.ts";
+} from "../src/sites/openai/components/openai-home-data.ts";
 
 test("keeps real prompt content and the featured card contract", () => {
   assert.ok(openAiPromptSuggestions.length > 0);

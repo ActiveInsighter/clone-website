@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const theme = await readFile(
-  new URL("src/components/openai-site/openai-navigation-theme.ts", root),
+  new URL("src/sites/openai/components/openai-navigation-theme.ts", root),
   "utf8",
 );
 

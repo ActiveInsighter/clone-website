@@ -8,3 +8,8 @@ export function getSitePathname(pathname: string, siteId: SiteId): string {
 
   return pathname
 }
+
+/** Convert a source-site path to a link owned by this clone. */
+export function getCloneHref(siteId: SiteId, sourcePath: string = "/"): string {
+  return `/clones/${siteId}${sourcePath === "/" ? "" : sourcePath}`
+}

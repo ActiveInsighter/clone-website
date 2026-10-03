@@ -1,0 +1,153 @@
+.root { display: contents; }
+
+.root {
+  --studio-bg: #f7f8fa;
+  --studio-panel: #ffffff;
+  --studio-sidebar: #fbfcfd;
+  --studio-canvas: #f3f5f7;
+  --studio-grid: rgba(31, 41, 55, 0.08);
+  --studio-border: rgba(31, 41, 55, 0.12);
+  --studio-border-strong: rgba(31, 41, 55, 0.2);
+  --studio-text: #1f2937;
+  --studio-muted: #6b7280;
+  --studio-hover: rgba(31, 41, 55, 0.06);
+  --studio-active: rgba(62, 207, 142, 0.13);
+  --studio-accent: #3ecf8e;
+  --studio-accent-foreground: #073b2a;
+  --studio-badge: rgba(62, 207, 142, 0.16);
+  --studio-badge-text: #16805a;
+  --studio-ring: rgba(62, 207, 142, 0.55);
+}
+
+.root :global(.dark) {
+  --studio-bg: oklch(0.19 0.0025 159);
+  --studio-panel: oklch(0.215 0.0025 159);
+  --studio-sidebar: oklch(0.205 0.0025 159);
+  --studio-canvas: oklch(0.175 0.0025 159);
+  --studio-grid: rgba(240, 242, 241, 0.08);
+  --studio-border: oklch(0.95 0.001485 159 / 0.075125);
+  --studio-border-strong: oklch(0.95 0.001375 159 / 0.134738);
+  --studio-text: oklch(0.95 0.00275 159);
+  --studio-muted: oklch(0.684 0.00275 159);
+  --studio-hover: oklch(0.95 0.00275 159 / 0.075);
+  --studio-active: oklch(0.95 0.00275 159 / 0.0493421);
+  --studio-accent: #3ecf8e;
+  --studio-accent-foreground: #062a1f;
+  --studio-badge: rgba(62, 207, 142, 0.16);
+  --studio-badge-text: #72e8af;
+  --studio-ring: rgba(62, 207, 142, 0.7);
+}
+
+  .root :global(.studio-shell) {
+    font-family: Inter, "Inter Fallback", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--studio-text);
+    background: var(--studio-bg);
+  }
+
+  .root :global(.studio-flow-canvas) {
+    background: var(--studio-canvas);
+  }
+
+  .root :global(.studio-flow-grid) {
+    background-image: radial-gradient(circle, var(--studio-grid) 1px, transparent 1.2px);
+    background-position: 0 0;
+    background-size: 18px 18px;
+  }
+
+  .root :global(.studio-flow-table) {
+    position: absolute;
+    top: 30px;
+    left: 39%;
+    width: 137px;
+    overflow: hidden;
+    border: 0.5px solid var(--studio-border-strong);
+    border-radius: 4px;
+    background: var(--studio-panel);
+    color: var(--studio-text);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+  }
+
+  .root :global(.studio-flow-table-row) {
+    position: relative;
+    border-top: 0.5px solid var(--studio-border);
+    background: var(--studio-panel);
+  }
+
+  .root :global(.studio-flow-table-row:hover) {
+    background: var(--studio-hover);
+  }
+
+  .root :global(.studio-flow-edges path) {
+    fill: none;
+    stroke: var(--studio-muted);
+    stroke-width: 1;
+    opacity: 0.62;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .root :global(.studio-flow-reference) {
+    position: absolute;
+    top: 295px;
+    left: 55%;
+    display: flex;
+    width: 69px;
+    height: 21px;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid var(--studio-border-strong);
+    border-radius: 4px;
+    background: var(--studio-canvas);
+    color: var(--studio-text);
+    font-size: 9.9px;
+    line-height: 14.85px;
+  }
+
+  .root :global(.studio-flow-minimap) {
+    position: absolute;
+    right: 16px;
+    bottom: 48px;
+    width: 200px;
+    height: 151px;
+    overflow: hidden;
+    border: 0.5px solid var(--studio-border-strong);
+    border-radius: 8px;
+    background: var(--studio-panel);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.18);
+  }
+
+  .root :global(.studio-flow-minimap::before) {
+    position: absolute;
+    inset: 20px 8px 8px;
+    background: linear-gradient(90deg, transparent 49%, var(--studio-muted) 49%, var(--studio-muted) 51%, transparent 51%);
+    content: "";
+    opacity: 0.18;
+  }
+
+  .root :global(.studio-flow-minimap-viewport) {
+    position: absolute;
+    inset: 20px 8px 8px;
+    border: 1px solid var(--studio-muted);
+    background: var(--studio-canvas);
+    opacity: 0.3;
+  }
+
+  .root :global(.studio-flow-minimap-node) {
+    position: absolute;
+    border: 1px solid var(--studio-muted);
+    background: var(--studio-text);
+    opacity: 0.65;
+  }
+
+  .root :global(.studio-flow-minimap-node-primary) {
+    top: 28px;
+    left: 80px;
+    width: 24px;
+    height: 105px;
+  }
+
+  .root :global(.studio-flow-minimap-node-reference) {
+    top: 73px;
+    left: 112px;
+    width: 10px;
+    height: 4px;
+  }

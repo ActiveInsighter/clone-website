@@ -1,3 +1,4 @@
+import { getCloneHref } from "@/sites/pathname"
 import Link from "next/link"
 import { Pencil, Trash2 } from "lucide-react"
 
@@ -41,7 +42,7 @@ export function ProjectRow({
   return (
     <SidebarMenuItem active={active}>
       <SidebarMenuButton
-        render={<Link href={`/g/${project.id}/project`} />}
+        render={<Link href={getCloneHref("chatgpt", `/g/${project.id}/project`)} />}
         nativeButton={false}
         icon={<FolderIcon />}
         aria-current={active ? "page" : undefined}

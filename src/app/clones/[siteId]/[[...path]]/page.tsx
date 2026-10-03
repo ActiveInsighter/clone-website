@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 
-import { getCloneSite, getStaticCloneParams } from "@/sites"
+import { getCloneRoute, getStaticCloneParams } from "@/sites"
 import { siteLoaders } from "@/sites/loaders"
 
 type ClonePageProps = {
@@ -17,8 +17,8 @@ export function generateStaticParams() {
 }
 
 export default async function ClonePage({ params }: ClonePageProps) {
-  const { siteId } = await params
-  const manifest = getCloneSite(siteId)
+  const { siteId, path } = await params
+  const manifest = getCloneRoute(siteId, path)
 
   if (!manifest) notFound()
 

@@ -1,5 +1,7 @@
 "use client";
 
+import { PortalScope } from "@/components/portal-scope"
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -65,7 +67,7 @@ export function OpenAiHome() {
   }, []);
 
   return (
-    <div className="openai-page">
+    <PortalScope className="openai-page">
       <OpenAiTopNav />
 
       <main id="main">
@@ -167,6 +169,6 @@ export function OpenAiHome() {
           <button type="button">中文 · 中国</button>
         </div>
       </footer>
-    </div>
+    </PortalScope>
   );
 }

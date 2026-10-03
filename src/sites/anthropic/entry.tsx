@@ -1,4 +1,4 @@
-import { OpusPage } from "@/components/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/opus-page"
+import { OpusPage } from "@/sites/anthropic/claude-opus-5-5/opus-page"
 
 export function AnthropicSite() {
   return <OpusPage />

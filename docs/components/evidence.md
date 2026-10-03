@@ -2,7 +2,7 @@
 
 Preview: `/components/evidence`. Source clone: `/clones/anthropic/claude-opus-5-5`.
 
-The presentation library lives in `src/components/evidence/`. It accepts caller-supplied data and has no dependency on the Anthropic article, router, backend, fonts, or assets. The article adapter and extracted source data live separately under `src/components/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/`. The gallery uses explicitly illustrative data.
+The presentation library lives in `src/components/evidence/`. It accepts caller-supplied data and has no dependency on the Anthropic article, router, backend, fonts, or assets. The article adapter and extracted source data live separately under `src/sites/anthropic/claude-opus-5-5/`. The gallery uses explicitly illustrative data.
 
 ## Use in this project
 

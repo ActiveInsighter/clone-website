@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import { createHeroFrame } from "../src/components/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/hero-geometry.ts"
+import { createHeroFrame } from "../src/sites/anthropic/claude-opus-5-5/hero-geometry.ts"
 
 test("panoramic artwork covers its visible bands across phone, tablet and desktop aspect ratios", () => {
   for (const [width, height] of [[390, 844], [768, 900], [1440, 1000], [2560, 1440], [900, 390]]) {

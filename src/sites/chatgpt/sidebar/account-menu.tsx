@@ -16,7 +16,7 @@ import {
   UpgradePlanIcon,
 } from "@/components/icons"
 import { SidebarTrigger } from "@/components/sidebar"
-import { chatGptSidebarUser } from "@/config/chatgpt-sidebar"
+import { chatGptSidebarUser } from "@/sites/chatgpt/config"
 
 export type NoticeHandler = (message: string) => void
 

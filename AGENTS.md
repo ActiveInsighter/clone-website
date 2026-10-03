@@ -18,7 +18,7 @@ A reusable template for reverse-engineering any website into a clean, modern Nex
 - **UI:** shadcn/ui (Radix primitives, Tailwind CSS v4, `cn()` utility)
 - **Icons:** Lucide React (default — will be replaced/supplemented by extracted SVGs)
 - **Styling:** Tailwind CSS v4 with oklch design tokens
-- **Deployment:** Vercel
+- **Deployment:** Cloudflare Workers Static Assets (`npm run build:assets` then `npx wrangler deploy`); standalone build retained
 
 ## Commands
 - `npm run dev` — Start dev server
@@ -81,3 +81,13 @@ This repository already uses one Next.js application and one server for OpenAI, 
 - An explicit request to update an existing clone authorizes that route update. For a request to add a clone, choose a unique site ID and check for collisions before writing.
 - Verify `/clones/openai`, `/clones/chatgpt`, `/clones/studio`, and `/clones/gemini` remain available, and unknown site IDs return 404.
 - Run `npm test`, `npm run check`, and `npm run test:routes` after application or dependency changes.
+
+## Site architecture and asset deployment
+
+- Read `docs/site-architecture.md` before adding a clone or changing site boundaries.
+- Site-private components, data, navigation config and CSS belong in `src/sites/<siteId>/`. Shared `src/components/` libraries must not import site-private implementations.
+- Keep each site’s supported source paths in its own manifest/routes. Use `getCloneHref` for clone-local links.
+- Use CSS Modules for new site styles; moving global stylesheet imports alone does not isolate CSS across client navigation.
+- `npm run lint` includes the TypeScript-resolved architecture check.
+- For Cloudflare deployment, run `npm run build:assets`, verify `out/` through `npm run preview:assets`, and run route/browser checks with `CLONE_BASE_URL` / `PLAYWRIGHT_BASE_URL`.
+- Keep tokens and account credentials outside the repository.

@@ -39,13 +39,13 @@ import {
   SidebarTrigger,
   isTextEntryTarget,
 } from "@/components/sidebar"
-import { getSitePathname } from "@/sites/pathname"
+import { getSitePathname, getCloneHref } from "@/sites/pathname"
 import {
   chatGptSidebarNewChatItem,
   chatGptSidebarPrimaryItems,
   chatGptSidebarRailItems,
   chatGptSidebarUser,
-} from "@/config/chatgpt-sidebar"
+} from "@/sites/chatgpt/config"
 import {
   ArrowTopRightIcon,
   ChatGptLogoIcon,
@@ -291,7 +291,7 @@ export function ChatGptSidebarDemo({
         <SidebarPanel>
           <SidebarHeader>
             <Link
-              href="/"
+              href={getCloneHref("chatgpt")}
               aria-label="主页"
               className="flex min-h-(--sidebar-item-height) min-w-0 flex-1 items-center rounded-(--sidebar-item-radius) text-left text-(length:--sidebar-font-size) leading-(--sidebar-line-height) font-medium text-sidebar-foreground transition-colors duration-(--sidebar-motion-fast-duration) hover:bg-sidebar-accent"
             >
@@ -337,11 +337,11 @@ export function ChatGptSidebarDemo({
               {chatGptSidebarPrimaryItems.map((item) => {
                 const Icon = item.icon
                 if (item.kind === "route") {
-                  const active = pathname === item.href
+                  const active = getSitePathname(pathname, "chatgpt") === item.href
                   return (
                     <SidebarMenuItem key={item.id} active={active}>
                       <SidebarMenuButton
-                        render={<Link href={item.href} />}
+                        render={<Link href={getCloneHref("chatgpt", item.href)} />}
                         nativeButton={false}
                         icon={<Icon />}
                         aria-current={active ? "page" : undefined}

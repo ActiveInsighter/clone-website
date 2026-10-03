@@ -16,7 +16,7 @@ export function ClonePicker() {
             选择要查看的复刻网站
           </h1>
           <p className="mt-5 max-w-xl text-base leading-7 text-white/60 sm:text-lg">
-            所有站点共享同一个 Next.js 开发服务器。打开不同路径即可独立开发和热更新。
+            选择一个站点，查看它的页面与交互；也可以浏览可复用的组件库。
           </p>
         </div>
 
@@ -27,9 +27,7 @@ export function ClonePicker() {
           <DestinationCard href="/components/evidence" title="Evidence 组件库" description="图表、表格与叙述交互 · 可切换数据和主题" />
         </nav>
 
-        <p className="mt-8 text-sm text-white/35">
-          开发命令：<code className="text-white/60">npm run dev</code>
-        </p>
+
       </div>
     </main>
   )

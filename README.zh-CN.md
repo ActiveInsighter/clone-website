@@ -62,6 +62,8 @@
 
 ## 多站点开发
 
+参见[站点目录、样式隔离、路由和 Cloudflare 部署说明](docs/site-architecture.md)。站点私有代码统一放在 `src/sites/<siteId>/`，`src/components/` 保留共享组件。
+
 所有复刻网站共享一个 Next.js 开发服务器和一个端口。启动一次即可通过不同路径打开站点：
 
 ```bash

@@ -1,9 +1,11 @@
 "use client"
 
+import { PortalScope } from "@/components/portal-scope"
+
 import * as React from "react"
 import { Mic } from "lucide-react"
 
-import { ChatGptSidebarDemo } from "@/components/chatgpt-sidebar"
+import { ChatGptSidebarDemo } from "@/sites/chatgpt/sidebar"
 import {
   SidebarInset,
   SidebarRoot,
@@ -153,7 +155,7 @@ export function ChatGptHome({ initialDark = true }: ChatGptHomeProps) {
   const [notice, setNotice] = React.useState("")
 
   return (
-    <div className={initialDark ? "dark flex min-h-full" : "flex min-h-full"}>
+    <PortalScope className={initialDark ? "dark flex min-h-full" : "flex min-h-full"}>
       <SidebarRoot
         defaultOpen
         persistence={{ name: "chatgpt_sidebar_state" }}
@@ -217,6 +219,6 @@ export function ChatGptHome({ initialDark = true }: ChatGptHomeProps) {
           </section>
         </SidebarInset>
       </SidebarRoot>
-    </div>
+    </PortalScope>
   )
 }

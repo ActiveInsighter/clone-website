@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import { articleNodes } from "../src/components/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/article-data.ts"
+import { articleNodes } from "../src/sites/anthropic/claude-opus-5-5/article-data.ts"
 
 test("source content preserves every benchmark, chart point and interactive state", () => {
   const benchmark = articleNodes.find(node => node.type === "benchmark")

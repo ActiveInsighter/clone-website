@@ -1,7 +1,8 @@
-import { ChatGptHome } from "@/components/chatgpt-home"
+import styles from "./site.module.css"
+import { ChatGptHome } from "@/sites/chatgpt/home"
 
 export function ChatGptSite() {
-  return <ChatGptHome initialDark />
+  return <div className={styles.root}><ChatGptHome initialDark /></div>
 }
 
 export default ChatGptSite

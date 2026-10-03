@@ -1,0 +1,27 @@
+.root { display: contents; }
+
+.root {
+  --sidebar: #fcfcfc;
+  --sidebar-foreground: #0d0d0d;
+  --sidebar-primary: #0d0d0d;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #00000012;
+  --sidebar-accent-foreground: #0d0d0d;
+  --sidebar-border: #0000000d;
+  --sidebar-border-strong: #00000026;
+  --sidebar-muted-foreground: #8f8f8f;
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.root :global(.dark) {
+  --sidebar: #000000;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #0d0d0d;
+  --sidebar-accent: #ffffff26;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #ffffff0d;
+  --sidebar-border-strong: #ffffff33;
+  --sidebar-muted-foreground: #afafaf;
+  --sidebar-ring: oklch(0.556 0 0);
+}

@@ -1,5 +1,7 @@
 "use client"
 
+import { PortalScope } from "@/components/portal-scope"
+
 import * as React from "react"
 import { ArrowUpRight, Mic, Plus } from "lucide-react"
 
@@ -8,9 +10,8 @@ import {
   ConfiguredSidebarMobileTrigger,
 } from "@/components/sidebar/configured-sidebar"
 import { SidebarInset, SidebarRoot } from "@/components/sidebar"
-import { geminiSidebarConfig } from "@/components/gemini-site/gemini-sidebar-data"
+import { geminiSidebarConfig } from "@/sites/gemini/components/gemini-sidebar-data"
 
-import "./gemini-sidebar-clone.css"
 
 const pageItems = [
   ["研究", "把复杂问题拆成可执行的下一步。"],
@@ -28,7 +29,7 @@ export function GeminiSidebarClone() {
   }
 
   return (
-    <div className="gemini-page">
+    <PortalScope className="gemini-page">
       <SidebarRoot
         className="gemini-shell"
         defaultOpen
@@ -111,6 +112,6 @@ export function GeminiSidebarClone() {
           </main>
         </SidebarInset>
       </SidebarRoot>
-    </div>
+    </PortalScope>
   )
 }

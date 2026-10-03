@@ -3,6 +3,8 @@
 import * as React from "react"
 import { Tooltip } from "@base-ui/react/tooltip"
 
+import { usePortalContainer } from "@/components/portal-scope"
+
 import { useSidebarContext } from "./context"
 
 export type SidebarTooltipProps = {
@@ -22,13 +24,14 @@ export function SidebarTooltip({
   children,
 }: SidebarTooltipProps) {
   const { portalStyle } = useSidebarContext()
+  const portalContainer = usePortalContainer()
 
   if (!content) return children
 
   return (
     <Tooltip.Root disabled={disabled}>
       <Tooltip.Trigger render={children} />
-      <Tooltip.Portal>
+      <Tooltip.Portal container={portalContainer}>
         <Tooltip.Positioner
           data-slot="sidebar-tooltip-positioner"
           data-sidebar-portal-surface=""

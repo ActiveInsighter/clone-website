@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import test from "node:test"
 
-import { getSiteManifest, getStaticCloneParams, siteManifests } from "../src/sites/manifest.ts"
+import { getSiteManifest, getStaticCloneParams, getCloneRoute, siteManifests } from "../src/sites/manifest.ts"
 import { getCloneSite } from "../src/sites/registry.ts"
 
 test("lists exactly the supported clone sites", () => {
@@ -47,4 +47,16 @@ test("preserves source pathnames when generating clone pages", () => {
     assert.deepEqual(params.find(({ siteId }) => siteId === id)?.path, [])
   }
   assert.equal(new Set(params.map(({ siteId, path }) => `${siteId}/${path.join("/")}`)).size, params.length)
+})
+
+
+test("exports known nested clone routes and rejects paths belonging to another site", () => {
+  const paths = getStaticCloneParams().map(({ siteId, path }) => `/clones/${siteId}${path.length ? `/${path.join("/")}` : ""}`)
+  for (const path of ["/clones/chatgpt/library", "/clones/chatgpt/c/chat-1", "/clones/studio/database", "/clones/studio/settings", "/clones/gemini/search", "/clones/gemini/notebooks/create"]) {
+    assert.ok(paths.includes(path), `Missing production route: ${path}`)
+  }
+  assert.equal(getCloneRoute("anthropic", ["claude-opus-5-5"])?.id, "anthropic")
+  assert.equal(getCloneRoute("openai", ["claude-opus-5-5"]), undefined)
+  assert.equal(getCloneRoute("studio", ["does-not-exist"]), undefined)
+  assert.equal(getCloneRoute("unknown", []), undefined)
 })

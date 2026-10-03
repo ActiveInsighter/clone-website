@@ -4,7 +4,7 @@ import type { IconProps } from "@/components/icons"
 import {
   chatGptDemoChatTitles,
   chatGptDemoProjectNames,
-} from "@/components/chatgpt-sidebar/data"
+} from "@/sites/chatgpt/sidebar/data"
 import {
   ChatHistoryIcon,
   ComposeIcon,

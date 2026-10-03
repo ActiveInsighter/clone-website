@@ -1,0 +1,588 @@
+.root { display: contents; }
+
+/* OpenAI Chinese homepage clone */
+.root :global(.openai-page) {
+  --openai-black: #000;
+  --openai-white: #fff;
+  --openai-muted: rgb(255 255 255 / 60%);
+  --openai-soft: rgb(255 255 255 / 12%);
+  --openai-composer: #202020;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--openai-black);
+  color: var(--openai-white);
+  font-family: "OpenAI Sans SC", "OpenAI Sans", Arial, Helvetica, sans-serif;
+}
+
+.root :global(.openai-page *),
+.root :global(.openai-page *::before),
+.root :global(.openai-page *::after) {
+  box-sizing: border-box;
+}
+
+.root :global(.openai-page a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.root :global(.openai-page button),
+.root :global(.openai-page input) {
+  font: inherit;
+}
+
+.root :global(.openai-hero) {
+  min-height: 674px;
+  padding-top: 72px;
+  background: var(--openai-black);
+}
+
+.root :global(.openai-hero-inner) {
+  display: flex;
+  min-height: 602px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 36px 36px;
+}
+
+.root :global(.openai-hero h1) {
+  margin: 0;
+  color: var(--openai-white);
+  font-size: clamp(28px, 2.6vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.root :global(.openai-composer) {
+  display: flex;
+  width: min(768px, calc(100vw - 72px));
+  height: 117px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 26px;
+  padding: 21px 14px 14px 18px;
+  border-radius: 16px;
+  background: var(--openai-composer);
+  color: rgb(255 255 255 / 54%);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.root :global(.openai-composer span) {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.root :global(.openai-composer button) {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 15%);
+  color: rgb(255 255 255 / 66%);
+  cursor: pointer;
+}
+
+.root :global(.openai-prompt-text) {
+  animation: openai-prompt-in 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes openai-prompt-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.root :global(.openai-composer button:hover) {
+  background: rgb(255 255 255 / 22%);
+  color: var(--openai-white);
+}
+
+.root :global(.openai-composer button svg) {
+  width: 20px;
+  height: 20px;
+}
+
+.root :global(.openai-hero-pills) {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.root :global(.openai-hero-pills a) {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 9999px;
+  color: var(--openai-white);
+  font-size: 15px;
+  white-space: nowrap;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.root :global(.openai-hero-pills a:hover) {
+  border-color: rgb(255 255 255 / 46%);
+  background: rgb(255 255 255 / 8%);
+}
+
+.root :global(.openai-featured-section),
+.root :global(.openai-content-section) {
+  padding: 0 36px;
+}
+
+.root :global(.openai-featured-section) {
+  display: grid;
+  gap: 28px;
+}
+
+.root :global(.openai-featured-grid) {
+  display: grid;
+  gap: 28px;
+}
+
+.root :global(.openai-featured-top-grid) {
+  grid-template-columns: minmax(0, 3.17fr) minmax(0, 1fr);
+}
+
+.root :global(.openai-featured-bottom-grid) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.root :global(.openai-feature-card) {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #121212;
+}
+
+.root :global(.openai-feature-card-large),
+.root :global(.openai-feature-card-medium) {
+  min-height: 470px;
+}
+
+.root :global(.openai-feature-card-small) {
+  min-height: 430px;
+}
+
+.root :global(.openai-feature-media),
+.root :global(.openai-card-media) {
+  position: relative;
+  overflow: hidden;
+  background: #161616;
+}
+
+.root :global(.openai-feature-media) {
+  height: 100%;
+  min-height: 470px;
+}
+
+.root :global(.openai-feature-card-small .openai-feature-media) {
+  min-height: 360px;
+}
+
+.root :global(.openai-feature-media::after),
+.root :global(.openai-card-media::after) {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 42%, rgb(0 0 0 / 78%) 100%);
+  content: "";
+}
+
+.root :global(.openai-feature-media img),
+.root :global(.openai-card-media img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.root :global(.openai-feature-card:hover .openai-feature-media img),
+.root :global(.openai-content-card:hover .openai-card-media img) {
+  transform: scale(1.035);
+}
+
+.root :global(.openai-feature-copy) {
+  position: absolute;
+  right: 28px;
+  bottom: 26px;
+  left: 28px;
+  z-index: 1;
+}
+
+.root :global(.openai-feature-copy p),
+.root :global(.openai-card-body p) {
+  margin: 0;
+  color: rgb(255 255 255 / 72%);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.root :global(.openai-feature-copy h2) {
+  max-width: 760px;
+  margin: 9px 0 0;
+  color: var(--openai-white);
+  font-size: clamp(26px, 3vw, 46px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.root :global(.openai-feature-card-small .openai-feature-copy h2) {
+  font-size: clamp(24px, 2.5vw, 36px);
+}
+
+.root :global(.openai-card-external) {
+  position: static;
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-top: 16px;
+  overflow: visible;
+  clip: auto;
+  color: var(--openai-white);
+  stroke-width: 1.4;
+  white-space: normal;
+}
+
+.root :global(.openai-content-section) {
+  margin-top: 135px;
+}
+
+.root :global(.openai-section-heading) {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 34px;
+}
+
+.root :global(.openai-section-heading h2) {
+  margin: 0;
+  color: var(--openai-white);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.root :global(.openai-section-heading a) {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--openai-white);
+  font-size: 15px;
+}
+
+.root :global(.openai-section-heading a svg) {
+  width: 13px;
+  height: 13px;
+  stroke-width: 1.4;
+}
+
+.root :global(.openai-content-grid) {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.root :global(.openai-content-card) {
+  display: block;
+  min-width: 0;
+}
+
+.root :global(.openai-card-media) {
+  aspect-ratio: 1 / 1;
+}
+
+.root :global(.openai-card-body) {
+  position: relative;
+  padding: 18px 0 0;
+}
+
+.root :global(.openai-card-body h3) {
+  min-height: 2.6em;
+  margin: 0 0 8px;
+  color: var(--openai-white);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.root :global(.openai-start-section) {
+  position: relative;
+  display: flex;
+  min-height: 410px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 135px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.root :global(.openai-start-section h2) {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 28px;
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.root :global(.openai-start-orbit) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(680px, 80vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+
+.root :global(.openai-start-orbit span) {
+  position: absolute;
+  inset: 14%;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 50%;
+  transform: rotate(28deg) scaleX(1.65);
+}
+
+.root :global(.openai-start-orbit span:nth-child(2)) { transform: rotate(-28deg) scaleX(1.65); }
+.root :global(.openai-start-orbit span:nth-child(3)) { inset: 24%; border-color: rgb(255 255 255 / 16%); }
+
+.root :global(.openai-footer) {
+  margin-top: 120px;
+  padding: 68px 36px 28px;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+}
+
+.root :global(.openai-footer-grid) {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 48px 28px;
+}
+
+.root :global(.openai-footer-group h2) {
+  margin: 0 0 18px;
+  color: var(--openai-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.root :global(.openai-footer-group ul) {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.root :global(.openai-footer-group a),
+.root :global(.openai-footer-bottom) {
+  color: rgb(255 255 255 / 78%);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.root :global(.openai-footer-group a:hover),
+.root :global(.openai-social-links a:hover) {
+  color: var(--openai-white);
+}
+
+.root :global(.openai-footer-bottom) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+}
+
+.root :global(.openai-social-links) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.root :global(.openai-footer-bottom button) {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgb(255 255 255 / 78%);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.root :global(.openai-footer-bottom button:hover) {
+  color: var(--openai-white);
+}
+
+@media (max-width: 1199px) {
+  .root :global(.openai-hero) {
+    min-height: 706px;
+    padding-top: 61px;
+  }
+
+  .root :global(.openai-hero-inner) {
+    width: 100%;
+    min-height: 645px;
+    min-width: 0;
+    padding: 68px 27px 42px;
+  }
+
+  .root :global(.openai-composer) {
+    width: 100%;
+    max-width: 100%;
+    height: 117px;
+  }
+
+  .root :global(.openai-featured-section),
+.root :global(.openai-content-section) {
+    padding: 0 27px;
+  }
+
+  .root :global(.openai-featured-top-grid),
+.root :global(.openai-featured-bottom-grid),
+.root :global(.openai-content-grid) {
+    min-width: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .root :global(.openai-feature-card-large),
+.root :global(.openai-feature-card-medium),
+.root :global(.openai-feature-card-small) {
+    min-height: 390px;
+  }
+
+  .root :global(.openai-feature-media),
+.root :global(.openai-feature-card-small .openai-feature-media) {
+    min-height: 390px;
+  }
+
+  .root :global(.openai-feature-card),
+.root :global(.openai-content-card) {
+    min-width: 0;
+  }
+
+  .root :global(.openai-content-section),
+.root :global(.openai-start-section) {
+    margin-top: 92px;
+  }
+
+  .root :global(.openai-footer) {
+    margin-top: 90px;
+    padding: 48px 27px 24px;
+  }
+
+  .root :global(.openai-footer-grid) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 20px;
+  }
+}
+
+@media (max-width: 899px) {
+  .root :global(.openai-hero) {
+    min-height: 675px;
+  }
+
+  .root :global(.openai-hero-inner) {
+    min-height: 589px;
+  }
+
+  .root :global(.openai-feature-card-large),
+.root :global(.openai-feature-card-medium),
+.root :global(.openai-feature-card-small) {
+    min-height: 0;
+  }
+
+  .root :global(.openai-feature-media),
+.root :global(.openai-feature-card-small .openai-feature-media) {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* The first featured story keeps the portrait 4:5 crop on narrow screens;
+     the remaining featured stories stay square. */
+  .root :global(.openai-featured-top-grid .openai-feature-card-large .openai-feature-media) {
+    aspect-ratio: 4 / 5;
+  }
+
+  .root :global(.openai-featured-top-grid .openai-feature-card-large .openai-feature-media img) {
+    object-position: 35% center;
+  }
+}
+
+@media (max-width: 520px) {
+  .root :global(.openai-hero h1) {
+    font-size: 28px;
+  }
+
+  .root :global(.openai-hero-pills) {
+    justify-content: center;
+    overflow: visible;
+    flex-wrap: wrap;
+    width: min(100%, calc(100vw - 54px));
+    padding-bottom: 4px;
+  }
+
+  .root :global(.openai-hero-pills a) {
+    flex: 0 0 auto;
+  }
+
+  .root :global(.openai-feature-copy) {
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .root :global(.openai-feature-copy h2) {
+    font-size: 28px;
+  }
+
+  .root :global(.openai-card-body h3) {
+    min-height: auto;
+  }
+
+  .root :global(.openai-footer-grid) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .root :global(.openai-footer-bottom) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root :global(.openai-prompt-text) {
+    animation: none;
+  }
+}

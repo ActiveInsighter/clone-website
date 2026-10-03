@@ -3,6 +3,8 @@
 import * as React from "react"
 import { Dialog } from "@base-ui/react/dialog"
 
+import { usePortalContainer } from "@/components/portal-scope"
+
 import { useSidebarContext } from "./context"
 import {
   SidebarFixedTop,
@@ -33,6 +35,7 @@ export const SidebarShell = React.forwardRef<HTMLElement, SidebarShellProps>(
     forwardedRef,
   ) {
     const context = useSidebarContext()
+    const portalContainer = usePortalContainer()
 
     if (context.isMobile) {
       return (
@@ -41,7 +44,7 @@ export const SidebarShell = React.forwardRef<HTMLElement, SidebarShellProps>(
             open={context.mobileOpen}
             onOpenChange={context.setMobileOpen}
           >
-            <Dialog.Portal>
+            <Dialog.Portal container={portalContainer}>
               <Dialog.Backdrop
                 data-slot="sidebar-mobile-backdrop"
                 data-sidebar-portal-surface=""

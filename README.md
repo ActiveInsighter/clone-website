@@ -57,6 +57,8 @@ Point it at a URL, run `/clone-website`, and your AI agent will inspect the site
 
 ## Multi-site development
 
+See [site ownership, CSS isolation, routing and Cloudflare deployment](docs/site-architecture.md). Private implementations live under `src/sites/<siteId>/`; `src/components/` contains shared libraries.
+
 All website replicas share one Next.js development server and one port. Start it once:
 
 ```bash

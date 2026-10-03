@@ -1,7 +1,8 @@
-import { StudioDemo } from "@/components/studio-demo"
+import styles from "./site.module.css"
+import { StudioDemo } from "@/sites/studio/demo"
 
 export function StudioSite() {
-  return <StudioDemo />
+  return <div className={styles.root}><StudioDemo /></div>
 }
 
 export default StudioSite

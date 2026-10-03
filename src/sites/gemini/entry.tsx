@@ -1,7 +1,8 @@
-import { GeminiSidebarClone } from "@/components/gemini-site/gemini-sidebar-clone"
+import styles from "./site.module.css"
+import { GeminiSidebarClone } from "@/sites/gemini/components/gemini-sidebar-clone"
 
 export function GeminiSite() {
-  return <GeminiSidebarClone />
+  return <div className={styles.root}><GeminiSidebarClone /></div>
 }
 
 export default GeminiSite

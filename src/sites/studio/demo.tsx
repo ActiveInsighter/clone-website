@@ -1,5 +1,7 @@
 "use client";
 
+import { PortalScope } from "@/components/portal-scope"
+
 import * as React from "react";
 import {
   Copy,
@@ -17,8 +19,17 @@ import {
 import { usePathname } from "next/navigation";
 
 import { AppHeader, AppShell } from "@/components/studio-app-shell";
-import { primaryNavigation } from "@/config/navigation";
-import { getSitePathname } from "@/sites/pathname";
+import { primaryNavigation } from "@/sites/studio/navigation";
+import { getSitePathname, getCloneHref } from "@/sites/pathname";
+
+const cloneNavigation = primaryNavigation.map(group => ({
+  ...group,
+  items: group.items.map(item => ({
+    ...item,
+    href: item.href ? getCloneHref("studio", item.href) : undefined,
+    activePatterns: (item.activePatterns ?? (item.href ? [item.href] : [])).map(path => getCloneHref("studio", path)),
+  })),
+}))
 
 const pageTitles: Record<string, string> = {
   "/": "Project Overview",
@@ -204,13 +215,13 @@ export function StudioDemo() {
   );
 
   return (
-    <div className={dark ? "dark min-h-full" : "min-h-full"}>
+    <PortalScope className={dark ? "dark min-h-full" : "min-h-full"}>
       <AppShell
-        navigation={primaryNavigation}
+        navigation={cloneNavigation}
         header={<AppHeader project="md-to-pdf" breadcrumbs={[]} actions={actions} />}
       >
         {isDatabase ? <DatabaseSurface /> : <GenericSurface title={getPageTitle(sitePathname)} />}
       </AppShell>
-    </div>
+    </PortalScope>
   );
 }

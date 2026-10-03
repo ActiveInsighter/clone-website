@@ -1,3 +1,5 @@
+import { PortalScope } from "@/components/portal-scope"
+
 import { BenchmarkTable } from "@/components/evidence/benchmark-table"
 import { PricingTable } from "@/components/evidence/pricing-table"
 import { ChartTabs } from "@/components/evidence/chart-tabs"
@@ -58,7 +60,7 @@ function ArticleContent({ node }: { node: ArticleNode }) {
 /** The source article is composed from product-neutral, data-driven evidence components. */
 export function OpusPage() {
   return (
-    <div className="opus-page" data-clone-site="anthropic" data-evidence-theme="paper" lang="en">
+    <PortalScope className="opus-page" data-clone-site="anthropic" data-evidence-theme="paper" lang="en">
       <OpusHeader />
       <OpusHero sections={sections} />
       <main id="main-content" className="opus-main" tabIndex={-1}>
@@ -68,6 +70,6 @@ export function OpusPage() {
         </article>
       </main>
       <OpusFooter />
-    </div>
+    </PortalScope>
   )
 }

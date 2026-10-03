@@ -8,7 +8,7 @@ const navigationCss = await readFile(
   "utf8",
 );
 const openAiCss = await readFile(
-  new URL("src/components/openai-site/openai-navigation.css", root),
+  new URL("src/sites/openai/components/openai-navigation.css", root),
   "utf8",
 );
 const buttonSource = await readFile(
@@ -24,7 +24,7 @@ const sheetSource = await readFile(
   "utf8",
 );
 const openAiNavigationSource = await readFile(
-  new URL("src/components/openai-site/openai-top-nav.tsx", root),
+  new URL("src/sites/openai/components/openai-top-nav.tsx", root),
   "utf8",
 );
 

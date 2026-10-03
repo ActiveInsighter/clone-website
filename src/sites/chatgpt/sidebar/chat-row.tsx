@@ -1,3 +1,4 @@
+import { getCloneHref } from "@/sites/pathname"
 import Link from "next/link"
 import { Archive, FolderInput, Pencil, Share2, Trash2 } from "lucide-react"
 
@@ -51,7 +52,7 @@ export function ChatRow({
   return (
     <SidebarMenuItem active={active}>
       <SidebarMenuButton
-        render={<Link href={`/c/${chat.id}`} />}
+        render={<Link href={getCloneHref("chatgpt", `/c/${chat.id}`)} />}
         nativeButton={false}
         aria-current={active ? "page" : undefined}
         onClick={onSelect}

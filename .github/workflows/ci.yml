@@ -46,3 +46,21 @@ jobs:
 
       - name: Verify reusable component interactions
         run: npm run test:e2e
+
+      - name: Build Cloudflare static assets
+        run: npm run build:assets
+
+      - name: Verify Cloudflare static routes and interactions
+        shell: bash
+        run: |
+          npm run preview:assets > /tmp/clone-assets-preview.log 2>&1 &
+          assets_preview_pid=$!
+          trap 'kill "$assets_preview_pid" || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3091/clones > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          CLONE_BASE_URL=http://127.0.0.1:3091 npm run test:routes
+          PLAYWRIGHT_BASE_URL=http://127.0.0.1:3091 npm run test:e2e
