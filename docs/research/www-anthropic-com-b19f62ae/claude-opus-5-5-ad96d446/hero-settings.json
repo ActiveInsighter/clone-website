@@ -1,0 +1,39 @@
+{
+  "intro": "Introducing",
+  "left": {
+    "src": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a63576fc5e4af0139e2eb432b9a6316f16348d7c-2560x1440.webp?w=1920&fm=webp&q=80",
+    "width": 2560,
+    "height": 1440,
+    "arc": {
+      "cx": 1328.96,
+      "cy": 10140.11,
+      "r": 9439.85
+    },
+    "zoom": 1.2
+  },
+  "middle": {
+    "src": "https://www-cdn.anthropic.com/images/4zrzovbb/website/b7b0d617a1d7a573197f480122d6e500bc78e633-2560x1440.webp?w=1920&fm=webp&q=80",
+    "width": 2560,
+    "height": 1440,
+    "arc": {
+      "cx": 1262.42,
+      "cy": 7862.98,
+      "r": 7162.66
+    },
+    "zoom": 1
+  },
+  "right": {
+    "src": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a06ccc910a8ee460345ff4f0c46d99a17af7f9bd-2560x1440.webp?w=1920&fm=webp&q=80",
+    "width": 2560,
+    "height": 1440,
+    "arc": {
+      "cx": 1220.14,
+      "cy": 4304.54,
+      "r": 3596.36
+    },
+    "zoom": 1.3
+  },
+  "codeDrawnHorizon": "kv09",
+  "groundShade": 0,
+  "stopMotion": false
+}

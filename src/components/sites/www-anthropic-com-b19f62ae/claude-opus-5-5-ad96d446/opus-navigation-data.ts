@@ -120,3 +120,72 @@ export const opusNavigationGroups = {
     }
   ]
 } as const
+
+export const opusClaudeGroups = [
+  {
+    "label": "About Claude",
+    "links": [
+      {
+        "label": "Overview",
+        "href": "https://claude.com/product/overview"
+      },
+      {
+        "label": "Pricing",
+        "href": "https://claude.com/pricing"
+      },
+      {
+        "label": "Contact sales",
+        "href": "https://claude.com/contact-sales"
+      }
+    ]
+  },
+  {
+    "label": "Models",
+    "links": [
+      {
+        "label": "Mythos",
+        "href": "https://www.anthropic.com/claude/mythos"
+      },
+      {
+        "label": "Fable",
+        "href": "https://www.anthropic.com/claude/fable"
+      },
+      {
+        "label": "Opus",
+        "href": "https://www.anthropic.com/claude/opus"
+      },
+      {
+        "label": "Sonnet",
+        "href": "https://www.anthropic.com/claude/sonnet"
+      },
+      {
+        "label": "Haiku",
+        "href": "https://www.anthropic.com/claude/haiku"
+      }
+    ]
+  },
+  {
+    "label": "Log in",
+    "links": [
+      {
+        "label": "Claude.ai",
+        "href": "https://claude.ai"
+      },
+      {
+        "label": "Claude Console",
+        "href": "https://platform.claude.com/"
+      }
+    ]
+  }
+] as const
+
+export const opusClaudeMobileLinks = [
+  {
+    "label": "Log in to Claude",
+    "href": "https://claude.ai/login"
+  },
+  {
+    "label": "Download app",
+    "href": "https://claude.ai/download"
+  }
+] as const

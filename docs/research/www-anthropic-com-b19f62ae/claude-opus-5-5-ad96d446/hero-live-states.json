@@ -1,0 +1,602 @@
+[
+  {
+    "scrollY": 0,
+    "hero": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1900,
+      "top": 0,
+      "right": 1440,
+      "bottom": 1900,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1000,
+      "top": 0,
+      "right": 1440,
+      "bottom": 1000,
+      "left": 0
+    },
+    "sectionStyle": "height: 190vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2673950195312,
+          "y": 468.8663024902344,
+          "width": 245.618408203125,
+          "height": 55.163482666015625,
+          "top": 468.8663024902344,
+          "right": 842.8858032226562,
+          "bottom": 524.02978515625,
+          "left": 597.2673950195312
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 358.5848083496094,
+          "y": 540.4165649414062,
+          "width": 724.17822265625,
+          "height": 129.8458251953125,
+          "top": 540.4165649414062,
+          "right": 1082.7630310058594,
+          "bottom": 670.2623901367188,
+          "left": 358.5848083496094
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      }
+    ]
+  },
+  {
+    "scrollY": 1,
+    "hero": {
+      "x": 0,
+      "y": -1,
+      "width": 1440,
+      "height": 1200,
+      "top": -1,
+      "right": 1440,
+      "bottom": 1199,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1000,
+      "top": 0,
+      "right": 1440,
+      "bottom": 1000,
+      "left": 0
+    },
+    "sectionStyle": "height: 120vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2700805664062,
+          "y": 445.10223388671875,
+          "width": 245.61297607421875,
+          "height": 55.159271240234375,
+          "top": 445.10223388671875,
+          "right": 842.883056640625,
+          "bottom": 500.2615051269531,
+          "left": 597.2700805664062
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 357.7700500488281,
+          "y": 411.2190856933594,
+          "width": 726.3695068359375,
+          "height": 129.86898803710938,
+          "top": 411.2190856933594,
+          "right": 1084.1395568847656,
+          "bottom": 541.0880737304688,
+          "left": 357.7700500488281
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      }
+    ]
+  },
+  {
+    "scrollY": 300,
+    "hero": {
+      "x": 0,
+      "y": -300,
+      "width": 1440,
+      "height": 1200,
+      "top": -300,
+      "right": 1440,
+      "bottom": 900,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": -100,
+      "width": 1440,
+      "height": 1000,
+      "top": -100,
+      "right": 1440,
+      "bottom": 900,
+      "left": 0
+    },
+    "sectionStyle": "height: 120vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2700805664062,
+          "y": 345.10223388671875,
+          "width": 245.61297607421875,
+          "height": 55.159271240234375,
+          "top": 345.10223388671875,
+          "right": 842.883056640625,
+          "bottom": 400.2615051269531,
+          "left": 597.2700805664062
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 357.7700500488281,
+          "y": 311.2190856933594,
+          "width": 726.3695068359375,
+          "height": 129.86898803710938,
+          "top": 311.2190856933594,
+          "right": 1084.1395568847656,
+          "bottom": 441.08807373046875,
+          "left": 357.7700500488281
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      }
+    ]
+  },
+  {
+    "scrollY": 600,
+    "hero": {
+      "x": 0,
+      "y": -600,
+      "width": 1440,
+      "height": 1200,
+      "top": -600,
+      "right": 1440,
+      "bottom": 600,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": -400,
+      "width": 1440,
+      "height": 1000,
+      "top": -400,
+      "right": 1440,
+      "bottom": 600,
+      "left": 0
+    },
+    "sectionStyle": "height: 120vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2700805664062,
+          "y": 45.10223388671875,
+          "width": 245.61297607421875,
+          "height": 55.159271240234375,
+          "top": 45.10223388671875,
+          "right": 842.883056640625,
+          "bottom": 100.26150512695312,
+          "left": 597.2700805664062
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 357.7700500488281,
+          "y": 11.219085693359375,
+          "width": 726.3695068359375,
+          "height": 129.86898803710938,
+          "top": 11.219085693359375,
+          "right": 1084.1395568847656,
+          "bottom": 141.08807373046875,
+          "left": 357.7700500488281
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      }
+    ]
+  },
+  {
+    "scrollY": 900,
+    "hero": {
+      "x": 0,
+      "y": -900,
+      "width": 1440,
+      "height": 1200,
+      "top": -900,
+      "right": 1440,
+      "bottom": 300,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": -700,
+      "width": 1440,
+      "height": 1000,
+      "top": -700,
+      "right": 1440,
+      "bottom": 300,
+      "left": 0
+    },
+    "sectionStyle": "height: 120vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2700805664062,
+          "y": -254.89776611328125,
+          "width": 245.61297607421875,
+          "height": 55.159271240234375,
+          "top": -254.89776611328125,
+          "right": 842.883056640625,
+          "bottom": -199.73849487304688,
+          "left": 597.2700805664062
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 357.7700500488281,
+          "y": -288.7809143066406,
+          "width": 726.3695068359375,
+          "height": 129.86898803710938,
+          "top": -288.7809143066406,
+          "right": 1084.1395568847656,
+          "bottom": -158.91192626953125,
+          "left": 357.7700500488281
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      }
+    ]
+  },
+  {
+    "scrollY": 1400,
+    "hero": {
+      "x": 0,
+      "y": -1400,
+      "width": 1440,
+      "height": 1200,
+      "top": -1400,
+      "right": 1440,
+      "bottom": -200,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": -1200,
+      "width": 1440,
+      "height": 1000,
+      "top": -1200,
+      "right": 1440,
+      "bottom": -200,
+      "left": 0
+    },
+    "sectionStyle": "height: 120vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2700805664062,
+          "y": -754.8977661132812,
+          "width": 245.61297607421875,
+          "height": 55.15924072265625,
+          "top": -754.8977661132812,
+          "right": 842.883056640625,
+          "bottom": -699.738525390625,
+          "left": 597.2700805664062
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 357.7700500488281,
+          "y": -788.7808837890625,
+          "width": 726.3695068359375,
+          "height": 129.86895751953125,
+          "top": -788.7808837890625,
+          "right": 1084.1395568847656,
+          "bottom": -658.9119262695312,
+          "left": 357.7700500488281
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      }
+    ]
+  },
+  {
+    "scrollY": 1800,
+    "hero": {
+      "x": 0,
+      "y": -1800,
+      "width": 1440,
+      "height": 1200,
+      "top": -1800,
+      "right": 1440,
+      "bottom": -600,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": -1600,
+      "width": 1440,
+      "height": 1000,
+      "top": -1600,
+      "right": 1440,
+      "bottom": -600,
+      "left": 0
+    },
+    "sectionStyle": "height: 120vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2700805664062,
+          "y": -1154.897705078125,
+          "width": 245.61297607421875,
+          "height": 55.1591796875,
+          "top": -1154.897705078125,
+          "right": 842.883056640625,
+          "bottom": -1099.738525390625,
+          "left": 597.2700805664062
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 357.7700500488281,
+          "y": -1188.7808837890625,
+          "width": 726.3695068359375,
+          "height": 129.8690185546875,
+          "top": -1188.7808837890625,
+          "right": 1084.1395568847656,
+          "bottom": -1058.911865234375,
+          "left": 357.7700500488281
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      }
+    ]
+  },
+  {
+    "scrollY": 2100,
+    "hero": {
+      "x": 0,
+      "y": -2100,
+      "width": 1440,
+      "height": 1200,
+      "top": -2100,
+      "right": 1440,
+      "bottom": -900,
+      "left": 0
+    },
+    "stage": {
+      "x": 0,
+      "y": -1900,
+      "width": 1440,
+      "height": 1000,
+      "top": -1900,
+      "right": 1440,
+      "bottom": -900,
+      "left": 0
+    },
+    "sectionStyle": "height: 120vh;",
+    "stageStyle": "sticky",
+    "texts": [
+      {
+        "text": "Introducing",
+        "box": {
+          "x": 597.2700805664062,
+          "y": -1454.897705078125,
+          "width": 245.61297607421875,
+          "height": 55.1591796875,
+          "top": -1454.897705078125,
+          "right": 842.883056640625,
+          "bottom": -1399.738525390625,
+          "left": 597.2700805664062
+        },
+        "size": "43.2px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "0"
+      },
+      {
+        "text": " Opus 5.5",
+        "box": {
+          "x": 357.7700500488281,
+          "y": -1488.7808837890625,
+          "width": 726.3695068359375,
+          "height": 129.8690185546875,
+          "top": -1488.7808837890625,
+          "right": 1084.1395568847656,
+          "bottom": -1358.911865234375,
+          "left": 357.7700500488281
+        },
+        "size": "95px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      },
+      {
+        "text": "",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "size": "16px",
+        "family": "anthropicSerif, \"anthropicSerif Fallback\", \"Anthropic Serif\", georgia, serif",
+        "opacity": "1"
+      }
+    ]
+  }
+]

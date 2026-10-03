@@ -48,5 +48,10 @@
     "url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/a63576fc5e4af0139e2eb432b9a6316f16348d7c-2560x1440.webp?w=1920&fm=webp&q=80",
     "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/images/hero-1.webp",
     "bytes": 314960
+  },
+  {
+    "url": "https://www-cdn.anthropic.com/images/4zrzovbb/website/b7b0d617a1d7a573197f480122d6e500bc78e633-2560x1440.webp?w=1920&fm=webp&q=80",
+    "path": "public/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/images/hero-middle.webp",
+    "bytes": 113784
   }
 ]

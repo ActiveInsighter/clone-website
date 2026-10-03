@@ -8,6 +8,8 @@
 .evidence-gallery-header > p:last-child { font-size: 19px; line-height: 1.8; color: var(--evidence-muted); }
 .evidence-gallery-controls { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 24px 0; border-top: 1px solid var(--evidence-grid); border-bottom: 1px solid var(--evidence-grid); }
 .evidence-gallery-controls > div { display: flex; gap: 8px; align-items: center; }
+.evidence-gallery-controls > div { flex-wrap: wrap; }
+.evidence-gallery-download { text-decoration: underline; text-underline-offset: 4px; color: var(--evidence-ink); }
 .evidence-gallery-controls span { font-size: 13px; margin-right: 8px; }
 .evidence-gallery-controls button { background: transparent; color: var(--evidence-ink); border-color: var(--evidence-grid); }
 .evidence-gallery-controls button[aria-pressed="true"] { background: var(--evidence-highlight); border-color: var(--evidence-highlight-line); }

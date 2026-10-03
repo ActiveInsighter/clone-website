@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react"
 import { ChevronDown, Menu } from "lucide-react"
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { OpusWordmark, OpusMonogram } from "./opus-wordmark"
 import type { OpusSectionLink } from "./opus-hero"
-import { opusNavigationGroups } from "./opus-navigation-data"
+import { opusClaudeGroups, opusClaudeMobileLinks, opusNavigationGroups } from "./opus-navigation-data"
+import { OpusMenuGroups } from "./opus-menu-groups"
 
 const navigation = [
   { label: "Research", href: "https://www.anthropic.com/research", submenu: true },
@@ -22,6 +23,26 @@ export function OpusHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const scrollRef = useRef(0)
+
+  function changeDropdown(label: string, open: boolean) {
+    if (open) setMenuOpen(false)
+    setDropdownOpen(current => open ? label : current === label ? null : current)
+  }
+
+  function changeMobileMenu(open: boolean) {
+    if (open) setDropdownOpen(null)
+    setMenuOpen(open)
+  }
+
+  useEffect(() => {
+    const breakpoint = window.matchMedia("(min-width: 1000px)")
+    const resetMenus = () => {
+      setDropdownOpen(null)
+      setMenuOpen(false)
+    }
+    breakpoint.addEventListener("change", resetMenus)
+    return () => breakpoint.removeEventListener("change", resetMenus)
+  }, [])
 
   useEffect(() => {
     let frame = 0
@@ -59,19 +80,22 @@ export function OpusHeader() {
         <nav className="opus-desktop-nav" aria-label="Main navigation">
           {navigation.map((item) => {
             const groups = item.label in opusNavigationGroups ? opusNavigationGroups[item.label as keyof typeof opusNavigationGroups] : undefined
-            return groups ? <DropdownMenu key={item.label} open={dropdownOpen === item.label} onOpenChange={(open) => setDropdownOpen(open ? item.label : null)}>
+            return groups ? <DropdownMenu key={item.label} open={dropdownOpen === item.label} onOpenChange={(open) => changeDropdown(item.label, open)}>
               <DropdownMenuTrigger className="opus-nav-trigger">{item.label}<ChevronDown size={12} aria-hidden="true" /></DropdownMenuTrigger>
               <DropdownMenuContent align="center" sideOffset={18} className="opus-nav-dropdown">
-                {groups.map((group, index) => <DropdownMenuGroup key={index}>
-                  {group.label && <DropdownMenuLabel className="opus-nav-dropdown-label">{group.label}</DropdownMenuLabel>}
-                  {group.links.map(link => <DropdownMenuItem key={link.href} render={<a href={link.href} />} className="opus-nav-dropdown-link">{link.label}</DropdownMenuItem>)}
-                </DropdownMenuGroup>)}
+                <OpusMenuGroups groups={groups} />
               </DropdownMenuContent>
             </DropdownMenu> : <a key={item.label} href={item.href}>{item.label}</a>
           })}
         </nav>
-        <a className="opus-claude-cta" href="https://claude.ai/"><span>Try Claude</span><ChevronDown size={12} aria-hidden="true" /></a>
-        <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+        <div className="opus-claude-cta">
+          <a href="https://claude.ai/">Try Claude</a>
+          <DropdownMenu open={dropdownOpen === "claude"} onOpenChange={open => changeDropdown("claude", open)}>
+            <DropdownMenuTrigger className="opus-claude-options" aria-label="Claude options"><ChevronDown size={12} aria-hidden="true" /></DropdownMenuTrigger>
+            <DropdownMenuContent align="end" sideOffset={12} className="opus-nav-dropdown"><OpusMenuGroups groups={opusClaudeGroups} /></DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <Sheet open={menuOpen} onOpenChange={changeMobileMenu}>
           <SheetTrigger className="opus-mobile-menu-trigger" aria-label="Open navigation"><Menu size={24} aria-hidden="true" /></SheetTrigger>
           <SheetContent side="right" className="opus-mobile-menu" overlayClassName="opus-mobile-menu-overlay">
             <SheetHeader>
@@ -83,7 +107,7 @@ export function OpusHeader() {
                 const groups = item.label in opusNavigationGroups ? opusNavigationGroups[item.label as keyof typeof opusNavigationGroups] : undefined
                 return groups ? <details key={item.label} className="opus-mobile-menu-group"><summary className="opus-mobile-menu-link">{item.label}<ChevronDown size={14} aria-hidden="true" /></summary>{groups.map((group, index) => <div key={index} className="opus-mobile-submenu">{group.label && <p>{group.label}</p>}{group.links.map(link => <SheetClose key={link.href} render={<a href={link.href} />} className="opus-mobile-submenu-link">{link.label}</SheetClose>)}</div>)}</details> : <SheetClose key={item.label} render={<a href={item.href} />} className="opus-mobile-menu-link">{item.label}</SheetClose>
               })}
-              <SheetClose render={<a href="https://claude.ai/" />} className="opus-mobile-menu-link">Try Claude</SheetClose>
+              {opusClaudeMobileLinks.map(link => <SheetClose key={link.href} render={<a href={link.href} />} className="opus-mobile-menu-link">{link.label}</SheetClose>)}
             </nav>
           </SheetContent>
         </Sheet>

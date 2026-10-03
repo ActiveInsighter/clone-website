@@ -36,6 +36,25 @@ export function Results() {
 
 ## Copy into another project
 
+### 独立组件包
+
+```bash
+npm run export:evidence
+```
+
+会生成 `dist/evidence-kit/` 和 `dist/evidence-kit.tar.gz`，并更新展示页上的下载包。包内包含 8 个组件的源码、编译后的 ESM、TypeScript 类型、六个必要的 shadcn 基础组件、工具函数、主题 CSS 和使用说明，已移除本项目的路径别名。包内不包含 Anthropic 图片、字体、页面或 Next.js 路由。
+
+你可以复制包内的 `src/components/` 和 `src/lib/`，也可以在其他项目中用 `npm install /absolute/path/evidence-kit` 安装本地包：
+
+```tsx
+import { BenchmarkTable, CostPerformanceChart } from "@clone-lab/evidence"
+import "@clone-lab/evidence/theme.css"
+```
+
+安装为包时，在宿主 Tailwind v4 入口添加 `@source "../node_modules/@clone-lab/evidence/src";`，路径以该 CSS 文件的位置为准。现有 shadcn 项目保留已有的 Tailwind 基础样式；新项目可以导入包内的 `styles.css`。修改包源码后，在包目录执行 `npm install`、`npm run build` 重新生成编译文件和类型。独立导出会实际执行严格 TypeScript 编译；测试也会检查 CSS 能独立通过 Tailwind 处理。
+
+### 手动复制
+
 1. Use a React 19 project with Tailwind v4 and shadcn/ui. The components support Next.js App Router server pages; interactive components declare `"use client"`. This project uses shadcn's **Base UI** primitives. Its Tabs API uses `keepMounted`, `data-active`, and `data-inactive`; copying only the evidence components into a Radix-based shadcn setup requires adapting those APIs.
 2. Install `recharts` (verified with 3.8.0), `lucide-react`, `@base-ui/react`, `class-variance-authority`, `clsx`, and `tailwind-merge`.
 3. Copy `src/components/evidence/`, `src/lib/utils.ts`, and the required shadcn files: `ui/table.tsx`, `ui/card.tsx`, `ui/button.tsx`, `ui/tabs.tsx`, `ui/chart.tsx`, and `ui/collapsible.tsx`. Preserve their dependencies and your Tailwind/shadcn global CSS. These are editable source components, not an opaque package.

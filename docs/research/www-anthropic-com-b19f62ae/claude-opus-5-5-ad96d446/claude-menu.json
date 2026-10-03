@@ -1,0 +1,72 @@
+{
+  "desktopCtas": null,
+  "mobileCtas": [
+    {
+      "title": "Log in to Claude",
+      "url": "https://claude.ai/login"
+    },
+    {
+      "title": "Download app",
+      "url": "https://claude.ai/download"
+    }
+  ],
+  "sections": [
+    {
+      "category": "About Claude",
+      "links": [
+        {
+          "title": "Overview",
+          "url": "https://claude.com/product/overview"
+        },
+        {
+          "title": "Pricing",
+          "url": "https://claude.com/pricing"
+        },
+        {
+          "title": "Contact sales",
+          "url": "https://claude.com/contact-sales"
+        }
+      ]
+    },
+    {
+      "category": "Models",
+      "links": [
+        {
+          "title": "Mythos",
+          "url": "/claude/mythos"
+        },
+        {
+          "title": "Fable",
+          "url": "/claude/fable"
+        },
+        {
+          "title": "Opus",
+          "url": "/claude/opus"
+        },
+        {
+          "title": "Sonnet",
+          "url": "/claude/sonnet"
+        },
+        {
+          "title": "Haiku",
+          "url": "/claude/haiku"
+        }
+      ]
+    },
+    {
+      "category": "Log in",
+      "links": [
+        {
+          "title": "Claude.ai",
+          "url": "https://claude.ai"
+        },
+        {
+          "title": "Claude Console",
+          "url": "https://platform.claude.com/"
+        }
+      ]
+    }
+  ],
+  "title": "Try Claude",
+  "url": "https://claude.ai/"
+}
