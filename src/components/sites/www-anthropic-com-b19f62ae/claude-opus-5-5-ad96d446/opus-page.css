@@ -107,23 +107,6 @@
 .opus-skip-link { position: fixed; top: -100px; left: 20px; padding: 10px 16px; border-radius: 4px; background: #faf9f5; color: #141413 !important; }
 .opus-skip-link:focus { top: 12px; z-index: 100; }
 
-.opus-hero { --opus-scene-top: 335px; --opus-panel-left: 26%; --opus-panel-right: 30%; --opus-landing-opacity: 0; --opus-pointer-x: 0px; --opus-pointer-y: 0px; position: relative; height: 1200px; overflow: hidden; background: #faf9f5; color: #faf9f5; }
-.opus-hero-scene { position: absolute; inset: 0; overflow: hidden; clip-path: inset(var(--opus-scene-top) 0 0); background: #0d0c0b; }
-.opus-hero-sky { position: absolute; inset: 0 var(--opus-panel-right) 0 var(--opus-panel-left); overflow: hidden; background: linear-gradient(#0c1928 12%, #678da8 48%, #d6a494 64%, #ec7230 70%, #2b1919 73%, #0d0c0b 95%); }
-.opus-hero-sky canvas { width: 100%; height: 100%; display: block; }
-.opus-hero-texture { position: absolute; top: var(--opus-scene-top); bottom: -335px; background-size: auto 1750px; background-repeat: repeat-y; transform: translate(var(--opus-pointer-x), var(--opus-pointer-y)); }
-.opus-hero-texture-left { left: 0; width: calc(var(--opus-panel-left) + 6px); background-image: url("/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/images/hero-1.webp"); background-position: 60% 0; }
-.opus-hero-texture-right { right: 0; width: calc(var(--opus-panel-right) + 6px); background-image: url("/sites/www-anthropic-com-b19f62ae/claude-opus-5-5-ad96d446/images/hero-0.webp"); background-position: 35% 0; }
-.opus-hero-landing { position: absolute; top: 676px; left: 20px; right: 20px; text-align: center; opacity: var(--opus-landing-opacity); }
-.opus-hero-date { margin: 0; font-family: var(--font-anthropic-sans); font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: .075em; text-transform: uppercase; }
-.opus-hero h1 { margin: 32px 0 84px; color: #faf9f5; font-family: var(--font-anthropic-serif); font-size: clamp(42px, 7.1vw, 102px); font-weight: 500; line-height: 1.1; letter-spacing: -.052em; }
-.opus-hero-contents { max-width: 360px; margin: auto; font-size: 15px; line-height: 24.5px; letter-spacing: -.02em; }
-.opus-hero-contents ol { margin: 0; padding: 0; list-style: none; }
-.opus-hero-contents a { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-.opus-hero-contents a:hover { opacity: .65; }
-.opus-toc-number { font-family: var(--font-anthropic-mono); font-size: 11px; letter-spacing: 0; }
-.opus-toc-dots { flex: 1; border-bottom: 1px dotted rgb(250 249 245 / .45); }
-.opus-scroll-cue { position: absolute; right: 32px; bottom: 32px; display: flex; align-items: center; gap: 8px; color: #faf9f5 !important; font-family: var(--font-anthropic-sans); font-size: 12px; text-decoration: none; }
 
 .opus-main { position: relative; padding: 128px 20px 120px; outline: 0; }
 .opus-article { width: 100%; }
@@ -193,16 +176,10 @@
   .opus-claude-cta { font-size: 13px; min-height: 34px; }
   .opus-claude-cta > a { padding: 8px 12px; }
   .opus-claude-options { height: 34px; width: 38px; }
-  .opus-hero-landing { top: 630px; }
-  .opus-hero h1 { margin-top: 32px; margin-bottom: 70px; font-size: 48px; line-height: 1.05; }
-  .opus-hero-date { font-size: 11px; letter-spacing: .055em; }
-  .opus-hero-contents { max-width: 290px; font-size: 14px; line-height: 25px; }
   .opus-main { padding-top: 80px; padding-bottom: 96px; }
   .opus-summary { margin-bottom: 40px; }
   .opus-reading-nav { display: none; }
-  .opus-scroll-cue { right: 20px; bottom: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .opus-header, .opus-reading-nav { transition: none; }
-  .opus-hero { --opus-scene-top: 0px; --opus-panel-left: 6%; --opus-panel-right: 8.5%; --opus-landing-opacity: 1; }
 }

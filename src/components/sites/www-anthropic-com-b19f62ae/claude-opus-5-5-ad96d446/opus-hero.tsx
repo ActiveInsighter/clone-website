@@ -1,7 +1,10 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 import { ArrowDown } from "lucide-react"
+import { createHeroFrame, clampHero, smoothHero, HERO_ARTWORK } from "./hero-geometry"
+import { createHeroRenderer, type HeroRenderer } from "./hero-renderer"
+import "./opus-hero.css"
 
 export interface OpusSectionLink {
   anchor: string
@@ -9,141 +12,160 @@ export interface OpusSectionLink {
   heroLabel: string
 }
 
-/** Local, scroll-driven recreation of the original horizon. No remote scripts. */
+/** Local artwork, native WebGL, and a sticky stage; scroll input stays native. */
 export function OpusHero({ sections }: { sections: readonly OpusSectionLink[] }) {
   const heroRef = useRef<HTMLElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const fallbackRefs = useRef<Partial<Record<"left" | "middle" | "right", HTMLDivElement>>>({})
+  const [landingReady, setLandingReady] = useState(false)
+  const inkId = `opus-title-ink-${useId().replace(/:/g, "")}`
 
   useEffect(() => {
-    const hero = heroRef.current
-    const canvas = canvasRef.current
-    const context = canvas?.getContext("2d")
-    if (!hero || !canvas || !context) return
-
+    const hero = heroRef.current, stage = stageRef.current, canvas = canvasRef.current
+    if (!hero || !stage || !canvas) return
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const grain = document.createElement("canvas")
-    grain.width = grain.height = 256
-    const grainContext = grain.getContext("2d")
-    if (grainContext) {
-      const pixels = grainContext.createImageData(256, 256)
-      let seed = 1976
-      for (let i = 0; i < pixels.data.length; i += 4) {
-        seed = (seed * 16807) % 2147483647
-        const value = seed % 256
-        pixels.data[i] = pixels.data[i + 1] = pixels.data[i + 2] = value
-        pixels.data[i + 3] = 18
-      }
-      grainContext.putImageData(pixels, 0, 0)
-    }
-
+    let renderer: HeroRenderer | undefined
+    let loader = new AbortController()
+    let destroyed = false
+    let visible = true
     let frame = 0
-    let pointerX = 0
-    let pointerY = 0
-    function paint() {
+    let startedAt: number | undefined
+    let ready = false
+    let progress = motion.matches ? 1 : 0
+    stage.style.setProperty("--opus-title-ink", `url("#${inkId}")`)
+
+    function paint(now: number) {
       frame = 0
-      if (!hero || !canvas || !context) return
-      const rect = hero.getBoundingClientRect()
-      const width = rect.width
-      const height = rect.height
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
-      const progress = motion.matches ? 1 : Math.min(Math.max(-rect.top / 300, 0), 1)
-      const top = motion.matches ? 0 : 335 * (1 - progress)
-      const left = 26 - 20 * progress
-      const right = 30 - 21.5 * progress
-      hero.style.setProperty("--opus-scene-top", `${top}px`)
-      hero.style.setProperty("--opus-panel-left", `${left}%`)
-      hero.style.setProperty("--opus-panel-right", `${right}%`)
-      hero.style.setProperty("--opus-landing-opacity", `${Math.min(progress * 2, 1)}`)
-      hero.style.setProperty("--opus-pointer-x", `${motion.matches ? 0 : pointerX * 5}px`)
-      hero.style.setProperty("--opus-pointer-y", `${motion.matches ? 0 : pointerY * 3}px`)
-      const pixelWidth = Math.round(width * dpr)
-      const pixelHeight = Math.round(height * dpr)
-      if (canvas.width !== pixelWidth || canvas.height !== pixelHeight) {
-        canvas.width = pixelWidth
-        canvas.height = pixelHeight
+      if (!hero || !stage || destroyed || !visible || document.hidden) return
+      const heroRect = hero.getBoundingClientRect()
+      const width = stage.clientWidth, height = stage.clientHeight
+      if (!width || !height || heroRect.bottom <= 0) return
+      const travelled = Math.max(0, -heroRect.top)
+      if (travelled > 1 && startedAt === undefined) startedAt = now
+      const scrollProgress = clampHero(travelled / Math.max(120, height * 0.18))
+      const settleProgress = startedAt === undefined ? 0 : smoothHero((now - startedAt) / 950)
+      progress = motion.matches ? 1 : Math.max(progress, scrollProgress, settleProgress)
+      hero.dataset.phase = progress >= 0.999 ? "settled" : progress > 0.01 ? "revealing" : "intro"
+      const scene = createHeroFrame(width, height, smoothHero(progress))
+      stage.dataset.geometry = "true"
+      stage.style.setProperty("--opus-intro-size", `${clampHero(width * (0.03 + 0.05 * clampHero((1000 - width) / 600)), 22, 58)}px`)
+      stage.style.setProperty("--opus-seam-left", `${scene.seams[0]}px`)
+      stage.style.setProperty("--opus-seam-right", `${scene.seams[1]}px`)
+      stage.style.setProperty("--opus-intro-opacity", `${1 - smoothHero(progress / 0.45)}`)
+      stage.style.setProperty("--opus-landing-opacity", `${smoothHero((progress - 0.2) / 0.6)}`)
+      stage.style.setProperty("--opus-title-rise", `${(1 - smoothHero(progress)) * 100}px`)
+      stage.dataset.expanded = String(progress > 0.8)
+      if (ready !== (progress > 0.8)) {
+        ready = progress > 0.8
+        setLandingReady(ready)
       }
-      context.setTransform(dpr, 0, 0, dpr, 0, 0)
-      const horizon = Math.min(height * 0.72, 860) + pointerY * (motion.matches ? 0 : 3)
-      const skyTop = motion.matches ? 0 : Math.max(top, Math.min(-rect.top, 300))
-      const sky = context.createLinearGradient(0, skyTop, 0, horizon + 28)
-      sky.addColorStop(0, "#080f18")
-      sky.addColorStop(0.17, "#183958")
-      sky.addColorStop(0.36, "#47779d")
-      sky.addColorStop(0.52, "#7693af")
-      sky.addColorStop(0.69, "#9095b1")
-      sky.addColorStop(0.83, "#c9a297")
-      sky.addColorStop(0.9, "#e8ad6a")
-      sky.addColorStop(0.94, "#e47232")
-      sky.addColorStop(0.965, "#b92e18")
-      sky.addColorStop(1, "#291c1e")
-      context.fillStyle = sky
-      context.fillRect(0, 0, width, height)
-      // Blend the distant horizon into the foreground without a hard silhouette.
-      const ground = context.createLinearGradient(0, horizon + 28, 0, height)
-      ground.addColorStop(0, "#291c1e")
-      ground.addColorStop(0.5, "#141211")
-      ground.addColorStop(1, "#0d0c0b")
-      context.fillStyle = ground
-      context.fillRect(0, horizon + 28, width, height - horizon - 28)
-      const texture = context.createPattern(grain, "repeat")
-      if (texture) {
-        context.fillStyle = texture
-        context.fillRect(0, 0, width, height)
+      for (const layer of scene.layers) {
+        const image = fallbackRefs.current[layer.artwork.id]
+        const { anchor, pivot, rotation, scale } = layer.placement
+        if (image) image.style.transform = `translate(${anchor.x}px, ${anchor.y}px) rotate(${rotation}rad) scale(${scale}) translate(${-pivot.x}px, ${-pivot.y}px)`
+      }
+      if (renderer) {
+        renderer.draw(scene, width, height)
+        stage.dataset.renderer = "webgl"
+        hero.dataset.renderer = "webgl"
+      }
+      if (!motion.matches && startedAt !== undefined && progress < 1) frame = requestAnimationFrame(paint)
+    }
+    function schedule() {
+      if (!frame && visible && !destroyed && !document.hidden) frame = requestAnimationFrame(paint)
+    }
+    async function initialize() {
+      const signal = loader.signal
+      try {
+        const next = await createHeroRenderer(canvas!, signal)
+        if (destroyed || signal.aborted) { next.dispose(); return }
+        renderer = next
+        // Draw before revealing the canvas so the CSS artwork never flashes black.
+        paint(performance.now())
+      } catch {
+        if (!destroyed && !signal.aborted) {
+          stage!.dataset.renderer = "fallback"
+          hero!.dataset.renderer = "fallback"
+        }
       }
     }
-    function schedulePaint() {
-      if (!frame) frame = requestAnimationFrame(paint)
+    function contextLost(event: Event) {
+      event.preventDefault()
+      loader.abort()
+      renderer?.dispose()
+      renderer = undefined
+      stage!.dataset.renderer = "fallback"
+      hero!.dataset.renderer = "fallback"
+      schedule()
     }
-    function move(event: PointerEvent) {
-      if (motion.matches || event.pointerType !== "mouse") return
-      const rect = hero?.getBoundingClientRect()
-      if (!rect) return
-      pointerX = (event.clientX - rect.left) / rect.width - 0.5
-      pointerY = (event.clientY - rect.top) / rect.height - 0.5
-      schedulePaint()
+    function contextRestored() {
+      if (destroyed) return
+      loader = new AbortController()
+      void initialize()
     }
-    function resetPointer() {
-      pointerX = pointerY = 0
-      schedulePaint()
-    }
-    const resize = new ResizeObserver(schedulePaint)
-    resize.observe(hero)
-    window.addEventListener("scroll", schedulePaint, { passive: true })
-    hero.addEventListener("pointermove", move, { passive: true })
-    hero.addEventListener("pointerleave", resetPointer)
-    motion.addEventListener("change", schedulePaint)
-    paint()
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting
+      if (!visible) { cancelAnimationFrame(frame); frame = 0 }
+      else schedule()
+    })
+    observer.observe(hero)
+    const resize = new ResizeObserver(schedule)
+    resize.observe(stage)
+    window.addEventListener("scroll", schedule, { passive: true })
+    document.addEventListener("visibilitychange", schedule)
+    motion.addEventListener("change", schedule)
+    canvas.addEventListener("webglcontextlost", contextLost)
+    canvas.addEventListener("webglcontextrestored", contextRestored)
+    paint(performance.now())
+    void initialize()
     return () => {
+      destroyed = true
+      loader.abort()
       cancelAnimationFrame(frame)
+      observer.disconnect()
       resize.disconnect()
-      window.removeEventListener("scroll", schedulePaint)
-      hero.removeEventListener("pointermove", move)
-      hero.removeEventListener("pointerleave", resetPointer)
-      motion.removeEventListener("change", schedulePaint)
+      window.removeEventListener("scroll", schedule)
+      document.removeEventListener("visibilitychange", schedule)
+      motion.removeEventListener("change", schedule)
+      canvas.removeEventListener("webglcontextlost", contextLost)
+      canvas.removeEventListener("webglcontextrestored", contextRestored)
+      renderer?.dispose()
     }
-  }, [])
+  }, [inkId])
 
   return (
-    <section className="opus-hero" ref={heroRef} aria-labelledby="opus-hero-title">
-      <div className="opus-hero-scene" aria-hidden="true">
-        <div className="opus-hero-texture opus-hero-texture-left" />
-        <div className="opus-hero-sky"><canvas ref={canvasRef} /></div>
-        <div className="opus-hero-texture opus-hero-texture-right" />
+    <section className="opus-hero" ref={heroRef} aria-labelledby="opus-hero-title" data-phase="intro" data-renderer="loading">
+      <div className="opus-hero-stage" ref={stageRef} data-renderer="loading" data-expanded="false">
+        <div className="opus-hero-scene" aria-hidden="true">
+          {HERO_ARTWORK.filter((artwork) => artwork.id === "middle").concat(HERO_ARTWORK.filter((artwork) => artwork.id !== "middle")).map((artwork) => (
+            <div key={artwork.id} className={`opus-hero-fallback opus-hero-fallback-${artwork.id}`}><div className={`opus-hero-artwork opus-hero-artwork-${artwork.id}`} ref={(element) => { if (element) fallbackRefs.current[artwork.id] = element }} /></div>
+          ))}
+          <canvas ref={canvasRef} className="opus-hero-canvas" />
+        </div>
+        <svg className="opus-hero-filter-definitions" aria-hidden="true" focusable="false">
+          <defs>
+            <filter id={inkId} x="-4%" y="-15%" width="108%" height="130%" colorInterpolationFilters="sRGB">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="texture" />
+              <feDisplacementMap in="SourceGraphic" in2="texture" scale="0.6" xChannelSelector="R" yChannelSelector="G" result="rough" />
+              <feGaussianBlur in="rough" stdDeviation="0.7" result="soft" />
+              <feComponentTransfer in="soft" result="ink"><feFuncA type="linear" slope="1.14" intercept="0" /></feComponentTransfer>
+              <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="12" result="scratches" />
+              <feColorMatrix in="scratches" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -8 0 0 0 6.6" result="holes" />
+              <feComposite in="ink" in2="holes" operator="in" />
+            </filter>
+          </defs>
+        </svg>
+        <p className="opus-hero-intro" aria-hidden="true">Introducing</p>
+        <div className="opus-hero-landing">
+          <p className="opus-hero-date"><time dateTime="2026-09-22">September 22, 2026</time></p>
+          <h1 id="opus-hero-title" aria-label="Claude Opus 5.5"><span className="opus-hero-title-art" aria-hidden="true"><span className="opus-hero-claude-glyph">{"\uE11C"}</span><span className="opus-hero-title-rest"> Opus 5.5</span></span></h1>
+          <nav className="opus-hero-contents" aria-label="Article contents" inert={!landingReady}>
+            <ol>{sections.map((section, index) => <li key={section.anchor}><a href={`#${section.anchor}`}><span className="opus-toc-number">({index + 1})</span><span className="opus-toc-dots" aria-hidden="true" /><span>{section.heroLabel}</span></a></li>)}</ol>
+          </nav>
+        </div>
+        <a className="opus-scroll-cue" href="#introduction"><span>Scroll down</span><ArrowDown size={16} aria-hidden="true" /></a>
       </div>
-      <div className="opus-hero-landing">
-        <p className="opus-hero-date"><time dateTime="2026-09-22">September 22, 2026</time></p>
-        <h1 id="opus-hero-title">Claude Opus 5.5</h1>
-        <nav className="opus-hero-contents" aria-label="Article contents">
-          <ol>
-            {sections.map((section, index) => (
-              <li key={section.anchor}>
-                <a href={`#${section.anchor}`}><span className="opus-toc-number">({index + 1})</span><span className="opus-toc-dots" aria-hidden="true" /><span>{section.heroLabel}</span></a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      </div>
-      <a className="opus-scroll-cue" href="#introduction"><span>Scroll down</span><ArrowDown size={16} aria-hidden="true" /></a>
     </section>
   )
 }
