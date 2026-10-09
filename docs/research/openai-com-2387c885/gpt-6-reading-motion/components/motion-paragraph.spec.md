@@ -1,0 +1,5 @@
+# MotionParagraph specification
+
+Observed original data-cua-motion=cua-move: root inline-block max-width100%, content inline-block wrapping, same cursor artwork. Initial content translate3d(min(110px,18vw),24px,0) rotate(5deg); end identity. Action .12–.78 of scroll progress. Curved placement path with 32px sideways bow. Cursor grips approx .8 width/.4 height and follows moving text. Cursor fades away at progress1. Mobile initial x=70.2px at viewport390. Original article clips horizontal overflow.
+
+Reusable implementation supports span for heading fragments, block for paragraphs, configurable offset/rotation and the same scroll/visible/manual controls. Transform does not change document flow. Parent clipped demo stage prevents sideways overflow; consumer should provide movement space or clip the reading container; the component keeps source default min(110px,18vw) offset without changing host global CSS. Reduced motion renders identity immediately. Consumers control content/spacing/typography; kit includes no brand, site data or Next imports.
