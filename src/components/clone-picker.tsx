@@ -25,6 +25,7 @@ export function ClonePicker() {
             <DestinationCard href={item.href} title={item.label} key={item.id} />
           ))}
           <DestinationCard href="/components/evidence" title="Evidence 组件库" description="图表、表格与叙述交互 · 可切换数据和主题" />
+          <DestinationCard href="/components/reading-motion" title="Reading motion" description="动态选句与段落移动 · 阅读解析与博客动画" />
         </nav>
 
 

@@ -77,6 +77,10 @@ try {
   assert.equal(gallery.status, 200)
   assert.ok((await gallery.text()).includes("A reusable presentation system"))
   console.log("PASS reusable component gallery")
+  const motion = await request("/components/reading-motion")
+  assert.equal(motion.status, 200)
+  assert.ok((await motion.text()).includes("让文字，动起来"))
+  console.log("PASS reading motion component gallery")
 } finally {
   if (server && server.exitCode === null && server.signalCode === null) {
     const exited = once(server, "exit")
